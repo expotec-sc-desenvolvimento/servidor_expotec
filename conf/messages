@@ -111,3 +111,5 @@ button.cracha = Imprimir Crachá
 button.submit = Enviar
 button.password = Alterar Senha
 role= Perfil
+
+badge.mybadge = Meu Cracha

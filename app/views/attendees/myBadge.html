@@ -1,0 +1,39 @@
+#{extends 'template/main.html' /} 
+#{set 'title'}
+    &{'badge.mybadge'}
+#{/set}
+
+<div class="row">
+	<div class="col-lg-3 cracha">
+	<div class="panel">
+		<div class="panel-body no-padding">
+			<div class="qrcode" id="${user.uuid}"></div>
+		</div>
+		<div class="panel-footer bg-white text-center">
+			<p class="text-muted m-top-sm">
+				<small>
+					#{if event.logo.get() != null}
+						<img src="@{Application.getEventLogo(event.id)}" alt="${event.title}" />
+					#{/if}
+					#{else}
+						<img src="@{'public/img/logo.png'}" alt="${event?.title}" />
+					#{/else}
+				</small>
+			</p>
+			<h4 class="font-500 text-success no-margin">${user.name}</h4>
+			<div class="text-muted">
+				${user.permission.name} 
+			</div>
+		</div>
+	</div>
+</div>
+
+#{set 'moreScripts'}
+<script src="@{'/public/js/qrcode.min.js'}"></script>
+
+<script type="text/javascript">
+	var qrcode = new QRCode(document.getElementById("${user.uuid}"));
+    qrcode.clear(); 
+    qrcode.makeCode(${user.uuid});    
+</script>
+#{/set}

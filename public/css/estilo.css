@@ -9,6 +9,10 @@ img.img-responsive.logo {
 	width: 260px;
 	text-align: center;
 }
+
+.qrcode img {
+    width: 100%;
+}
 .alert.alert-success {   
     background: lightblue;
 }
@@ -115,6 +119,21 @@ footer.main {
     height: 70px;
     padding: 7px 0px;
 }
+
+.panel{
+	padding: 30px;
+}
+
+.cracha small img {
+    height: 40px;
+}
+
+@media print {
+	.col-lg-3.cracha{
+    	width: 50%;
+	}
+}
+
 @media screen and (max-width: 767px) {
 	.navbar-nav>li>a {
 		padding: 28px 20px;

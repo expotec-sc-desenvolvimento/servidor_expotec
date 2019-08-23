@@ -51,6 +51,10 @@ public class Attendees extends Controller {
 		renderTemplate("attendees/editMyProfile.html");
 	}
 	
+	public static void myBadge() {
+		renderTemplate("attendees/myBadge.html");
+	}
+	
 	public static void getUserPicture(Long userid) {
         User user = User.findById(userid);
         if(user.picture.getFile() != null) {
@@ -78,6 +82,7 @@ public class Attendees extends Controller {
         }else {
         	logado.password = Crypto.passwordHash(user.password);
         	logado.save();
+        	renderJSON("Senha alterada com sucesso!");
         }		
 	}
 	
