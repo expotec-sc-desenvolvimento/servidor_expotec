@@ -4,7 +4,8 @@ application.year= 2019
 application.date= Hoje é %s
 application.yes= Sim
 application.no= Não
-
+application.error= Essa operação não pode ser realizada.
+application.success=  Essa operação foi realizada com sucesso.
 secure.title= Acessar o Sistema
 secure.username= E-mail
 secure.password= Senha
@@ -77,6 +78,9 @@ user.cpf=CPF:
 user.cpf_suap=CPF/Matrícula SUAP:
 user.suap=Matrícula SUAP:
 user.picture=Foto do Perfil:
+user.changepassword= Alterar Senha
+user.newpassword=Nova senha:
+
 
 event.list= Lista de Eventos
 event.detail= Detalhes do Evento

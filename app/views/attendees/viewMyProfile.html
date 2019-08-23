@@ -1,4 +1,7 @@
 #{extends 'template/layout.html' /}
+#{set 'title'}
+    &{'cpanel.menu.myprofile'}
+#{/set}
 
 #{set 'panel-title'}
     &{'cpanel.menu.myprofile'}
@@ -11,8 +14,6 @@
     	});
     </script>
 #{/set}
-
-
 
 <div class="row">
 		#{include 'template/user/detail.html' /}
@@ -27,15 +28,87 @@
         		
         		<div class="col-md-4 mb-4">
         	    	<a class="btn btn-lg  btn-danger  btn-block"
-        	     	href="">&{'button.password'}</a>
+        	    	href="#formInModal" data-toggle="modal">&{'button.password'}</a>
         		</div>
       	  		
         		<div class="col-md-4 mb-4">
         			#{btEdit url:'editmyprofile' /}
 	       		</div>
-        
 			</div>
 		</div>
+		
+		
+		
+		
+		
 		#{/if}
 	</div>
 </div>
+
+<!-- Small modal -->
+<div class="modal fade" id="formInModal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+		    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">&{'user.changepassword'}</h4>
+		    </div>
+			<div class="modal-body">
+		    	#{form @Attendees.saveMyPassword(), method:'POST', class:'form-horizontal', id:'formPassword', name:'formPassword'} 
+					#{field 'user.uuid'} 
+						<input type="hidden" id="${field.name}" name="${field.name}" value="${field.value}" />
+					#{/field} 
+					#{field 'user.password'}
+					<div class="control-group">
+						<p>
+							<label for="${field.name}" class="sr-only">&{'user.newpassword'}</label>
+							<input type="password" id="${field.name}" name="${field.name}"
+								class="form-control" minlength="6"
+								maxlength="12" placeholder="&{'user.newpassword'}" required>
+							<div class="help-inline ${errors.forKey(field.name)?'error':''}">
+								${errors.forKey(field.name)}
+							</div>
+						</p>
+					</div>
+					#{/field} 
+					#{field 'user.pwConfirmation'}
+					<div class="control-group">
+						<p>
+							<label for="${field.name}" class="sr-only">&{'user.passwordConfirmation'}</label>
+							<input type="password" id="${field.name}" name="${field.name}"
+								class="form-control" minlength="6"
+								maxlength="12" placeholder="&{'user.pwConfirmation'}" required>
+							<div class="help-inline ${errors.forKey(field.name)?'error':''}">
+									${errors.forKey(field.name)}
+							</div>
+						</p>
+					</div>
+					#{/field}
+				    #{btSubmit /}
+				#{/form} 
+		    </div>
+		</div>
+	</div>
+</div>
+
+#{set 'moreScripts'}
+
+<script type = "text/javascript" >
+  $('#formPassword').on('submit', function() {
+	   var $this = $(this);
+	   console.log($this);
+	   $.ajax({
+	     url: '@{Attendees.saveMyPassword()}',
+	     data: $this.serialize(),
+	     type: 'POST'
+		}).always(function(data) {
+			alert(data.responseText);
+			$("#formInModal").modal('hide');
+			$('#formPassword')[0].reset();
+		});
+	   return false;
+	});
+</script>
+
+#{/set}
+

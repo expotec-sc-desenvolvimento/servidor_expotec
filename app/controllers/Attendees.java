@@ -60,8 +60,28 @@ public class Attendees extends Controller {
     }
 	
 	
+	public static void saveMyPassword(User user) {
+		validation.required(user.password);
+		validation.minSize(user.password, 6);
+		validation.maxSize(user.password, 16);
+		
+		validation.required(user.pwConfirmation);
+		validation.equals(user.password, user.pwConfirmation);
+		
+		if (validation.hasErrors()) {
+			renderJSON("Senha e/ou confirmação inválidas.");
+		}
+		
+		User logado = User.findById(Long.parseLong(session.get("userid").toString()));
+		if(logado.uuid != user.uuid){
+        	renderJSON("Você não tem permissão para realizar essa operação");
+        }else {
+        	logado.password = Crypto.passwordHash(user.password);
+        	logado.save();
+        }		
+	}
+	
 	public static void saveMyProfile(@Valid User user) {
-		System.out.println("outsider: "+user.outsider);
 		if (validation.hasErrors() ) {
 			System.out.println(validation.errorsMap());
             renderArgs.put("user", user);
