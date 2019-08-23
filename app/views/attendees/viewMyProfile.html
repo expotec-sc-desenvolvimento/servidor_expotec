@@ -1,0 +1,41 @@
+#{extends 'template/layout.html' /}
+
+#{set 'panel-title'}
+    &{'cpanel.menu.myprofile'}
+#{/set}
+
+#{set 'moreScripts'}
+    <script type="text/javascript">
+    	$(function(){
+    		
+    	});
+    </script>
+#{/set}
+
+
+
+<div class="row">
+		#{include 'template/user/detail.html' /}
+		
+		#{if user.uuid.toString().equals(session.get('userid'))}
+		<div class="control-group form-actions marginTB-xs">
+    		<div class="row text-right">
+      	  		<div class="col-md-4 mb-4">
+        	    	<a class="btn btn-lg  btn-block btn-success"
+        	     	href="">&{'button.cracha'}</a>
+        		</div>
+        		
+        		<div class="col-md-4 mb-4">
+        	    	<a class="btn btn-lg  btn-danger  btn-block"
+        	     	href="">&{'button.password'}</a>
+        		</div>
+      	  		
+        		<div class="col-md-4 mb-4">
+        			#{btEdit url:'editmyprofile' /}
+	       		</div>
+        
+			</div>
+		</div>
+		#{/if}
+	</div>
+</div>

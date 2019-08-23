@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>#{get 'title' /}</title>
+        
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		
+		 <!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="@{'/public/template/vendor/bootstrap/css/bootstrap.min.css'}">
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="@{'/public/template/vendor/font-awesome/css/font-awesome.min.css'}">
+		
+		<!-- IONICONS -->
+		<link rel="stylesheet" href="@{'/public/template/vendor/ionicons/ionicons.min.css'}">
+		
+		<link rel="stylesheet" href="@{'/public/template/vendor/linearicons/style.css'}">
+		
+		<link rel="stylesheet" href="@{'/public/template/vendor/chartist/css/chartist-custom.css'}">
+		
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		
+		<!-- FAVI-ICONS -->
+		<link rel="icon" type="image/png" sizes="96x96" href="@{'/public/img/favicon.ico'}">
+		
+	
+		
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="@{'/public/template/css/main.css'}"> 
+		
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="@{'/public/template/css/simplify.css'}"> 
+		
+		#{get 'moreStyles' /}
+		
+			<!-- MAIN CSS -->
+		<link rel="stylesheet" href="@{'/public/css/estilo.css'}">
+    </head>
+    <body>
+        #{doLayout /}
+        
+        <!-- Javascript -->
+		<script src="@{'/public/template/vendor/jquery/jquery.min.js'}"></script>
+		<script src="@{'/public/template/vendor/bootstrap/js/bootstrap.min.js'}"></script>
+		<script src="@{'/public/template/vendor/jquery-slimscroll/jquery.slimscroll.min.js'}"></script>
+		<script src="@{'/public/template/scripts/klorofil-common.js'}"></script>
+		
+		<!-- Owl -->
+		<script src="@{'/public/js/owl.carousel.min.js'}"></script>
+
+		<!-- Modernizr -->
+		<script src="@{'/public/js/modernizr.min.js'}"></script>
+
+		<!-- Waypoint -->
+		<script src="@{'/public/js/waypoints.min.js'}"></script>
+
+		<!-- ScrollTo -->
+		<script src="@{'/public/js/jquery.scrollTo.min.js'}"></script>
+
+		<!-- Local Scroll -->
+		<script src="@{'/public/js/jquery.localScroll.min.js'}"></script>
+		
+		#{get 'moreScripts' /}
+    </body>
+</html>

@@ -1,0 +1,39 @@
+html, body, #wrapper {
+    height: 100%;
+}
+
+.input-group-addon .fa{
+    width: 35px;
+    
+}
+
+.logo img{
+    height: 90px;
+} 
+
+.auth-box{
+    display: table;
+    height: auto;
+}
+.auth-box .right, .auth-box .left {
+    float: none;
+    display: table-cell;
+}
+
+
+@media screen and (max-width: 1023px){
+    .auth-box .right {
+    display: none !important;
+}
+}
+
+.alert{
+    font-size: smaller;
+    text-align: center;
+    padding: 10px;
+}
+
+button.close {
+    right: -0px !important;
+    font-size: unset;
+}

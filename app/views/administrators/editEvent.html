@@ -1,0 +1,26 @@
+#{extends 'template/layout.html' /}
+#{set 'title'}
+    &{'menu.event'}
+#{/set}
+
+#{set 'panel-title'}
+    &{'event.edit'}
+#{/set}
+
+#{form @Administrators.saveEvent(),method:'POST', class: 'form-horizontal'} 
+    #{include 'template/event/form.html' /}
+    <input type='hidden' name="e.id" value="${event.id}">
+    
+    <div class="control-group form-actions">
+    	<div class="row">
+        	<div class="col-md-3 mb-4">
+            	#{btSubmit /}
+	    	</div>
+        
+      		<div class="col-md-3 mb-4">
+      			#{btCancel url:@Administrators.viewEvent(e.id) /}
+        	</div>
+    	</div>
+    </div>
+#{/form}
+

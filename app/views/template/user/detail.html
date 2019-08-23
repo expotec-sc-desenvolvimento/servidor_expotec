@@ -1,0 +1,88 @@
+	<div class="col-md-3">
+		<div class="foto-usuario">
+			#{if user.picture.get() != null}
+				<img class="inline-block user-profile-pic"
+				src="@{Attendees.getUserPicture(user.uuid)}"/>
+			#{/if}
+			#{else}
+				<img class=" inline-block user-profile-pic" src="@{'/public/img/no_picture.png'}"/>
+			#{/else}		
+		</div>
+
+	</div>
+	<div class="col-md-9">
+		<div class="row">
+			<div class="col-md-2">
+				<p>
+					<strong>&{'user.name'}</strong>
+				</p>
+			</div>
+			<div class="col-md-6">
+				<p class="data-detail">${user.name}</p>
+			</div>
+			<div class="col-md-2">
+				<p>
+					<strong>&{'user.permission'}</strong>
+				</p>
+			</div>
+			<div class="col-md-2">
+				<p class="data-detail">${user.permission.name}</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2">
+				<p>
+					<strong>&{'user.email'}</strong>
+				</p>
+			</div>
+			<div class="col-md-6">
+				<p class="data-detail">${user.email}</p>
+			</div>
+			<div class="col-md-2">
+				<p id="">
+					<strong>&{'user.cel'}</strong>
+				</p>
+			</div>
+			<div class="col-md-2 ">
+				<p class="data-detail">${user.cel}</p>
+			</div>
+		</div>
+
+		
+		<div class="row">
+			<div class="col-md-2">
+				<p>
+					<strong>
+					#{if user.outsider == true}
+				 		&{'user.cpf'}
+					#{/if}
+					#{else}
+						&{'user.suap'}
+					#{/else}
+					</strong>
+				</p>
+			</div>
+			<div class="col-md-6">
+				<p class="data-detail">
+					${user.cpf_suap}
+				</p>
+			</div>
+			<div class="col-md-2">
+				<p>
+					<strong>&{'user.outsider'}</strong>
+				</p>
+			</div>
+
+			<div class="col-md-2">
+				<p class="data-detail">
+				#{if user.outsider == true}
+				 	&{'application.yes'}
+				#{/if}
+				#{else}
+					&{'application.no'}
+				#{/else}
+				</p>
+			</div>
+			
+		</div>

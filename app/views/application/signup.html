@@ -1,0 +1,135 @@
+#{extends 'template/main.html' /} 
+
+#{set 'moreStyles'}
+	<link href="@{'/public/css/login.css'}" rel="stylesheet" type="text/css" />
+#{/set} 
+
+#{set 'title'} 
+	&{'user.signup'} 
+#{/set}
+
+<!-- WRAPPER -->
+<div id="wrapper">
+	<div class="vertical-align-wrap">
+		<div class="vertical-align-middle">
+			<div class="auth-box ">
+				<div class="left">
+					<div class="content">
+						<div class="header">
+							<div class="logo text-center">
+								<a href="@{Application.index()}">
+									<img src="@{'/public/img/logo_96.png'}"
+									alt="&{'application.name'}">
+								</a>
+							</div>
+							<p class="lead">&{'user.signup'}</p>
+						</div>
+						#{if flash.error}
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">
+                                	<i class="fa fa-times-circle"></i>
+                                </span>
+                            </button>
+                           
+                            ${messages.get(flash.error)}
+                        </div>
+                        #{/if}
+						#{form @Application.save(), method:'POST', class:'form-horizontal'} 
+							#{field 'user.uuid'} 
+								<input type="hidden" id="${field.name}" name="${field.name}" value="${field.value}" />
+							#{/field} 
+							#{field 'user.name'}
+							<div class="control-group">
+								<p>
+									<label for="${field.name}" class="sr-only">&{'user.name'}</label>
+									<input type="text" id="${field.name}" name="${field.name}"
+										value="${field.value}" class="form-control"
+										placeholder="&{'user.name'}" required minlength="1"> 
+									<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+										${errors.forKey(field.name)}
+									</div>
+								</p>
+							</div>
+							#{/field} 
+							#{field 'user.email'}
+							<div class="control-group">
+								<p>
+									<label for="${field.name}" class="sr-only">&{'user.email'}</label>
+									<input type="email" id="${field.name}" name="${field.name}"
+										value="${field.value}" class="form-control"
+										placeholder="&{'user.email'}" required>
+									 <div class="help-inline ${errors.forKey(field.name)?'error':''}">
+									 	${errors.forKey(field.name)}
+									 </div>
+								</p>
+							</div>
+							#{/field} 
+							#{field 'user.cel'}
+							<div class="control-group">
+								<p>
+									<label for="${field.name}" class="sr-only">&{'user.cel'}</label>
+									<input type="tel" id="${field.name}" name="${field.name}"
+										value="${field.value}" class="form-control"
+										placeholder="&{'user.cel'}" required>
+									 <div class="help-inline ${errors.forKey(field.name)?'error':''}">
+									 	${errors.forKey(field.name)}
+									 </div>
+								</p>
+							</div>
+							#{/field} 
+							#{field 'user.password'}
+							<div class="control-group">
+								<p>
+									<label for="${field.name}" class="sr-only">&{'user.password'}</label>
+									<input type="password" id="${field.name}" name="${field.name}"
+										value="${field.value}" class="form-control" minlength="6"
+										maxlength="12" placeholder="&{'user.password'}" required>
+									<div class="help-inline ${errors.forKey(field.name)?'error':''}">
+										${errors.forKey(field.name)}
+									</div>
+								</p>
+							</div>
+							#{/field} 
+							#{field 'user.pwConfirmation'}
+							<div class="control-group ">
+								<p>
+									<label for="${field.name}" class="sr-only">&{'user.passwordConfirmation'}</label>
+									<input type="password" id="${field.name}" name="${field.name}"
+										value="${field.value}" class="form-control" minlength="6"
+										maxlength="12" placeholder="&{'user.pwConfirmation'}" required>
+									<div class="help-inline ${errors.forKey(field.name)?'error':''}">
+										${errors.forKey(field.name)}
+									</div>
+								</p>
+							</div>
+							#{/field}
+							<div class="control-group form-actions">
+								<p>
+									<button class="btn btn-lg btn-primary btn-block" type="submit">&{'button.submit'}</button>
+								</p>
+							</div>
+						#{/form}
+
+						<div class="bottom">
+							<p>
+								<span class="helper-text"> 
+									<a href="@{Security.login()}">&{'secure.login'}</a>
+								</span>
+							</p>
+						</div>
+						
+					</div>
+				</div>
+				<div class="right">
+					<div class="overlay"></div>
+					<div class="content text">
+						<h1 class="heading">&copy; &{'application.year'}</h1>
+						<p>&{'application.name'}</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>

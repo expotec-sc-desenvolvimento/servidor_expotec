@@ -1,0 +1,109 @@
+application.name= Expotec
+application.author= IFRN/SC
+application.year= 2019
+application.date= Hoje é %s
+application.yes= Sim
+application.no= Não
+
+secure.title= Acessar o Sistema
+secure.username= E-mail
+secure.password= Senha
+secure.remember= Lembrar-me.
+secure.signin= Entrar
+secure.forgotten= Esqueceu a senha?
+secure.signup= Ainda não possui cadastro? 
+secure.error= Oops! Usuário ou senha desconhecidos.
+secure.logout= Sentiremos sua falta. Volte logo!
+secure.login = Acessar o sistema
+
+validacao.unico.login = Já existe um usuário com este login. Digite outro.
+validacao.confirmasenha = Senha não confere.
+validacao.unico.email = Já existe um usuário com este Email. Digite outro.
+validacao.requerido = *Campo obrigatório.
+validacao.erro = Verifique os problemas abaixo.
+validacao.min = O tamanho minimo é %s.
+validacao.max = O tamanho máximo é %s.
+validacao.unico.papel = Já existe um papel com esta Descrição. Digite outra.
+validacao.unico.instituicao = Já existe uma intituição com este nome. Digite outro.
+validacao.unico.dia = Já existe um dia com este nome. Digite outro.
+
+erro.permissao= Você não tem permissão para fazer essa operação.
+erro.operacao= Não foi possível realizar esta operação.
+
+cpanel.menu.dashboard = Início
+cpanel.menu.myactivities = Minhas Atividades
+cpanel.menu.mypapers= Meus Trabalhos
+cpanel.menu.myevaluations= Minhas Avaliações 
+cpanel.menu.mycertificates= Certificado de Participação
+cpanel.menu.myprofile= Meu Perfil
+
+cpanel.menu.logout = Sair 
+cpanel.menu.admin = Cadastro
+cpanel.menu.events = Evento
+cpanel.menu.event = Evento
+cpanel.menu.activies = Atividades
+cpanel.menu.users = Usuários
+cpanel.menu.evalutions = Avaliações
+cpanel.menu.papers = Trabalhos
+cpanel.menu.attendant = Atendimento
+cpanel.menu.badge = Crachá
+cpanel.menu.attendance = Presença
+cpanel.menu.expertise = Saberes
+cpanel.index = Painel de Controle
+
+index.menu.index = Início
+index.menu.activities = Atividades
+index.menu.schedule = Programação
+index.menu.blog = Notícias
+index.menu.cpanel = Acessar  
+index.sponsored = Patrocinadores e Parceiros
+index.organized = Organização 
+index.title= Início
+
+
+
+user.success = Cadastro efetuado! Agora você pode entrar no sistema.
+user.logout = Sair
+user.signup = Cadastro de Uusário
+user.name = Nome Completo:
+user.email = E-mail:
+user.cel = Celular:
+user.password = Senha:
+user.outsider= Usuário Externo:
+user.pwConfirmation= Confirmação:
+user.permission= Permissão:
+user.myprofile=Meu perfil
+user.cpf=CPF:
+user.cpf_suap=CPF/Matrícula SUAP:
+user.suap=Matrícula SUAP:
+user.picture=Foto do Perfil:
+
+event.list= Lista de Eventos
+event.detail= Detalhes do Evento
+event.edit= Editar Evento
+event.title= Nome
+event.edition= Edição
+event.about= Sobre
+event.logo= Logo
+event.start= Abertura
+event.end= Encerramento
+event.address= Endereço
+event.domain= Servidor
+event.blog=Blog
+event.organization= Organização
+event.contact= Contato
+
+event.empty = Você não possui eventos cadastrados.
+
+activity.list= Lista de Atividades
+activity.empty= Você não possui atividades cadastradas.
+
+button.save = Salvar
+button.delete = Deletar
+button.edit = Editar
+button.view = Detalhar
+button.cancel = Cancelar
+button.cracha = Imprimir Crachá
+button.submit = Enviar
+button.password = Alterar Senha
+role= Perfil

@@ -1,0 +1,24 @@
+Event(expotecsc):
+    title: "9ª EXPOTEC/SC"
+    edition: 2019
+    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    start: 2019-11-19
+    end: 2019-11-22
+    address: "Rua São Braz, 304, Bairro Paraíso Santa Cruz-RN ,  CEP: 59200-000"
+    domain: "http://localhost:900"
+    organization: "IFRN | Santa Cruz"
+    contact: "(84) 4005-4110 / 3291-4700"
+    
+User(admin):
+    cel: "8411112222"
+    cpf_suap: "11111111111"
+    email: "admin@email.com"
+    name: "Administrador"
+    password: 4QrcOUm6Wau+VuBX8g+IPg==
+    registration: 2019-08-20
+    status: 1
+    event: expotecsc
+    picture: 220f6c65-4ced-46a9-bc7c-516fd1b73068|image/png
+    permission: ATTENDEE
+    
+

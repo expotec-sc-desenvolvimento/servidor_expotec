@@ -1,0 +1,139 @@
+img.img-responsive.logo {
+	max-height: 50px;
+	margin: auto;
+}
+
+.navbar-default .brand {
+	padding: 0px 19px;
+	background-color: #fff;
+	width: 260px;
+	text-align: center;
+}
+.alert.alert-success {   
+    background: lightblue;
+}
+.data-detail{
+	background: lightgray;
+    padding: 5px;
+    min-height: 29px;
+}
+.navbar-nav>li>.dropdown-menu {
+	margin-top: 4px;
+}
+
+.navbar-nav > li > a img {
+    width: 30px;
+    margin-right: 5px;
+}
+.form-horizontal .form-group{
+	margin-left:0;
+}
+
+.foto-usuario {
+    text-align: center;
+    margin: 0px 0px 20px 0px;
+}
+
+.navbar-nav .dropdown-menu {
+	border-top: 2px solid #ACB0B5 !important;
+}
+
+.mb-4, .my-4 {
+	margin-bottom: 1.5rem !important;
+}
+
+.mb-6, .my-6 {
+	margin-bottom: 2.1rem !important;
+}
+
+.btn-default {
+	color: white;
+	background-color: lightgray;
+}
+
+.btn {
+	transition: all .15s ease-in-out;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+	border-radius: .2rem;
+}
+
+.btn-outline-secondary {
+	color: #6c757d;
+	background-color: transparent;
+	background-image: none;
+	border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+	color: white;
+	background-color: #6c757d;
+}
+
+.help-inline.error {
+	margin: 5px 0px -5px 0px;
+	
+	color: darkred;
+	padding: 3px 0px 3px 0px;
+}
+
+.foto-usuario img {
+    width: 100%;
+    max-width:255px;
+}
+.alert.alert-danger {
+    background: lightpink;
+}
+#wrapper footer {
+	transition: all 0.3s ease-in-out;
+    
+	margin-top: 20px;
+}
+
+.layout-fullwidth #wrapper footer {
+	width: 100%;
+}
+
+footer.main {
+	padding: 0px !important;
+	margin: 0px !important;
+	min-height: auto !important;
+}
+
+.breadcrumbs {
+    margin: 0px 0px 10px 0px;
+}
+
+.navbar-brand img {
+    height: 60px;
+    margin-left: 10px;
+}
+
+.navbar-brand {
+    float: left;
+    height: 70px;
+    padding: 7px 0px;
+}
+@media screen and (max-width: 767px) {
+	.navbar-nav>li>a {
+		padding: 28px 20px;
+	}
+	#wrapper #sidebar-nav, #wrapper .main {
+		padding-top: 82px;
+	}
+	.navbar-nav .open .dropdown-menu {
+		margin-top: 0px;
+	}
+	.navbar-nav > li {
+    display: table-cell;
+    width: auto;
+    position: inherit;
+    text-align: right;
+    float: right;
+	}
+	.front-end-wrapper .navbar-nav > li {
+	  display: contents;
+	  text-align: center;
+	}
+}

@@ -1,0 +1,141 @@
+#{extends 'template/main.html' /}
+
+#{set 'moreStyles'} 
+	<link href="@{'/public/css/estilo.css'}" rel="stylesheet" type="text/css"/>
+#{/set}
+
+%{ 
+	userid= session.get('userid');
+	eventid= session.get('eventid');
+	permission = user.permission.toString();
+}%
+
+<!-- WRAPPER -->
+<div id="wrapper">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="brand">
+            <a href="@{Application.index()}">
+            	#{if event.logo.get() != null}
+					<img src="@{Application.getEventLogo(event.id)}" alt="${event.title}" />
+				#{/if}
+				#{else}
+					<img src="@{'public/img/logo_2.png'}" alt="${event?.title}" />
+				#{/else}
+                	
+            </a>
+        </div>
+        <div class="container-fluid">
+            <div class="navbar-btn">
+                <button type="button" class="btn-toggle-fullwidth">
+                    <i class="lnr lnr-arrow-left-circle"></i>
+                </button>
+            </div>
+            <div id="navbar-menu">
+                <ul class="nav navbar-nav navbar-right">
+                    #{if permission.equals("ATTENDANT")}
+                     #{include 'template/menus/attendant.html' /}
+                    #{/if}
+                    #{if permission.equals("EXPERT")}
+                    	#{include 'template/menus/expert.html' /}
+                    #{/if}
+                    #{if permission.equals("ADMIN")}
+                    	#{include 'template/menus/admin.html' /}
+                    #{/if}
+                    <!-- MENUS DE PERFIL -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+							#{if user.picture.get() != null}
+								<img class="img-circle inline-block user-profile-pic"
+								 src="@{Attendees.getUserPicture(userid)}"/>
+							#{/if}
+							#{else}
+								<img class="img-circle inline-block user-profile-pic" src="@{'/public/img/no_picture.png'}"/>
+							#{/else}	
+							<span>${user?.toString()}</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="@{Attendees.viewMyProfile()}">
+                    				<i class="lnr lnr-user"></i> 
+                    				<span>&{'cpanel.menu.myprofile'}</span>
+								</a>
+							</li>
+							<li>
+								<a href="@{Security.logout}">
+                    				<i class="lnr lnr-exit"></i> 
+                    				<span>&{'cpanel.menu.logout'}</span>
+                    			</a>
+							</li>
+						</ul>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+    <!-- LEFT SIDEBAR -->
+    <div id="sidebar-nav" class="sidebar">
+        <div class="sidebar-scroll">
+            <nav>
+                <ul class="nav">
+                    <li>
+                        <a href="@{Application.cpanel()}" class="${session.get('page').equals('cpanel') ? 'active':''}">
+                            <i class="lnr lnr-home"></i> 
+                            <span>&{'cpanel.menu.dashboard'}</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="@{Attendees.listActivities(eventid)}" class="${session.get('page').equals('cpanel') ? 'active':''}">
+                            <i class="lnr lnr-list"></i> 
+                            <span>&{'cpanel.menu.myactivities'}</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="${session.get('page').equals('cpanel') ? 'active':''}">
+                            <i class="lnr lnr-pencil"></i> 
+                            <span>&{'cpanel.menu.mypapers'}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="${session.get('page').equals('cpanel') ? 'active':''}">
+                            <i class="lnr lnr-spell-check"></i> 
+                            <span>&{'cpanel.menu.myevaluations'}</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- END LEFT SIDEBAR -->
+    <!-- MAIN -->
+    <div class="main">
+        <!-- MAIN CONTENT -->
+        
+        <div class="main-content">
+            <div class="container-fluid">
+				<div class="breadcrumbs">${event?.title}</div>
+                <div class="panel panel-headline">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            #{get 'panel-title' /}
+                        </h3>
+                        <p class="panel-subtitle"> </p>
+                    </div>
+                    <div class="panel-body">
+                        #{doLayout /} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+	<footer class="main">
+    	<div class="container-fluid">
+      		#{footer/}
+    	</div>
+	</footer>
+</div>
+<!-- END WRAPPER -->

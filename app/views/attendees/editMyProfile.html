@@ -1,0 +1,40 @@
+#{extends 'template/layout.html' /}
+
+#{set 'panel-title'}
+    &{'cpanel.menu.myprofile'}
+#{/set}
+
+#{if flash.error}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+            </span>
+        </button>                   
+		${messages.get(flash.error)}
+	</div>
+#{/if}
+#{form @Attendees.saveMyProfile(), method:'POST', class: 'form-horizontal', enctype:'multipart/form-data' } 
+    #{include 'template/user/form.html' /}
+  	
+    <input type='hidden' name="user.uuid" value="${user.uuid}">
+    
+    <div class="control-group form-actions marginTB-lg">
+    	<div class="row">
+        	<div class="col-md-3 mb-4">
+            	#{btSubmit /}
+	    	</div>
+        
+      		<div class="col-md-3 mb-4">
+      			#{btCancel url:@Attendees.viewMyProfile() /}
+        	</div>
+    	</div>
+    </div>
+#{/form}
+
+
+#{set 'moreScripts'}
+ 
+#{/set}
+
+

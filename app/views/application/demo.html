@@ -1,0 +1,14 @@
+#{extends 'template/main.html' /}
+#{set title:'Home' /}
+
+<div id="qrcode"></div>
+
+#{set 'moreScripts'}
+    <script  src="@{'/public/js/qrcode.min.js'}" type="text/javascript" charset="${_response_encoding}"></script></script>
+    
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"));
+        qrcode.clear(); // clear the code.
+        qrcode.makeCode("http://jindo.dev.naver.com/collie");    
+    </script>
+#{/set}
