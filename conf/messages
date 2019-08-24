@@ -4,6 +4,7 @@ application.year= 2019
 application.date= Hoje é %s
 application.yes= Sim
 application.no= Não
+
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
 secure.title= Acessar o Sistema
@@ -81,22 +82,23 @@ user.picture=Foto do Perfil:
 user.changepassword= Alterar Senha
 user.newpassword=Nova senha:
 
-
+event.success= Evento cadastrado com sucesso!
 event.list= Lista de Eventos
 event.detail= Detalhes do Evento
 event.edit= Editar Evento
 event.title= Nome
 event.edition= Edição
-event.about= Sobre
-event.logo= Logo
+event.about= Sobre o Evento
 event.start= Abertura
 event.end= Encerramento
 event.address= Endereço
-event.domain= Servidor
+event.promoVideo= Vídeo Promocional (Youtube)
+event.promoVideo.ex=www.youtube.com
 event.blog=Blog
+event.blog.ex=www.ifrn.edu.br
 event.organization= Organização
-event.contact= Contato
-
+event.contact= Contatos
+event.logo= Logo
 event.empty = Você não possui eventos cadastrados.
 
 activity.list= Lista de Atividades

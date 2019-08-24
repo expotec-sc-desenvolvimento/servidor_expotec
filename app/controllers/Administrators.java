@@ -19,7 +19,7 @@ public class Administrators extends Attendants {
 		super();
 	}
 
-	@After
+	@Before
 	static void setUserAndEvent() {
 		User user = User.findById(Long.parseLong(session.get("userid")));
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));
@@ -28,11 +28,19 @@ public class Administrators extends Attendants {
 	}
 
 	public static void saveEvent(@Valid Event e) {
-		viewEvent(e.id);
+		validation.future(e.end, e.start);
+		if (validation.hasErrors() ) {
+			System.out.println(validation.errorsMap());
+            flash.error("erro.operacao");
+            renderArgs.put("e", e);
+            renderTemplate("administrators/editEvent.html");
+        }
+		e.save();
+		flash.success("event.success");
+        viewEvent(e.id);
 	}
 
 	public static void editEvent(Long id) {
-		System.out.println("Evento id:"+ id);
 		Event e = Event.findById(id);
 		renderArgs.put("e", e);
 		render();

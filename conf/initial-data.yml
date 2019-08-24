@@ -5,7 +5,7 @@ Event(expotecsc):
     start: 2019-11-19
     end: 2019-11-22
     address: "Rua São Braz, 304, Bairro Paraíso Santa Cruz-RN ,  CEP: 59200-000"
-    domain: "http://localhost:900"
+    promoVideo: "http://localhost:900"
     organization: "IFRN | Santa Cruz"
     contact: "(84) 4005-4110 / 3291-4700"
     

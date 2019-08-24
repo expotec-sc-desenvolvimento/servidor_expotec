@@ -7,7 +7,17 @@
     &{'event.edit'}
 #{/set}
 
-#{form @Administrators.saveEvent(),method:'POST', class: 'form-horizontal'} 
+#{if flash.error}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+        	</span>
+		</button>
+    	${messages.get(flash.error)}
+	</div>
+#{/if}
+#{form @Administrators.saveEvent(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
     #{include 'template/event/form.html' /}
     <input type='hidden' name="e.id" value="${event.id}">
     
@@ -18,11 +28,33 @@
 	    	</div>
         
       		<div class="col-md-3 mb-4">
-      			#{btCancel url:@Administrators.viewEvent(e.id) /}
+      			#{btCancel url:@Administrators.viewEvent(event.id) /}
         	</div>
     	</div>
     </div>
 #{/form}
 
+
+#{set 'moreScripts'}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+<script>
+	$(function(){
+		 $('#about').summernote({
+			 airMode: true,
+			 popover: {
+			 	air: [
+				    // [groupName, [list of button]]
+				    ['style', ['bold', 'italic', 'underline', 'clear']],
+				    ['fontsize', ['fontsize']],
+				    ['color', ['color']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				  ]
+			 }
+		 });
+	});
+	
+</script>
+#{/set}
 
 

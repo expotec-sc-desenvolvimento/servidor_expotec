@@ -2,6 +2,9 @@
 
 #{set 'moreStyles'} 
 	<link href="@{'/public/css/estilo.css'}" rel="stylesheet" type="text/css"/>
+	<!-- include summernote css/js -->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+
 #{/set}
 
 %{ 
@@ -11,7 +14,7 @@
 }%
 
 <!-- WRAPPER -->
-<div id="wrapper">
+<div id="wrapper" class="cpanel">
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="brand">

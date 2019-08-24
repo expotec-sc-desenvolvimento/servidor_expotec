@@ -1,27 +1,143 @@
-#{field 'e.title'}
 <div class="row">
-    <div class="col-md-12  mb-4">
-        <label  for="${field.name}" >&{'event.title'}</label>
-        <input type="text"  id="${field.name}" name="${field.name}" 
-               value="${field.value}" class="form-control"  
-               placeholder="&{'event.title'}" required minlength="1" maxlength="150">
+	#{field 'e.title'}
+	<div class="col-md-8  mb-4">
+		<label for="${field.name}">&{'event.title'}</label> <input
+			type="text" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control"
+			placeholder="&{'event.title'}" required minlength="1" maxlength="150">
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	#{field 'e.edition'}
+	<div class="col-md-4 mb-4">
+		<label for="${field.name}">&{'event.edition'}</label> 
+		<input type="number" id="${field.name}" name="${field.name}" min="0"
+			value="${field.value}" class="form-control" maxlength="50"
+			placeholder="&{'event.edition'}" required/>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
 
-        <div class="invalid-feedback">
-            <span class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">${errors.forKey(field.name)}</span>
-        </div>
-    </div>
-    #{/field}    
-</div>
 <div class="row">
-    #{field 'e.edition'}
-    <div class="col-md-3 mb-4">
-        <label for="${field.name}">&{'event.edition'}</label>
-        <input type="number"  id="${field.name}" name="${field.name}" min="0" 
-               value="${field.value}" class="form-control"  
-               placeholder="&{'event.edition'}" required  minlength="1" maxlength="10" />
-        <div class="invalid-feedback">
-            <span class="help-inline ${errors.forKey(field.name)?'error':''}">${errors.forKey(field.name)}</span>
-        </div>
-    </div>
-    #{/field} 
+	#{field 'e.address'}
+	<div class="col-md-8  mb-4">
+		<label for="${field.name}">&{'event.address'}</label> <input
+			type="text" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control"
+			placeholder="&{'address'}" required minlength="1" maxlength="150">
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	#{field 'e.organization'}
+	<div class="col-md-4 mb-4">
+		<label for="${field.name}">&{'event.organization'}</label> 
+		<input type="text" id="${field.name}" name="${field.name}" 
+			value="${field.value}" class="form-control"  maxlength="150"
+			placeholder="&{'event.organization'}" required />
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
 </div>
+
+<div class="row">
+	#{field 'e.start'}
+	<div class="col-md-4 mb-4">
+		<label class="control-label">&{'event.start'}</label>
+		<div class="input-group">
+			<input type="date" value="${field.value}" 
+				id="${field.name}" name="${field.name}"
+				class="form-control"> 
+			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		</div>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	
+	#{field 'e.end'}
+	<div class="col-md-4 mb-4">
+		<label class="control-label">&{'event.end'}</label>
+		<div class="input-group">
+			<input type="date" value="${field.value}" id="${field.name}" name="${field.name}"
+				class="form-control">
+			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		</div>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	#{field 'e.domain'}
+	<div class="col-md-4 mb-4">
+		<label for="${field.name}">&{'event.promoVideo'}</label> 
+		<input type="url" id="${field.name}" name="${field.name}" 
+			value="${field.value}" class="form-control"
+			placeholder="&{'event.promoVideo.ex'}"/>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+<hr/>
+
+<div class="row">
+	#{field 'e.about'}
+	<div class="col-md-12  mb-4">
+		<label for="${field.name}">&{'event.about'}</label> 
+		
+		<textarea id="about" name="${field.name}"  rows="10"
+			 class="form-control"  style="resize:none">${field.value}</textarea>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+
+<div class="row">
+	#{field 'e.contact'}
+	<div class="col-md-4 mb-4">
+		<label for="${field.name}">&{'event.contact'}</label> 
+		<input type="text" id="${field.name}" name="${field.name}" 
+			value="${field.value}" class="form-control" maxlength="50"
+			placeholder="&{'event.contact'}"/>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	#{field 'e.blog'}
+	<div class="col-md-4 mb-4">
+		<label for="${field.name}">&{'event.blog'}</label> 
+		<input type="url" id="${field.name}" name="${field.name}" 
+			value="${field.value}" class="form-control"
+			placeholder="&{'event.blog'}"/>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	#{field 'e.logo'}
+    <div class="col-md-4  mb-4">
+        <label  for="${field.name}" >&{'event.logo'}</label>
+        <input type="file"  id="${field.name}" name="${field.name}" class="form-control"/>
+       	<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+    </div>
+#{/field}
+
+</div>
+

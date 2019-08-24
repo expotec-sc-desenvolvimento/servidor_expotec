@@ -16,6 +16,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import net.sf.oval.constraint.MaxSize;
+import play.data.binding.As;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 import play.data.validation.Unique;
@@ -29,8 +31,10 @@ public class Event extends Model{
 	@Required
     @MinSize(1)
     @Unique
+    @MaxSize(150)
     public String title;
 	
+	@MaxSize(50)
 	public String edition;
 	
     @Lob
@@ -39,19 +43,24 @@ public class Event extends Model{
     public Blob logo;
     
     @Temporal(TemporalType.DATE)
+    @As("yyyy-MM-dd") 
     public Date start;
     
     @Temporal(TemporalType.DATE)
+    @As("yyyy-MM-dd") 
     public Date end;
     
+    @MaxSize(155)
     public String address;
     
-    public String domain;
+    public String promoVideo;
     
     public String blog;
     
+    @MaxSize(150)
     public String organization;
     
+    @MaxSize(50)
     public String contact;
     
     @Transient
