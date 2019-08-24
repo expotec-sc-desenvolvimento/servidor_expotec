@@ -40,7 +40,7 @@ cpanel.menu.mycertificates= Certificado de Participação
 cpanel.menu.myprofile= Meu Perfil
 
 cpanel.menu.logout = Sair 
-cpanel.menu.admin = Cadastro
+cpanel.menu.admin = Administração
 cpanel.menu.events = Evento
 cpanel.menu.event = Evento
 cpanel.menu.activies = Atividades
@@ -53,6 +53,9 @@ cpanel.menu.attendance = Presença
 cpanel.menu.expertise = Saberes
 cpanel.index = Painel de Controle
 
+index.features.first=#FIQUE
+index.features.second=LIGADO
+index.features.third=Atividades para todos os gostos e públicos
 index.menu.index = Início
 index.menu.activities = Atividades
 index.menu.schedule = Programação

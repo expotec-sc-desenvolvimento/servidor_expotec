@@ -68,19 +68,28 @@
 		</div>	<!-- ./tp-banner -->
 	</div>	<!-- ./tp-banner-container -->
 	
-	<div class="section bg-dark-blue section-padding" id="featureSection">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
+	<div class="section bg-dark-blue section-padding " id="featureSection">
+		<div class="container ">
+			<div class="row text-center">
+				<h3 class="text-upper ">
+					&{'index.features.first'}<span class="text-success">&{'index.features.second'}</span>
+				</h3>
+				<p>&{'index.features.third'}</p>
+			</div>
+			<div class="row vertical-align-wrap">
+				<div class="col-sm-6 flex-item promovideo">
+					#{if event.promoVideo != null}
+					<div class="embed-responsive embed-responsive-16by9
+						fadeInRight animation-element disabled">
+                        <iframe  id="player" class="embed-responsive-item" src="${event.promoVideo}"> </iframe>
+                    </div>
+                    #{/if}
+                    #{else}
 					<img src="@{'/public/landing/images/frontend/mockup1.png'}" alt=""
 						class="fadeInRight animation-element disabled">
+					#{/else}
 				</div>
-				<div class="col-sm-6">
-					<h3 class="text-upper">
-						THE FEATURES <span class="text-success">YOU'LL LOVE</span>
-					</h3>
-					<p>Our amazing features & services and others listed below.</p>
-
+				<div class="col-sm-6 flex-item">
 					<div class="feature-wrapper m-top-lg fadeInUp animation-element disabled">
 						<div class="feature-icon">
 							<div class="feature-icon-inner bg-danger text-white">
@@ -219,6 +228,23 @@
           duration:800,
           offset: -100
         });
+		
+		function checarURL(url) {
+	        var n = url.indexOf("youtu.be");
+	        if (n >= 0) {
+	            return url.replace("youtu.be", "youtube.com/embed");
+	        }
+
+	        var n = url.indexOf("https://www.youtube.com/watch?v=");
+	        if (n >= 0) {
+	            return url.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
+	        }
+
+		}
+	   
+		var url = $("#player").attr("src");
+		url = checarURL(url);
+		$("#player").attr("src", url);
 	});
 </script>
 #{/set}
