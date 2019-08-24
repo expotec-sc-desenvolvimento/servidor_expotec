@@ -4,6 +4,8 @@ application.year= 2019
 application.date= Hoje é %s
 application.yes= Sim
 application.no= Não
+index.feature=#PARTIUEXPOTEC: 
+
 
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
@@ -56,8 +58,21 @@ cpanel.index = Painel de Controle
 index.features.first=#FIQUE
 index.features.second=LIGADO
 index.features.third=Atividades para todos os gostos e públicos
+
+index.features.robot.title=Mostra de Robótica
+index.features.robot.subtitle=Conheça os projetos e robôs desenvolvidos no IFRN/SC
+
+index.features.humanity.title=Mostra de Humanidades
+index.features.humanity.subtitle=Visite as salas temáticas e assista as apresentações da galera das humanidades
+
+index.features.tech.title=Mostra Tecnológica
+index.features.tech.subtitle=Conheça os projetos de ensino e pesquisa desenvolvidos pelos alunos
+
+index.features.etc.title=Muito Mais
+index.features.etc.subtitle=Veja a programação do evento
+
 index.menu.index = Início
-index.menu.activities = Atividades
+index.menu.submission= Submissão
 index.menu.schedule = Programação
 index.menu.blog = Notícias
 index.menu.cpanel = Acessar  

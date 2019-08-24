@@ -10,6 +10,9 @@ img.img-responsive.logo {
 	text-align: center;
 }
 
+.feature-wrapper {
+    margin-bottom: 30px;
+}
 .note-editor .note-editing-area .note-editable {
     padding: 6px 12px;
     border: 1px solid #e4e4e4;
@@ -39,6 +42,7 @@ img.img-responsive.logo {
     align-items: center;
     margin: auto;
 }
+
 .col-sm-6.flex-item.promovideo{
 	background: rgba(0,0,0,0.5);
     padding: 10px;
