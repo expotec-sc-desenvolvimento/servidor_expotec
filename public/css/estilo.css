@@ -43,6 +43,10 @@ img.img-responsive.logo {
     margin: auto;
 }
 
+.front-end-wrapper nav.navbar-collapse.bs-navbar-collapse.collapse {
+    padding: 0px;
+}
+
 .col-sm-6.flex-item.promovideo{
 	background: rgba(0,0,0,0.5);
     padding: 10px;

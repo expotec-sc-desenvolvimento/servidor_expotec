@@ -143,7 +143,9 @@ html.fullscreen-bg #wrapper {
     display: table; }
 
 .vertical-align-middle {
-    display: table-cell;
+    display: table;
+    margin: auto;
+    width: 100%;
     vertical-align: middle; }
 
 /********************

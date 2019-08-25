@@ -34,7 +34,7 @@ public class Event extends Model{
     @MaxSize(150)
     public String title;
 	
-	@MaxSize(50)
+	@MaxSize(100)
 	public String edition;
 	
     @Lob

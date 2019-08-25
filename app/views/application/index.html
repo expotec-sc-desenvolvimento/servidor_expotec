@@ -68,6 +68,24 @@
 		</div>	<!-- ./tp-banner -->
 	</div>	<!-- ./tp-banner-container -->
 	
+	<div class="section bg-white section-padding" id="howItWorkSection">
+		<div class="container">
+			<div class="text-center">
+				<h3 class="text-upper no-m-top">${event.title}
+					<span class="text-success"></span>
+				</h3>
+				<p>${event.edition}</p>
+			</div>
+
+			<div class="row m-top-md text-justify" style="padding:20px;">
+				#{verbatim}
+					${event.about}
+				#{/verbatim}
+			</div>
+		</div>
+	</div>
+	
+	
 	<div class="section bg-dark-blue section-padding " id="featureSection">
 		<div class="container ">
 			<div class="row text-center">
@@ -76,7 +94,7 @@
 				</h3>
 				<p>&{'index.features.third'} de ${event.start.format('dd/M/yyy')} a ${event.end.format('dd/MM/yyyy')}.</p>
 			</div>
-			<div class="row vertical-align-wrap">
+			<div class="row vertical-align-wrap feature">
 				<div class="col-sm-6 flex-item promovideo">
 					#{if event.promoVideo != null}
 					<div class="embed-responsive embed-responsive-16by9
