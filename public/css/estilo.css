@@ -49,6 +49,10 @@ img.img-responsive.logo {
 
 .place-card.place-card-medium {display: none;}
 
+.tp-caption a {
+    padding: 22px 40px 22px 40px !important;
+    margin-left: 10px !important;
+}
 .front-end-navbar.affix-top .navbar-nav > li > a.btn-warning{
 	color: black;
 }
@@ -182,6 +186,9 @@ footer.main {
     margin-left: 10px;
 }
 
+.bg-black{
+	background: black;	
+}
 .navbar-brand {
     float: left;
     height: 70px;
@@ -225,5 +232,10 @@ footer.main {
 	.front-end-wrapper .navbar-nav > li {
 	  display: contents;
 	  text-align: center;
+	}
+	
+	.tp-caption a {
+    	padding: 10px 20px 10px 20px !important;
+    	margin-left: auto !important;
 	}
 }

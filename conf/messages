@@ -1,12 +1,12 @@
 application.name= Expotec
+application.participate= Participar
 application.author= IFRN/SC
 application.year= 2019
 application.date= Hoje é %s
 application.yes= Sim
 application.no= Não
 index.feature=#PARTIUEXPOTEC: 
-
-
+index.countdown= Contagem regressiva (dd:hh:mm)
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
 secure.title= Acessar o Sistema
@@ -75,7 +75,7 @@ index.about.first=#QUEM
 index.about.second=VAMOS
 
 index.menu.index = Início
-index.menu.submission= Chamada de Trabalhos
+index.menu.submission= Submissões
 index.menu.schedule = Programação
 index.menu.blog = Notícias
 index.menu.cpanel = Acessar  

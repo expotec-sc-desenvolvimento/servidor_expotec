@@ -65,6 +65,84 @@
 	<!-- SLIDER  -->
 	<div class="tp-banner-container">
 		<div class="tp-banner" >
+			<ul>
+				<li data-transition="fade" data-slotamount="0" 
+				data-masterspeed="500" data-thumb="images/homeslider_thumb1.jpg"  
+				data-saveperformance="on"  data-title="Intro Slide">
+				<!-- MAIN IMAGE -->
+				<img src="@{'public/landing/images/dummy.png'}" 
+				 alt="slidebg1" data-lazyload="@{'public/img/redbg.jpg'}" 
+				 data-bgposition="center top" data-bgfit="cover"
+				  data-bgrepeat="no-repeat">
+				<!-- LAYERS -->
+				<!-- LAYER NR. 16 -->
+				<div class="tp-caption white_thin_34 customin randomrotateout tp-resizeme rs-parallaxlevel-10"
+					data-x="center" data-hoffset="0"
+					data-y="center" data-voffset="-60"
+					data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+					data-speed="300"
+					data-start="300"
+					data-easing="Power3.easeInOut"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.1"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					style="z-index: 17; max-width: auto; max-height: auto; white-space: nowrap;">
+					${event.edition}
+				</div>
+
+				<!-- LAYER NR. 17 -->
+				<div class="tp-caption white_heavy_70 customin randomrotateout tp-resizeme rs-parallaxlevel-10"
+					data-x="center" data-hoffset="0"
+					data-y="center" data-voffset="0"
+					data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+					data-speed="300"
+					data-start="500"
+					data-easing="Power3.easeInOut"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.1"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					style="z-index: 18; max-width: auto; max-height: auto; white-space: nowrap;">
+					<div class=" rs-slideloop" data-easing="Power3.easeInOut"
+						data-speed="2"
+						data-xs="0"
+						data-xe="0"
+						data-ys="0"
+						data-ye="0"
+					>
+						${event.title}
+					</div>
+				</div>
+
+				<!-- LAYER NR. 18 -->
+				<div class="tp-caption noshadow skewfromright randomrotateout tp-resizeme rs-parallaxlevel-0"
+					data-x="center" data-hoffset="0"
+					data-y="center" data-voffset="100"
+					data-speed="300"
+					data-start="700"
+					data-easing="Power3.easeInOut"
+					data-splitin="none"
+					data-splitout="none"
+					data-elementdelay="0.1"
+					data-endelementdelay="0.1"
+					data-endspeed="1000"
+					style="z-index: 19; 
+					max-width: auto; max-height: auto; white-space: nowrap;"><div class=" rs-slideloop" 			data-easing="Power3.easeInOut"
+					data-speed="2"
+					data-xs="0"
+					data-xe="0"
+					data-ys="0"
+					data-ye="0"
+					>
+						<a href="@{Application.cpanel()}" class="largeredbtn" target="_blank">&{'application.participate'}</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="tp-bannertimer"></div>	
 		</div>	<!-- ./tp-banner -->
 	</div>	<!-- ./tp-banner-container -->
 	
@@ -84,7 +162,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="row">
-						<iframe style="border: 0; width: 100%; min-width: 370px; height: auto; min-height: 250px;" 
+						<iframe style="border: 0; width: 100%; height: auto; min-height: 250px;" 
 							%{	
 								addr = event.address;
 								addr = addr.replaceAll("\\s+","+");
@@ -206,7 +284,7 @@
 	</div>
 	<!-- ./section -->
 	
-	<footer class="front-end-footer">
+	<footer class="front-end-footer bg-black">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
@@ -227,14 +305,16 @@
 				</div>
 				<!-- ./col -->
 				<div class="col-md-6 ">
-					<h4>&{'index.sponsored'}</h4>
-					<ul class="photo-list m-top-md">
+					<h4>&{'index.countdown'}</h4>
+					<h3 id="countdown" class="text-upper no-m-top"></h3>
+					<!-- <ul class="photo-list m-top-md">
 						<li>
 							<a href="#">
 								<img src="@{'/public/img/default.jpg'}" alt="">
 							</a>
 						</li>
 					</ul>
+					-->
 				</div>
 				<!-- ./col -->
 			</div>
@@ -252,8 +332,43 @@
 <!-- Revolution Slider -->
 <script src="@{'/public/landing/rs-plugin/js/jquery.themepunch.tools.min.js'}"></script>
 <script src="@{'/public/landing/rs-plugin/js/jquery.themepunch.revolution.min.js'}"></script>
+<script src="@{'/public/js/jquery.countdown.min.js'}"></script>
 <script type="text/javascript">
+
 	$(function(){
+		
+		//Slider Revolution	
+		$('.tp-banner').show().revolution({
+			dottedOverlay:"none",
+			delay:300,
+			startwidth:1170,
+			startheight:700,
+			hideThumbs:200,
+	
+			touchenabled:"on",
+			onHoverStop:"on",
+			drag_block_vertical: false,
+			
+			shadow:0,
+			fullWidth:"on",
+			fullScreen:"off",
+
+			spinner:"spinner4",
+			
+			stopLoop:"off",
+			stopAfterLoops:-1,
+			stopAtSlide:-1,
+
+			autoHeight:"off",						
+			forceFullWidth:"off",						
+			hideSliderAtLimit:0,
+			hideCaptionAtLimit:0,
+			hideAllCaptionAtLilmit:0,
+			fullScreenOffsetContainer: ".header"	
+		});		
+		
+		//End Slider Revolution
+		
 		//Section Animation
 		if (Modernizr.mq('(min-width: 1349px)')) {
 			$('.animation-element').waypoint(function() {
@@ -304,6 +419,13 @@
 		url = checarURL(url);
 		$("#player").attr("src", url);
 		$(".place-card.place-card-medium").css("display", "none");
+		var dtAbertura = "${event.start.format('yyyy/MM/dd')} ";
+		dtAbertura += "08:00:00";
+		cont = $("#countdown").countdown({
+	          image: "@{'public/img/digits.png'}",
+	          format: "dd:hh:mm",
+	          endTime: new Date(dtAbertura)
+	    });
 	});
 </script>
 #{/set}
