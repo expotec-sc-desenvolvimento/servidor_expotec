@@ -42,15 +42,16 @@
 		
 		#{get 'moreStyles' /}
 		
-			<!-- MAIN CSS -->
+		<!--MEU CSS -->
 		<link rel="stylesheet" href="@{'/public/css/estilo.css'}">
+		
+		<!-- Javascript -->
+		<script src="@{'/public/template/vendor/jquery/jquery.min.js'}"></script>
     </head>
     <body>
         #{doLayout /}
-        
-        <!-- Javascript -->
-		<script src="@{'/public/template/vendor/jquery/jquery.min.js'}"></script>
 		
+		<!-- Bootstrap -->
 		<script src="@{'/public/template/vendor/bootstrap/js/bootstrap.min.js'}"></script>
 		
 		<script src="@{'/public/template/vendor/jquery-slimscroll/jquery.slimscroll.min.js'}"></script>
@@ -83,6 +84,7 @@
 		
 		<!-- Font-Awesome -->
 		<script src="@{'/public/js/fontawesome.js'}"></script>
+		
 		#{get 'moreScripts' /}
     </body>
 </html>

@@ -185,7 +185,9 @@ footer.main {
     height: 60px;
     margin-left: 10px;
 }
-
+.fullheight{
+	 height: calc(100vh - 314px);
+}
 .bg-black{
 	background: black;	
 }
@@ -237,5 +239,9 @@ footer.main {
 	.tp-caption a {
     	padding: 10px 20px 10px 20px !important;
     	margin-left: auto !important;
+	}
+	
+	.fullheight{
+		 height: calc(100vh - 140px);
 	}
 }

@@ -1,0 +1,42 @@
+	<header class="navbar front-end-navbar" data-spy="affix" data-offset-top="1">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a id="brand" href="@{Application.index()}" class="navbar-brand">
+					<strong>
+						#{if event.logo.get() != null}
+							<img src="@{Application.getEventLogo(event.id)}" alt="${event.title}" />
+						#{/if}
+						#{else}
+							<img src="@{'public/img/logo.png'}" alt="${event?.title}" />
+						#{/else}
+					</strong>
+					<br/> 
+				</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="@{Application.index()}">&{'index.menu.index'}</a></li>
+					<li><a href="@{Application.comingSoon()}">&{'index.menu.submission'}</a></li>
+					<li><a href="@{Application.comingSoon()}">&{'index.menu.schedule'}</a></li>
+					<li><a href="@{Application.comingSoon()}">&{'index.menu.blog'}</a></li>
+					<li>
+						<a href="@{Application.cpanel()}" class="btn-info">
+						#{if session.get("userid") == null}
+							&{'secure.signin'}
+						#{/if}
+						#{else}
+							&{'cpanel.index'}
+						#{/else}
+						</a>
+					</li>
+				</ul>
+				
+			</nav>
+		</div>
+	</header>

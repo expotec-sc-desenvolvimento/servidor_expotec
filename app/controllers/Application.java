@@ -34,7 +34,11 @@ public class Application extends Controller {
 		}
 		renderArgs.put("event", event);
 	}
-
+	
+	public static void comingSoon() throws Throwable {
+		renderTemplate("application/comingsoon.html");
+	}
+	
 	public static void index() throws Throwable {
 		renderTemplate("application/index.html");
 	}
