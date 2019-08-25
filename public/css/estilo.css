@@ -43,6 +43,13 @@ img.img-responsive.logo {
     margin: auto;
 }
 
+.front-end-navbar.affix-top .navbar-nav > li > a.btn-warning{
+	color: black;
+}
+.front-end-navbar.affix-top .navbar-nav > li > a.btn-warning:hover {
+    color: #3287B2;
+}
+
 .front-end-wrapper nav.navbar-collapse.bs-navbar-collapse.collapse {
     padding: 0px;
 }

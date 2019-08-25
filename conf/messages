@@ -71,8 +71,11 @@ index.features.tech.subtitle=Conheça os projetos de ensino e pesquisa desenvolv
 index.features.etc.title=Muito Mais
 index.features.etc.subtitle=Veja a programação do evento
 
+index.about.first=#QUEM
+index.about.second=VAMOS
+
 index.menu.index = Início
-index.menu.submission= Submissão
+index.menu.submission= Chamada de Trabalhos
 index.menu.schedule = Programação
 index.menu.blog = Notícias
 index.menu.cpanel = Acessar  
