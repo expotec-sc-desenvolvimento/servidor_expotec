@@ -47,7 +47,7 @@
 					<li><a href="#">&{'index.menu.schedule'}</a></li>
 					<li><a href="#">&{'index.menu.blog'}</a></li>
 					<li>
-						<a href="@{Application.cpanel()}" class="btn-warning">
+						<a href="@{Application.cpanel()}" class="btn-info">
 						#{if session.get("userid") == null}
 							&{'secure.signin'}
 						#{/if}
@@ -85,7 +85,14 @@
 				<div class="col-sm-6">
 					<div class="row">
 						<iframe style="border: 0; width: 100%; min-width: 370px; height: auto; min-height: 250px;" 
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15877.571679474631!2d-35.21250778572654!3d-5.80005098275243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b2ffe446a70759%3A0x4a441039ead70fe4!2sReitoria+do+IFRN!5e0!3m2!1spt-BR!2sbr!4v1485441983570" 
+							%{	
+								addr = event.address;
+								addr = addr.replaceAll("\\s+","+");
+								API_KEY = "AIzaSyBcsQuEr-E22iIcYu8Uh3b1PDHeuPrS5aA";
+								
+								googleMaps = "https://www.google.com/maps/embed/v1/place?q=${addr}&key=${API_KEY}";
+							}%
+							src="${googleMaps}" 
 							width="300"  frameborder="0" allowfullscreen="allowfullscreen">
 						</iframe>
 					</div>
@@ -296,6 +303,7 @@
 		var url = $("#player").attr("src");
 		url = checarURL(url);
 		$("#player").attr("src", url);
+		$(".place-card.place-card-medium").css("display", "none");
 	});
 </script>
 #{/set}

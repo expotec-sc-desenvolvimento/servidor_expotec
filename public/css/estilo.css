@@ -43,6 +43,12 @@ img.img-responsive.logo {
     margin: auto;
 }
 
+.google-maps-link {
+    display: none;
+}
+
+.place-card.place-card-medium {display: none;}
+
 .front-end-navbar.affix-top .navbar-nav > li > a.btn-warning{
 	color: black;
 }
