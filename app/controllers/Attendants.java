@@ -13,7 +13,6 @@ import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 import models.*;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import play.db.jpa.JPA;
 
 @With(Secure.class)

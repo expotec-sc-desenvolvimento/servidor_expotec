@@ -33,7 +33,7 @@ public class Administrators extends Attendants {
 			System.out.println(validation.errorsMap());
             flash.error("erro.operacao");
             renderArgs.put("e", e);
-            renderTemplate("administrators/editEvent.html");
+            renderTemplate("Administrators/editEvent.html");
         }
 		e.save();
 		flash.success("event.success");
@@ -49,13 +49,13 @@ public class Administrators extends Attendants {
 	public static void listEvents() {
 		List<Event> events = Event.all().fetch();
 		renderArgs.put("events", events);
-		renderTemplate("administrators/listEvents.html");
+		renderTemplate("Administrators/listEvents.html");
 	}
 
 	public static void listActivities(Long eventid) {
 		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+eventid).fetch();
 		renderArgs.put("activities", activities);
-		renderTemplate("administrators/listActivities.html");
+		renderTemplate("Administrators/listActivities.html");
 	}
 
 }

@@ -30,29 +30,29 @@ public class Attendees extends Controller {
 	}
 	
 	public static void printMyBadge() {
-		renderTemplate("attendees/cracha.html");
+		renderTemplate("Attendees/cracha.html");
 	}
 	
 	
 	public static void cpanel() {
-		renderTemplate("attendees/cpanel.html");
+		renderTemplate("Attendees/cpanel.html");
     }
 	
 	public static void viewEvent(Long id) {
-		renderTemplate("attendees/viewEvent.html");
+		renderTemplate("Attendees/viewEvent.html");
 	}
 	
 	
 	public static void viewMyProfile() {
-		renderTemplate("attendees/viewMyProfile.html");
+		renderTemplate("Attendees/viewMyProfile.html");
 	}
 	
 	public static void editMyProfile() {
-		renderTemplate("attendees/editMyProfile.html");
+		renderTemplate("Attendees/editMyProfile.html");
 	}
 	
 	public static void myBadge() {
-		renderTemplate("attendees/myBadge.html");
+		renderTemplate("Attendees/myBadge.html");
 	}
 	
 	public static void getUserPicture(Long userid) {
@@ -116,7 +116,7 @@ public class Attendees extends Controller {
 	public static void listActivities(Long eventid) {
 		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+eventid).fetch();
 		renderArgs.put("activities", activities);
-		renderTemplate("attendees/listActivities.html");
+		renderTemplate("Attendees/listActivities.html");
 	}
 	
 	public static void getEventLogo(Long eventid) {

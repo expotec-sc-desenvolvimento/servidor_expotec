@@ -36,11 +36,11 @@ public class Application extends Controller {
 	}
 	
 	public static void comingSoon() throws Throwable {
-		renderTemplate("application/comingsoon.html");
+		renderTemplate("Application/comingsoon.html");
 	}
 	
 	public static void index() throws Throwable {
-		renderTemplate("application/index.html");
+		renderTemplate("Application/index.html");
 	}
 
 	public static void cpanel() throws Throwable {
@@ -67,7 +67,7 @@ public class Application extends Controller {
 		}
 	}
 
-	public static void save(@Valid User user) {
+	public static void save(@Valid User user) throws Throwable {
 		validation.required(user.password);
 		validation.minSize(user.password, 6);
 		validation.maxSize(user.password, 16);
@@ -79,7 +79,7 @@ public class Application extends Controller {
 			flash.error("validacao.erro");
 			user.password = "";
 			user.pwConfirmation = "";
-			renderTemplate("application/signup.html", user);
+			renderTemplate("Application/signup.html", user);
 		}
 		user.password = Crypto.passwordHash(user.password);
 		user.registration = new Date();
@@ -87,7 +87,7 @@ public class Application extends Controller {
 		user.permission = Permission.ATTENDEE;
 		user.save();
 		flash.success("user.success");
-		redirect("/login");
+		Security.logout();
 	}
 
 	public static void signup() {

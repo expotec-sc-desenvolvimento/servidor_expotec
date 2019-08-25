@@ -1,24 +1,27 @@
-Event(expotecsc):
-    title: "9ª EXPOTEC/SC"
-    edition: 2019
-    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    start: 2019-11-19
-    end: 2019-11-22
+Event(expotecsc):    
+    about: "<p>Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte (IFRN), Campus Santa Cruz, promove anualmente a <b>EXPOTEC</b>, um evento de Exposição Científica, Tecnológica e Cultural, realizado na cidade de Santa Cruz.</p><p>Em sua nona edição, a<b>&nbsp;EXPOTEC </b>2019 terá como tema “<span style="color: rgb(255, 0, 0);">Construindo conexões, mudando vidas: O IFRN na região Trairi”</span>, evidenciando trabalhos de pesquisa, extensão, inovação e ensino acerca das tecnologias empregadas na contemporaneidade.</p><p>O evento apresenta uma mostra dos trabalhos produzidos por alunos, servidores, professores, e pesquisadores da região, nas áreas de ensino, pesquisa e extensão, promovendo o desenvolvimento tecnológico de estudantes do ensino médio, ensino técnico e ensino superior.</p><p><span style="text-align: justify;">Localizado na cidade de Santa Cruz, no interior do estado do Rio Grande do Norte, o IFRN - Campus Santa Cruz vem desenvolvendo importantes pesquisas e projetos voltados ao desenvolvimento da região, seja no âmbito tecnológico, seja na formação inicial e continuada de profissionais de diversas áreas, seja no desenvolvimento cultural e social. Tais projetos e pesquisas precisam e devem ser divulgados e tornados públicos na região e fora dela, possibilitando a aplicação de tais conhecimentos. A realização da EXPOTEC em âmbito regional justifica-se pela oportunidade de estimular a produção científica dos diversos Campi do IFRN e das demais instituições de educação da cidade e região (UFRN, UERN, universidades privadas, escolas de ensino fundamental e médio das redes pública e privada).</span><br></p>"
     address: "Rua São Braz, 304, Bairro Paraíso Santa Cruz-RN ,  CEP: 59200-000"
-    promoVideo: "http://localhost:900"
-    organization: "IFRN | Santa Cruz"
+    end: 2019-11-22
+    logo: 37e67033-11c7-4b77-b222-575ef3860a1f|image/png
+    start: 2019-11-19
+    title: "9ª EXPOTEC/SC"
     contact: "(84) 4005-4110 / 3291-4700"
+    edition: Construindo conexões, mudando vidas: O IFRN na região Trairi
+    organization: "IFRN | Santa Cruz"
+    promoVideo: "https://youtu.be/WTyv_ALzgh8"
+    
     
 User(admin):
-    cel: "8411112222"
+    cel: "(84) 1111-2222"
     cpf_suap: "11111111111"
     email: "admin@email.com"
     name: "Administrador"
+    outsider: 1
     password: 4QrcOUm6Wau+VuBX8g+IPg==
+    permission: ADMIN
+    picture: 220f6c65-4ced-46a9-bc7c-516fd1b73068|image/png
     registration: 2019-08-20
     status: 1
     event: expotecsc
-    picture: 220f6c65-4ced-46a9-bc7c-516fd1b73068|image/png
-    permission: ATTENDEE
     
 
