@@ -3,6 +3,8 @@ package controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
+import com.thoughtworks.xstream.io.path.Path;
+
 import models.Event;
 import models.Permission;
 import models.User;
@@ -91,7 +93,7 @@ public class Security extends Secure.Security {
 		response.removeCookie("rememberme");
 		Security.invoke("onDisconnected");
 		flash.success("secure.logout");
-		login();
+		redirect(Play.ctxPath+"/login");
 	}
 
 	static boolean authenticate(String username, String password) {

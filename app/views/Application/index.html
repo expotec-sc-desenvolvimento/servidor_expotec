@@ -95,7 +95,8 @@
 					 data-ys="0" data-ye="0">
 					 	%{
 					 		if (event.end.after(new Date())){
-								out.print("<a href='cpanel' class='largeredbtn' target='_blank'>Participe</a>");
+					 			_url ="/expotecsc/cpanel";
+					 			out.print("<a href='"+_url+"' class='largeredbtn' target='_blank'>Participe</a>");
 							}else{
 								out.print('<h1>ENCERRRADO</h1>');
 							}
@@ -318,7 +319,7 @@
 			startheight:700,
 			hideThumbs:200,
 	
-			touchenabled:"off",
+			touchenabled:"on",
 			onHoverStop:"off",
 			drag_block_vertical: false,
 			keyboardNavigation:"off",

@@ -10,7 +10,7 @@
 %{ 
 	userid= session.get('userid');
 	eventid= session.get('eventid');
-	permission = user.permission.toString();
+	out.print(user.permission);
 }%
 
 <!-- WRAPPER -->
@@ -65,7 +65,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="@{Security.logout}">
+								<a href="@{Security.logout()}">
                     				<i class="lnr lnr-exit"></i> 
                     				<span>&{'cpanel.menu.logout'}</span>
                     			</a>

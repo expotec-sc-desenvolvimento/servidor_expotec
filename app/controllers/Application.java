@@ -15,6 +15,7 @@ import org.junit.After;
 import models.Event;
 import models.Permission;
 import models.User;
+import play.Play;
 import play.data.validation.Equals;
 import play.data.validation.Required;
 import play.data.validation.Valid;
@@ -87,7 +88,7 @@ public class Application extends Controller {
 		user.permission = Permission.ATTENDEE;
 		user.save();
 		flash.success("user.success");
-		Security.logout();
+		redirect(Play.ctxPath+"/login");
 	}
 
 	public static void signup() {
