@@ -63,20 +63,21 @@
 	</header>
 	
 	<!-- SLIDER  -->
-	<div class="tp-banner-container">
-		<div class="tp-banner" >
-			<ul>
+	<div class="tp-banner-container" >
+		<div class="tp-banner" style="height:0px;" >
+			<ul  >
 				<li data-transition="fade" data-slotamount="0" 
-				data-masterspeed="500" data-thumb="images/homeslider_thumb1.jpg"  
+				data-masterspeed="500" 
+				data-thumb="@{'public/landing/images/homeslider_thumb1.jpg'}"  
 				data-saveperformance="on"  data-title="Intro Slide">
 				<!-- MAIN IMAGE -->
 				<img src="@{'public/landing/images/dummy.png'}" 
 				 alt="slidebg1" data-lazyload="@{'public/img/redbg.jpg'}" 
 				 data-bgposition="center top" data-bgfit="cover"
-				  data-bgrepeat="no-repeat">
+				 data-bgrepeat="no-repeat">
 				<!-- LAYERS -->
 				<!-- LAYER NR. 16 -->
-				<div class="tp-caption white_thin_34 customin randomrotateout tp-resizeme rs-parallaxlevel-10"
+				<div  class="tp-caption white_thin_34 customin randomrotateout tp-resizeme rs-parallaxlevel-0"
 					data-x="center" data-hoffset="0"
 					data-y="center" data-voffset="-60"
 					data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
@@ -93,7 +94,7 @@
 				</div>
 
 				<!-- LAYER NR. 17 -->
-				<div class="tp-caption white_heavy_70 customin randomrotateout tp-resizeme rs-parallaxlevel-10"
+				<div class="tp-caption white_heavy_70 customin randomrotateout tp-resizeme rs-parallaxlevel-0"
 					data-x="center" data-hoffset="0"
 					data-y="center" data-voffset="0"
 					data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
@@ -129,14 +130,10 @@
 					data-elementdelay="0.1"
 					data-endelementdelay="0.1"
 					data-endspeed="1000"
-					style="z-index: 19; 
-					max-width: auto; max-height: auto; white-space: nowrap;"><div class=" rs-slideloop" 			data-easing="Power3.easeInOut"
-					data-speed="2"
-					data-xs="0"
-					data-xe="0"
-					data-ys="0"
-					data-ye="0"
-					>
+					style="z-index: 19;  visibility: hidden; 
+					max-width: auto; max-height: auto; white-space: nowrap;">
+					<div class="rs-slideloop"  data-speed="2" data-xs="0" data-xe="0"
+					 data-ys="0" data-ye="0">
 						<a href="@{Application.cpanel()}" class="largeredbtn" target="_blank">&{'application.participate'}</a>
 					</div>
 				</div>
@@ -337,37 +334,6 @@
 
 	$(function(){
 		
-		//Slider Revolution	
-		$('.tp-banner').show().revolution({
-			dottedOverlay:"none",
-			delay:300,
-			startwidth:1170,
-			startheight:700,
-			hideThumbs:200,
-	
-			touchenabled:"on",
-			onHoverStop:"on",
-			drag_block_vertical: false,
-			
-			shadow:0,
-			fullWidth:"on",
-			fullScreen:"off",
-
-			spinner:"spinner4",
-			
-			stopLoop:"off",
-			stopAfterLoops:-1,
-			stopAtSlide:-1,
-
-			autoHeight:"off",						
-			forceFullWidth:"off",						
-			hideSliderAtLimit:0,
-			hideCaptionAtLimit:0,
-			hideAllCaptionAtLilmit:0,
-			fullScreenOffsetContainer: ".header"	
-		});		
-		
-		//End Slider Revolution
 		
 		//Section Animation
 		if (Modernizr.mq('(min-width: 1349px)')) {
@@ -415,6 +381,38 @@
 
 		}
 	   
+		
+		//Slider Revolution	
+		$('.tp-banner').show().revolution({
+			dottedOverlay:"none",
+			delay:0,
+			startwidth:1170,
+			startheight:700,
+			hideThumbs:200,
+	
+			touchenabled:"on",
+			onHoverStop:"on",
+			drag_block_vertical: false,
+			
+			shadow:0,
+			fullWidth:"on",
+			fullScreen:"off",
+
+			spinner:"spinner4",
+			
+			stopLoop:"off",
+			stopAfterLoops:-1,
+			stopAtSlide:-1,
+
+			autoHeight:"off",						
+			forceFullWidth:"off",						
+			hideSliderAtLimit:0,
+			hideCaptionAtLimit:0,
+			hideAllCaptionAtLilmit:0,
+			fullScreenOffsetContainer: ".header"	
+		});		
+		
+		
 		var url = $("#player").attr("src");
 		url = checarURL(url);
 		$("#player").attr("src", url);
@@ -423,7 +421,7 @@
 		dtAbertura += "08:00:00";
 		cont = $("#countdown").countdown({
 	          image: "@{'public/img/digits.png'}",
-	          format: "dd:hh:mm",
+	          format: "dd:hh:mm:ss",
 	          endTime: new Date(dtAbertura)
 	    });
 	});
