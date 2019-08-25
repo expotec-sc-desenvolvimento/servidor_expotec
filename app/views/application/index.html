@@ -31,7 +31,7 @@
 				data-saveperformance="on"  data-title="Intro Slide">
 				<!-- MAIN IMAGE -->
 				<img src="@{'public/landing/images/dummy.png'}" 
-				 alt="slidebg1" data-lazyload="@{'public/img/redbg.jpg'}" 
+				 alt="slidebg1" data-lazyload="@{'public/img/redbg.png'}" 
 				 data-bgposition="center top" data-bgfit="cover"
 				 data-bgrepeat="no-repeat">
 				<!-- LAYERS -->
@@ -93,7 +93,13 @@
 					max-width: auto; max-height: auto; white-space: nowrap;">
 					<div class="rs-slideloop"  data-speed="2" data-xs="0" data-xe="0"
 					 data-ys="0" data-ye="0">
-						<a href="@{Application.cpanel()}" class="largeredbtn" target="_blank">&{'application.participate'}</a>
+					 	%{
+					 		if (event.end.after(new Date())){
+								out.print("<a href='/cpanel' class='largeredbtn' target='_blank'>Participe</a>");
+							}else{
+								out.print('<h1>ENCERRRADO</h1>');
+							}
+						}%
 					</div>
 				</div>
 			</li>
@@ -312,9 +318,10 @@
 			startheight:700,
 			hideThumbs:200,
 	
-			touchenabled:"on",
-			onHoverStop:"on",
+			touchenabled:"off",
+			onHoverStop:"off",
 			drag_block_vertical: false,
+			keyboardNavigation:"off",
 			
 			shadow:0,
 			fullWidth:"on",
