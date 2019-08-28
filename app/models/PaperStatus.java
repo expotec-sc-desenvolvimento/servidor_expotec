@@ -8,7 +8,7 @@ public enum PaperStatus {
     SUBMITTED("Submetido"),
     INEVALUATION("Em Avaliação"),
     APROVED("Aprovado"),
-    APROVEDBUT("Aprovado com resalvas"),
+    APROVEDBUT("Aprovado com ressalvas"),
     FAILED("Reprovado"),
     PRESENTED("Apresentado"),
     NOPRESENTED("Não Apresentado");

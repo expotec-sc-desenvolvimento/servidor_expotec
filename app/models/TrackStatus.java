@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Arrays;
 
 public enum TrackStatus {
-    OPENED("Abertas"),
-    CLOSED("Encerradas"),
+    OPENED("Aberta"),
+    CLOSED("Encerrada"),
     SOON("Em breve"),
     DRAFT("Rascunho");
 

@@ -9,8 +9,8 @@ import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="trackCriteria")
-public class TrackCriteria extends Model {
+@Table(name="evalCriteria")
+public class EvalCriteria extends Model {
 	@Min(0)
 	@Required(message = "validacao.requerido")
 	public double score;
@@ -21,7 +21,7 @@ public class TrackCriteria extends Model {
 	
 	@ManyToOne
 	@Required(message = "validacao.requerido")
-	public EvaluationPaper evalPaper;
+	public EvalPaper evalPaper;
 	
 	
 }

@@ -17,7 +17,7 @@ public class Expertise extends Model{
 
 	@NotNull
 	@ManyToOne
-	public Subject subject;
+	public Area subject;
 	
 	@NotNull
 	public boolean status;

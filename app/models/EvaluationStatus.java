@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 import java.util.Arrays;
 
-public enum EvaluationPaperStatus {
+public enum EvaluationStatus {
 	WAITING("Pendente"),
     STARTED("Iniciada"),
     LATE("Atrasada"),
@@ -12,12 +12,12 @@ public enum EvaluationPaperStatus {
     
     public String name;
 
-    private EvaluationPaperStatus(String description) {
+    private EvaluationStatus(String description) {
         this.name = description;
     }
 
-    public static List<EvaluationPaperStatus> list() {
-        return Arrays.asList(EvaluationPaperStatus.values());
+    public static List<EvaluationStatus> list() {
+        return Arrays.asList(EvaluationStatus.values());
     }
 
     @Override

@@ -74,4 +74,12 @@ public class Track extends Model {
         return papers;
     }
     
+    /*
+     * @Transient
+     
+    public List<Criteria> getCriterias (){
+        List<Criteria> criterias = JPA.em().createQuery("select c from Criteria c where c.track.id =  '"+this.id+"'").getResultList();
+        return criterias;
+    }
+    */
 }

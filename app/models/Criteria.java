@@ -28,8 +28,4 @@ public class Criteria extends Model {
 	
 	@Min(0)
 	public double weight;
-	
-	@ManyToOne
-	public Track track;
-	
 }

@@ -54,4 +54,7 @@ public class Paper extends GenericModel {
     @ManyToOne()
     public Track track;
     
+    @ManyToOne()
+    public Area mainArea;  
+    
 }

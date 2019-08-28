@@ -10,9 +10,9 @@ import play.data.validation.Unique;
 import play.db.jpa.Model;
 
 @Entity
-public class Subject extends Model{
+public class Area extends Model{
 	@ManyToOne
-	public Subject parent;
+	public Area parent;
 
 	@Unique
 	@MinSize(1)

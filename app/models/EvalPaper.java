@@ -19,7 +19,7 @@ import play.db.jpa.Model;
 
 @Entity
 @Table(name="evalPaper")
-public class EvaluationPaper extends Model{
+public class EvalPaper extends Model{
 	
 	@Min(0)
 	public double avg;
@@ -32,14 +32,14 @@ public class EvaluationPaper extends Model{
 
 	@Enumerated(EnumType.STRING)
 	@Required
-	public EvaluationPaperStatus status;
+	public EvaluationStatus status;
     
     @Lob
     public String comments;
     
     @Transient
-    public List<TrackCriteria> getEvalCriterias (){
-        List<TrackCriteria> evalsCriterias = JPA.em().createQuery("select ec from EvaluationCriteria ev where ev.evalPaper.id =  '"+this.id+"'").getResultList();
+    public List<EvalCriteria> getEvalCriterias (){
+        List<EvalCriteria> evalsCriterias = JPA.em().createQuery("select ec from EvaluationCriteria ev where ev.evalPaper.id =  '"+this.id+"'").getResultList();
         return evalsCriterias;
     }
 	

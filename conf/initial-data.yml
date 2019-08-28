@@ -93,9 +93,24 @@ Track(artigosResumidos):
    minEvaluations: 3
    guidelines: "Os autores deverão submeter resumos de no máximo 2 páginas, no formato da SBC, que atendam aos critérios pré-estabelecidos, detalhados adiante. Os artigos deverão ser preparados conforme o padrão (template) da Sociedade Brasileira de Computação (SBC), cujos formatos Word e Latex estão disponíveis aqui."
    status: SOON
-   calcType: ARITHMETIC_AVG,
-   type: SUBMISSION,
+   calcType: ARITHMETIC_AVG
+   type: SUBMISSION
    event: expotecsc
    criterias: [c1, c2]
   
+Area(exata):
+   description: "Ciências Exatas e da Terra"
+
+Area(mat):
+   parent: exata
+   description: "Matemática"
+   
+Area(estat):
+   parent: exata
+   description: "Probabilidade e Estatística"
+   
+Area(comp):
+   parent: exata
+   description: "Ciência da Computação"
+ 
  
