@@ -51,8 +51,7 @@ public class Paper extends GenericModel {
     @Fetch(value = FetchMode.SUBSELECT)
     public List<User> coauthors = new ArrayList<User>();
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @Fetch(value = FetchMode.SUBSELECT)
-    public List<EvaluationConfig> evaluations = new ArrayList<EvaluationConfig>();
+    @ManyToOne()
+    public Track track;
     
 }

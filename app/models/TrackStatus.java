@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 import java.util.Arrays;
 
-public enum EvaluationStatus {
+public enum TrackStatus {
     OPENED("Abertas"),
     CLOSED("Encerradas"),
     SOON("Em breve"),
@@ -11,12 +11,12 @@ public enum EvaluationStatus {
 
     public String name;
 
-    private EvaluationStatus(String description) {
+    private TrackStatus(String description) {
         this.name = description;
     }
 
-    public static List<EvaluationStatus> list() {
-        return Arrays.asList(EvaluationStatus.values());
+    public static List<TrackStatus> list() {
+        return Arrays.asList(TrackStatus.values());
     }
 
     @Override

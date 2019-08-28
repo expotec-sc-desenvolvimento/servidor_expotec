@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -34,7 +35,7 @@ import play.db.jpa.GenericModel;
 import play.db.jpa.Model;
 
 @Entity
-
+@Table(name = "users")
 public class User extends GenericModel {
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UUID_SEQ")
@@ -73,8 +74,7 @@ public class User extends GenericModel {
     @ManyToOne
     public Event event;
     
-    @OneToMany(fetch = FetchType.LAZY)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(fetch = FetchType.EAGER)
     public List<Expertise> expertises = new ArrayList<Expertise>();
     
     

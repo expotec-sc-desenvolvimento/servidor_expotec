@@ -3,18 +3,18 @@ package models;
 import java.util.List;
 import java.util.Arrays;
 
-public enum EvaluationType {
+public enum TrackType {
     SUBMISSION("Submissão"),
     PRESENTATION("Apresentação");
 
     public String name;
 
-    private EvaluationType(String description) {
+    private TrackType(String description) {
         this.name = description;
     }
 
-    public static List<EvaluationType> list() {
-        return Arrays.asList(EvaluationType.values());
+    public static List<TrackType> list() {
+        return Arrays.asList(TrackType.values());
     }
 
     @Override

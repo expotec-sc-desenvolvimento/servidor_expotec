@@ -12,13 +12,27 @@ Event(expotecsc):
    
     
 User(admin):
-    cel: "(84) 1111-2222"
+    cel: "(84) 1111-1111"
     cpf_suap: "11111111111"
     email: "admin@email.com"
     name: "Administrador"
     outsider: 1
     password: 4QrcOUm6Wau+VuBX8g+IPg==
     permission: ADMIN
+    picture: 220f6c65-4ced-46a9-bc7c-516fd1b73068|image/png
+    registration: 2019-08-20
+    status: 1
+    event: expotecsc
+
+
+User(participante):
+    cel: "(84) 2222-2222"
+    cpf_suap: "222222"
+    email: "participante@email.com"
+    name: "Participante"
+    outsider: 0
+    password: 4QrcOUm6Wau+VuBX8g+IPg==
+    permission: ATTENDEE
     picture: 220f6c65-4ced-46a9-bc7c-516fd1b73068|image/png
     registration: 2019-08-20
     status: 1
@@ -51,3 +65,37 @@ Activity(abertura):
    status: SOON
    event: expotecsc
    facilitators: [admin]
+   
+Activity(minicurso):
+   title: "Minicurso 1"
+   type: minicurso
+   description: "Javascript para Zoombies"
+   targetPublic: "Alunos e visitantes"
+   numDays: 2
+   numMinutes: 90
+   limited: true
+   maxAttendees: 30
+   status: SOON
+   event: expotecsc
+   facilitators: [admin, participante]
+
+
+Criteria(c1):
+   description: "Potencial"
+   
+Criteria(c2):
+   description: "Qualidade da Discussão"   
+
+Track(artigosResumidos):
+   name: "Artigo Resumidos"
+   start: 2019-08-28
+   end: 2019-08-29
+   minEvaluations: 3
+   guidelines: "Os autores deverão submeter resumos de no máximo 2 páginas, no formato da SBC, que atendam aos critérios pré-estabelecidos, detalhados adiante. Os artigos deverão ser preparados conforme o padrão (template) da Sociedade Brasileira de Computação (SBC), cujos formatos Word e Latex estão disponíveis aqui."
+   status: SOON
+   calcType: ARITHMETIC_AVG,
+   type: SUBMISSION,
+   event: expotecsc
+   criterias: [c1, c2]
+  
+ 
