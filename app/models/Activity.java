@@ -49,11 +49,18 @@ public class Activity extends GenericModel{
     @MaxSize(255)
     public String description;
     
-    @Min(1)
-    public int days;
+    @MaxSize(100)
+    public String targetPublic;
+	
+    @Lob
+    @MaxSize(255)
+	public String requirements;
+    
+	@Min(1)
+    public int numDays;
     
     @Min(0)
-    public double totalCH;
+    public double numMinutes;
    
     
     @NotNull

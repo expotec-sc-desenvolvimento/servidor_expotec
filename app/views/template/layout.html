@@ -10,7 +10,7 @@
 %{ 
 	userid= session.get('userid');
 	eventid= session.get('eventid');
-	out.print(user.permission);
+	permission = user.permission.toString();
 }%
 
 <!-- WRAPPER -->

@@ -8,10 +8,11 @@ application.yes= Sim
 application.no= Não
 application.comingsoon=EM BREVE
 application.info=Para mais informações contactar a organização do evento
-index.feature=#PARTIUEXPOTEC: 
-index.countdown= Contagem regressiva
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
+erro.permissao= Você não tem permissão para fazer essa operação.
+erro.operacao= Não foi possível realizar esta operação.
+
 secure.title= Acessar o Sistema
 secure.username= E-mail
 secure.password= Senha
@@ -34,16 +35,14 @@ validacao.unico.papel = Já existe um papel com esta Descrição. Digite outra.
 validacao.unico.instituicao = Já existe uma intituição com este nome. Digite outro.
 validacao.unico.dia = Já existe um dia com este nome. Digite outro.
 
-erro.permissao= Você não tem permissão para fazer essa operação.
-erro.operacao= Não foi possível realizar esta operação.
+
 
 cpanel.menu.dashboard = Início
-cpanel.menu.myactivities = Minhas Atividades
+cpanel.menu.myactivities = Minhas Inscrições
 cpanel.menu.mypapers= Meus Trabalhos
 cpanel.menu.myevaluations= Minhas Avaliações 
 cpanel.menu.mycertificates= Certificado de Participação
 cpanel.menu.myprofile= Meu Perfil
-
 cpanel.menu.logout = Sair 
 cpanel.menu.admin = Administração
 cpanel.menu.events = Evento
@@ -56,21 +55,23 @@ cpanel.menu.attendant = Atendimento
 cpanel.menu.badge = Crachá
 cpanel.menu.attendance = Presença
 cpanel.menu.expertise = Saberes
-cpanel.index = Painel de Controle
 
+
+index.sponsored = Patrocinadores e Parceiros
+index.organized = Organização 
+index.title= Início
+index.countdown= Contagem regressiva
+
+index.feature=#PARTIUEXPOTEC: 
 index.features.first=#FIQUE
 index.features.second=LIGADO
 index.features.third=Atividades para todos os gostos e públicos
-
 index.features.robot.title=Mostra de Robótica
 index.features.robot.subtitle=Conheça os projetos e robôs desenvolvidos no IFRN/SC
-
 index.features.humanity.title=Mostra de Humanidades
 index.features.humanity.subtitle=Visite as salas temáticas e assista as apresentações da galera das humanidades
-
 index.features.tech.title=Mostra Tecnológica
 index.features.tech.subtitle=Conheça os projetos de ensino e pesquisa desenvolvidos pelos alunos
-
 index.features.etc.title=Muito Mais
 index.features.etc.subtitle=Veja a programação do evento
 
@@ -78,19 +79,17 @@ index.about.first=#QUEM
 index.about.second=VAMOS
 
 index.menu.index = Início
-index.menu.submission= Submissões
+index.menu.submission= Chamada de Trabalhos
 index.menu.schedule = Programação
+index.menu.activities= Atividades
 index.menu.blog = Notícias
-index.menu.cpanel = Acessar  
-index.sponsored = Patrocinadores e Parceiros
-index.organized = Organização 
-index.title= Início
+index.menu.cpanel = Painel de Controle
 
 
 
 user.success = Cadastro efetuado! Agora você pode entrar no sistema.
 user.logout = Sair
-user.signup = Cadastro de Uusário
+user.signup = Cadastro de Usuário
 user.name = Nome:
 user.email = Email:
 user.cel = Celular:
@@ -136,6 +135,6 @@ button.cancel = Cancelar
 button.cracha= Ver Crachá
 button.submit= Enviar
 button.password= Alterar Senha
-role= Perfil
+
 
 badge.mybadge = Cracha Expotec

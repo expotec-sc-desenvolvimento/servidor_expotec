@@ -1,12 +1,185 @@
 #{extends 'template/layout.html' /}
 #{set 'title'}
-    &{'cpanel.menu.dashboard'}
+    &{'event.detail'}
 #{/set}
 
 #{set 'panel-title'}
-    &{'cpanel.menu.dashboard'}
+    &{'event.detail'}
 #{/set}
 
-<div class="row">
+%{ 
+	userid= session.get('userid');
+	eventid= session.get('eventid');
+	permission = user.permission.toString();
+}%
 
+<div class="row">
+	<div class="row user-profile-wrapper">
+		<div class="col-md-3 user-profile-sidebar m-bottom-md">
+			<div class="row">
+				<div class="col-sm-4 col-md-12">
+					<div class="user-profile-pic">
+						#{if !event?.promoVideo.trim().equals("")}
+						<div class="embed-responsive embed-responsive-16by9 disabled">
+                        	<iframe  id="player" class="embed-responsive-item" src="${event.promoVideo}"> </iframe>
+                    	</div>
+                    	#{/if}
+                    	#{else}
+							<img src="@{'/public/landing/images/frontend/mockup1.png'}" alt=""
+							class="disabled">
+						#{/else}
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-12">
+					<div class="user-name m-top-sm">
+						${event.title}
+						%{
+					 		if (event.end.after(new Date())){
+					 			out.print('<i class="fa fa-circle text-success m-left-xs font-14"></i>');
+							}else{
+								out.print('<i class="fa fa-circle text-danger m-left-xs font-14"></i>');
+							}
+						}%
+					</div>
+					<div class="m-top-sm">
+						<div class="m-top-xs flex-wrapper">
+							<i class="fa fa-thumbtack user-profile-icon 30width" ></i>
+							<div>${event.edition}</div>
+						</div>
+						<div class="flex-wrapper">
+							<i class="fa fa-building user-profile-icon 30width" style="width: 20px;"></i>
+							 <div>${event.organization}</div>
+						</div>
+						<div class="flex-wrapper">
+							<i class="fa fa-map-marker user-profile-icon 30width"></i>
+							<div>${event.address}</div>
+						</div>
+						#{if event.blog}
+						<div class="flex-wrapper">
+							<i class="fa fa-external-link user-profile-icon 30width"></i>
+							${event.blog}
+						</div>
+						#{/if}
+					</div>
+
+					<h4 class="m-top-md m-bottom-sm">&{'event.about'}</h4>
+					<p class="m-top-sm">
+					#{verbatim}
+						${event.about.substring(0,355)}
+					#{/verbatim}
+					[...]
+					</p>
+					<p></p>
+					
+					#{if permission.equals("ADMIN")}
+						#{btEdit url:@Administrators.editEvent(event.id) /}
+                    #{/if}
+					
+				</div>
+			</div><!-- ./row -->
+		</div><!-- ./col -->
+		
+		<div class="col-md-9">
+			<div class="md-top-50">
+				<div class="smart-widget-inner">
+					<ul class="nav nav-tabs tab-style2 tab-right">
+						<li class="">
+							<a href="#eventTab3" data-toggle="tab">
+								<span class="icon-wrapper"><i class="fa fa-newspaper"></i></span>
+								<span class="text-wrapper">&{'index.menu.submission'}</span>
+							</a>
+						</li>		
+						<li class="">
+							<a href="#eventTab2" data-toggle="tab">
+								<span class="icon-wrapper"><i class="fa fa-tasks"></i></span>
+								<span class="text-wrapper">&{'index.menu.activities'}</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="#eventTab1" data-toggle="tab">
+								<span class="icon-wrapper"><i class="fa fa-calendar-alt"></i></span>
+								<span class="text-wrapper">&{'index.menu.schedule'}</span>
+							</a>
+						</li>
+					</ul>
+					<div class="smart-widget-body">
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="eventTab1">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="widget-stat clearfix">
+											<span class="stat-icon bg-success bounceIn animation-delay3">
+												<i class="fa fa-calendar-alt" aria-hidden="true"></i>
+											</span>
+											<div class="stat-info">
+												<small class="text-muted text-upper">&{'event.start'}</small>
+												<span>${event.start.format('dd/MM/yyyy')}</span>
+											</div>
+										</div>
+									</div>
+								
+									<div class="col-sm-6">
+										<div class="widget-stat clearfix">
+											<span class="stat-icon bg-danger bounceIn animation-delay3">
+												<i class="fa fa-calendar-alt" aria-hidden="true"></i>
+											</span>
+											<div class="stat-info">
+												<small class="text-muted text-upper">&{'event.end'}</small>
+												<span>${event.end.format('dd/MM/yyyy')}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- ./tab-pane -->
+							<div class="tab-pane fade" id="eventTab2">
+								<div class="profile-follower-list clearfix">
+									<ul>
+										<li>
+											<div class="panel panel-default clearfix">
+												<div class="panel-body">
+													<div class="user-wrapper">
+														<div class="user-avatar">
+															<img class="small-img img-circle img-thumbnail" src="images/profile/profile2.jpg" alt="">
+														</div>
+														<div class="user-detail small-img">
+															<div class="font-16">Karen Martin</div>
+															<small class="block text-muted font-12">Web Designer</small>
+															<small>
+																<small class="freelancer-rating">
+																	<i class="fa fa-star text-warning"></i>
+																	<i class="fa fa-star text-warning"></i>
+																	<i class="fa fa-star text-warning"></i>
+																	<i class="fa fa-star text-warning"></i>
+																	<i class="fa fa-star text-warning"></i>
+																</small>
+															</small>
+
+															<div class="m-top-sm">
+																<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">following</button>
+																<button type="button" class="btn btn-success btn-sm marginTB-xs" data-toggle="modal">View Profile</button>
+															</div>
+														</div>
+													</div><!-- ./user-wrapper -->
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div><!-- ./profile-follower-list -->				
+							</div><!-- ./tab-pane -->
+							<div class="tab-pane fade" id="eventTab3">
+								
+							</div><!-- ./tab-pane -->
+						</div><!-- ./tab-content -->
+					</div><!-- ./smart-widget-body -->
+				</div><!-- ./smart-widget-inner -->
+			</div><!-- ./smart-widget -->
+		</div>
+	</div>
 </div>
+#{set 'moreScripts'}
+ <script>
+	$(function(){
+	
+	});
+</script>
+#{/set}

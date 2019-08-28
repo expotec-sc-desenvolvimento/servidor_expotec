@@ -7,14 +7,6 @@
     &{'cpanel.menu.myprofile'}
 #{/set}
 
-#{set 'moreScripts'}
-    <script type="text/javascript">
-    	$(function(){
-    		
-    	});
-    </script>
-#{/set}
-
 <div class="row">
 		#{include 'template/user/detail.html' /}
 		
@@ -22,15 +14,23 @@
 		<div class="control-group form-actions marginTB-xs">
     		<div class="row text-right">
       	  		<div class="col-md-4 mb-4">
-        	    	<a class="btn btn-lg  btn-block btn-success" target="_blank"
-        	     	href="@{Attendees.myBadge()}">&{'button.cracha'}</a>
+        			<div class="m-top-sm text-centers">
+						<a class="btn btn-info btn btn-lg  btn-block" 
+						href="@{Attendees.myBadge()}">
+							<i class="fa fa-print m-right-xs"></i>
+							&{'button.cracha'}
+						</a>
+					</div>
         		</div>
-        		
         		<div class="col-md-4 mb-4">
-        	    	<a class="btn btn-lg  btn-danger  btn-block"
-        	    	href="#formInModal" data-toggle="modal">&{'button.password'}</a>
-        		</div>
-      	  		
+        			<div class="m-top-sm text-centers">
+						<a class="btn btn-danger btn btn-lg  btn-block"  href="#formInModal" data-toggle="modal">
+							<i class="fa fa-key m-right-xs"></i>
+							&{'button.password'}
+						</a>
+					</div>
+				</div>
+        		
         		<div class="col-md-4 mb-4">
         			#{btEdit url:'editmyprofile' /}
 	       		</div>

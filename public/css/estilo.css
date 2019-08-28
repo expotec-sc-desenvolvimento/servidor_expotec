@@ -100,6 +100,23 @@ img.img-responsive.logo {
 	border-top: 2px solid #ACB0B5 !important;
 }
 
+.30width{
+	width: 30px !important;
+}
+.smart-widget-body{
+	border: 1px solid #ddd;
+}
+
+.md-top-50{
+	margin-top:-50px;
+}
+.flex-wrapper {
+    display: flex;
+    
+    flex-direction: row;
+     align-items: center;
+}
+
 .mb-4, .my-4 {
 	margin-bottom: 1.5rem !important;
 }
@@ -244,4 +261,16 @@ footer.main {
 	.fullheight{
 		 height: calc(100vh - 140px);
 	}
+	
+	.md-top-50{
+		margin: 20px;
+	}
+	
+	.user-profile-wrapper  .tab-right li{
+		width: 100% !important;
+		text-align: center;
+	}
+	
+	}
+	
 }

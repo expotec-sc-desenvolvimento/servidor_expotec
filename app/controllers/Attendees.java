@@ -41,7 +41,8 @@ public class Attendees extends Controller {
 	}
 
 	public static void viewEvent(Long id) {
-		renderTemplate("Attendees/viewEvent.html");
+		//renderTemplate("Attendees/viewEvent.html");
+		cpanel();
 	}
 
 	public static void viewMyProfile() {
