@@ -88,7 +88,7 @@ img.img-responsive.logo {
 }
 
 .embed-responsive {
-	min-width: 240px;
+	min-width: 280px;
 }
 
 .vertical-align-wrap .flex-item {
@@ -262,6 +262,13 @@ footer.main {
   
 }
 
+.autoheigt{
+	height: auto;
+}
+
+.user-profile-pic .embed-responsive{
+	    min-width: 180px;
+}
 li.item-flex{
 	flex-grow: 1;
 	max-width: 430px;

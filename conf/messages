@@ -126,7 +126,10 @@ event.empty = Você não possui eventos cadastrados.
 
 activity.list= Lista de Atividades
 activity.empty= Você não possui atividades cadastradas.
-activity.draft=Rascunho
+activity.limited.true= Acesso Limitado
+activity.limited.false= Acesso Ilimitado
+activity.numMinutes.min= min.
+activity.users= Responsáveis
 
 button.save = Salvar
 button.delete = Deletar

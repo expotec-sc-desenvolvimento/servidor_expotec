@@ -63,7 +63,7 @@ public class Activity extends GenericModel{
     public int numDays;
     
     @Min(0)
-    public double numMinutes;
+    public int numMinutes;
    
     
     @NotNull
@@ -78,7 +78,7 @@ public class Activity extends GenericModel{
     
     @Temporal(TemporalType.DATE)
     @Required(message = "validacao.requerido")
-    public Date endEscription;
+    public Date endInscription;
     
     @NotNull
     @Enumerated(EnumType.STRING)
