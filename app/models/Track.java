@@ -33,6 +33,7 @@ public class Track extends Model {
     public String name;
     
     @Temporal(TemporalType.DATE)
+    @Required(message = "validacao.requerido")
     public Date start;
     
     @Temporal(TemporalType.DATE)

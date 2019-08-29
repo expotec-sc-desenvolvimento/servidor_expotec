@@ -126,6 +126,7 @@ event.empty = Você não possui eventos cadastrados.
 
 activity.list= Lista de Atividades
 activity.empty= Você não possui atividades cadastradas.
+activity.draft=Rascunho
 
 button.save = Salvar
 button.delete = Deletar

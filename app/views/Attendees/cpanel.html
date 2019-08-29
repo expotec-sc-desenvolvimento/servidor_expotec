@@ -108,7 +108,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="widget-stat clearfix">
-											<span class="stat-icon bg-success bounceIn animation-delay3">
+											<span class="stat-icon bg-success">
 												<i class="fa fa-calendar-alt" aria-hidden="true"></i>
 											</span>
 											<div class="stat-info">
@@ -120,7 +120,7 @@
 								
 									<div class="col-sm-6">
 										<div class="widget-stat clearfix">
-											<span class="stat-icon bg-danger bounceIn animation-delay3">
+											<span class="stat-icon bg-danger ">
 												<i class="fa fa-calendar-alt" aria-hidden="true"></i>
 											</span>
 											<div class="stat-info">
@@ -132,39 +132,7 @@
 								</div>
 							</div><!-- ./tab-pane -->
 							<div class="tab-pane fade" id="eventTab2">
-								<div class="profile-follower-list clearfix">
-									<ul>
-										<li>
-											<div class="panel panel-default clearfix">
-												<div class="panel-body">
-													<div class="user-wrapper">
-														<div class="user-avatar">
-															<img class="small-img img-circle img-thumbnail" src="images/profile/profile2.jpg" alt="">
-														</div>
-														<div class="user-detail small-img">
-															<div class="font-16">Karen Martin</div>
-															<small class="block text-muted font-12">Web Designer</small>
-															<small>
-																<small class="freelancer-rating">
-																	<i class="fa fa-star text-warning"></i>
-																	<i class="fa fa-star text-warning"></i>
-																	<i class="fa fa-star text-warning"></i>
-																	<i class="fa fa-star text-warning"></i>
-																	<i class="fa fa-star text-warning"></i>
-																</small>
-															</small>
-
-															<div class="m-top-sm">
-																<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">following</button>
-																<button type="button" class="btn btn-success btn-sm marginTB-xs" data-toggle="modal">View Profile</button>
-															</div>
-														</div>
-													</div><!-- ./user-wrapper -->
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div><!-- ./profile-follower-list -->				
+								#{listActivities list:event.getActivities() /}				
 							</div><!-- ./tab-pane -->
 							<div class="tab-pane fade" id="eventTab3">
 								

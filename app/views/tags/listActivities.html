@@ -1,0 +1,38 @@
+<div class="mypanel-list clearfix">
+<ul class="myflex">
+#{list items:_list, as:'a'}
+    <li class="item-flex">
+		<div class="panel panel-default clearfix">
+			<div class="mypanel-body">
+				<div class="mypanel-wrapper">
+					<div class="mypanel-avatar">
+						<div class="small-img img-circle activity-tag" style="background: ${a.type.color} !important">
+							%{
+								out.print(a.type.name.charAt(0))
+							}%
+						</div>
+					</div>
+					<div class="mypanel-detail small-img">
+						<div class="font-16">${a.title}</div>
+						<small class="block text-muted font-12">${a.numMinutes} </small>
+						<small>${a.status.name}</small>
+
+						<div class="m-top-sm">
+							#{if permission.equals("ATTENDANT")}
+								<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">&{'activity.open'}</button>
+                     		#{/if}
+                    		#{else}
+                    			<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">following</button>	
+                    		#{/else}
+                    		#{if _perm.equals("ADMIN")}
+								#{btEdit url="#" /}
+                     		#{/if}
+						</div>
+					</div>
+				</div><!-- ./user-wrapper -->
+			</div>
+		</div>
+	</li>
+	#{/list}
+</ul>
+</div>

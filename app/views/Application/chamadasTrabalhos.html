@@ -1,0 +1,24 @@
+#{extends 'template/main.html' /} 
+
+#{set 'title'} 
+	&{'application.name'} - &{'index.title'} 
+#{/set}
+
+#{set 'moreStyles'}
+	<!-- SIMPLIFY CSS -->
+	<link rel="stylesheet" href="@{'/public/template/css/simplify.css'}">
+#{/set} 
+
+
+
+<div class="wrapper front-end-wrapper ">
+	#{include 'template/menus/application.html' /}
+	<div class="section " >
+		<div class="container  text-center">
+			<div class="jumbotron  no-margin fullheight">
+  				#{listActivities list:event.getActivities() /}
+			</div>
+		</div>
+	</div>
+	#{include 'template/footer.html'/}
+</div>

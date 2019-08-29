@@ -40,6 +40,10 @@ public class Application extends Controller {
 		renderTemplate("Application/comingsoon.html");
 	}
 	
+	public static void chamadasTrabalhos() throws Throwable {
+		renderTemplate("Application/chamadasTrabalhos.html");
+	}
+	
 	public static void index() throws Throwable {
 		renderTemplate("Application/index.html");
 	}

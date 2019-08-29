@@ -64,6 +64,7 @@ Activity(abertura):
    limited: false 
    status: SOON
    event: expotecsc
+   startInscription: 2019-08-28
    facilitators: [admin]
    
 Activity(minicurso):
@@ -77,6 +78,7 @@ Activity(minicurso):
    maxAttendees: 30
    status: SOON
    event: expotecsc
+   startInscription: 2019-08-29
    facilitators: [admin, participante]
 
 

@@ -28,8 +28,6 @@ public class Attendees extends Controller {
 			Event event = Event.findById(Long.parseLong(session.get("eventid")));
 			renderArgs.put("user", user);
 			renderArgs.put("event", event);
-		
-		
 	}
 
 	public static void printMyBadge() {
