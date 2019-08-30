@@ -33,7 +33,7 @@ public class Application extends Controller {
 		if (event == null) {
 			event = new Event();
 		}
-		renderArgs.put("eAtivado", event);
+		renderArgs.put("event", event);
 	}
 	
 	public static void comingSoon() throws Throwable {
