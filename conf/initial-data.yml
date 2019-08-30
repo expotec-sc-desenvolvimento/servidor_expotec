@@ -96,7 +96,7 @@ Track(artigosResumidos):
    guidelines: "Os autores deverão submeter resumos de no máximo 2 páginas, no formato da SBC, que atendam aos critérios pré-estabelecidos, detalhados adiante. Os artigos deverão ser preparados conforme o padrão (template) da Sociedade Brasileira de Computação (SBC), cujos formatos Word e Latex estão disponíveis aqui."
    status: SOON
    calcType: ARITHMETIC_AVG
-   type: SUBMISSION
+   type: PRESENTATION
    event: expotecsc
    criterias: [c1, c2]
   

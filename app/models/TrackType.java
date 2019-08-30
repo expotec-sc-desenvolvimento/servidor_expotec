@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Arrays;
 
 public enum TrackType {
-    SUBMISSION("Submissão"),
+    SOFTWARE("Software"),
+	RESEARCH("Pesquisa"),
     PRESENTATION("Apresentação");
 
     public String name;

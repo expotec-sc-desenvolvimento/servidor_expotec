@@ -47,8 +47,8 @@ cpanel.menu.events = Eventos
 cpanel.menu.event = Evento
 cpanel.menu.activies = Atividades
 cpanel.menu.users = Usuários
-cpanel.menu.evalutions = Avaliações
-cpanel.menu.papers = Trabalhos
+cpanel.menu.evalutions = Chamadas de Trabalho
+cpanel.menu.papers = Submissões
 cpanel.menu.attendant = Atendimento
 cpanel.menu.badge = Crachá
 cpanel.menu.attendance = Presença
@@ -131,13 +131,19 @@ event.organization= Organização
 event.contact= Contatos
 event.logo= Logo
 event.empty = Você não possui eventos cadastrados.
-
+activity.detail = Detalhes da Atividade
+activity.edit = Editar Atividade
 activity.list= Lista de Atividades
 activity.empty= Você não possui atividades cadastradas.
 activity.limited.true= Acesso Limitado
 activity.limited.false= Acesso Ilimitado
 activity.numMinutes.min= min.
 activity.users= Responsáveis
+
+track.list = Chamadas de Trabalho
+track.edit = Editar Chamada
+track.detail = Detalhes da Chamada
+
 
 button.save = Salvar
 button.delete = Deletar

@@ -58,6 +58,18 @@ public class Administrators extends Attendants {
 		renderArgs.put("e", e);
 		render();
 	}
+
+	public static void editActivity(Long id) {
+		Activity a = Activity.findById(id);
+		renderArgs.put("a", a);
+		render();
+	}
+	
+	public static void editTrack(Long id) {
+		Track t = Track.findById(id);
+		renderArgs.put("t", t);
+		render();
+	}
 	
 	public static void editUser(Long id) {
 		
@@ -86,6 +98,12 @@ public class Administrators extends Attendants {
 		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+eventid).fetch();
 		renderArgs.put("activities", activities);
 		renderTemplate("Administrators/listActivities.html");
+	}
+	
+	public static void listTracks(Long eventid) {
+		List<Track> tracks = Track.find("select t from Track t where t.event.id = "+eventid).fetch();
+		renderArgs.put("tracks", tracks);
+		renderTemplate("Administrators/listTracks.html");
 	}
 
 }

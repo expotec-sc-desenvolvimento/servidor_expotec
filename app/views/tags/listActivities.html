@@ -33,7 +33,7 @@
 							#{/list}
 							</div>
 							<div class="m-top-sm">
-								#{if a.status.name.equals("Abertas")}
+								#{if a.status.toString().equals("Aberta")}
 									<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">${a.status.name}</button>	
                      			#{/if}
                     			#{else}

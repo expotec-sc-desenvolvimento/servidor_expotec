@@ -1,6 +1,6 @@
 #{extends 'template/layout.html' /}
 #{set 'title'}
-    &{'menu.event'}
+    &{'activity.list'}
 #{/set}
 
 #{set 'panel-title'}
@@ -20,7 +20,7 @@
 			<td>0</td>
 			<td>${a.status.name}</td>
 			<td class="text-center">
-				#{btIconEdit url:@Administrators.editEvent(event.id) /}
+				#{btIconEdit url:@Administrators.editActivity(a.uuid) /}
 			</td>
 		</tr>
 	#{/list}

@@ -38,10 +38,7 @@ public class Attendees extends Controller {
 		renderTemplate("Attendees/cpanel.html");
 	}
 
-	public static void viewEvent(Long id) {
-		//renderTemplate("Attendees/viewEvent.html");
-		cpanel();
-	}
+
 
 	public static void viewMyProfile() {
 		renderTemplate("Attendees/viewMyProfile.html");
@@ -112,12 +109,6 @@ public class Attendees extends Controller {
 			logado.save();
 			viewMyProfile();
 		}
-	}
-
-	public static void listActivities(Long eventid) {
-		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = " + eventid).fetch();
-		renderArgs.put("activities", activities);
-		renderTemplate("Attendees/listActivities.html");
 	}
 
 	public static void getEventLogo(Long eventid) {

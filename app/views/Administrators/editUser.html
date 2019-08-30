@@ -1,6 +1,6 @@
 #{extends 'template/layout.html' /}
 #{set 'title'}
-   &{'event.edit'}
+   &{'user.edit'}
 #{/set}
 
 #{set 'panel-title'}
@@ -11,7 +11,7 @@
 %{ 
 	userid= session.get('userid');
 	eventid= session.get('eventid');
-	permission = user.permission.toString();
+	permission = ulogado.permission.toString();
 }%
 
 
