@@ -10,7 +10,7 @@
 %{ 
 	userid= session.get('userid');
 	eventid= session.get('eventid');
-	permission = user.permission.toString();
+	permission = ulogado.permission.toString();
 }%
 
 <!-- WRAPPER -->
@@ -48,14 +48,14 @@
                     <!-- MENUS DE PERFIL -->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
-							#{if user.picture.get() != null}
+							#{if ulogado.picture.get() != null}
 								<img class="img-circle inline-block user-profile-pic"
 								 src="@{Attendees.getUserPicture(userid)}"/>
 							#{/if}
 							#{else}
 								<img class="img-circle inline-block user-profile-pic" src="@{'/public/img/no_picture.png'}"/>
 							#{/else}	
-							<span>${user?.toString()}</span>
+							<span>${ulogado?.toString()}</span>
 						</a>
 						<ul class="dropdown-menu">
 							<li>

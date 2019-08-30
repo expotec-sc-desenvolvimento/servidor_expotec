@@ -1,0 +1,31 @@
+<table id="${_id}" class="table table-bordered table-striped dt-responsive nowrap">
+
+	<link rel="stylesheet" href="@{'public/css/tabelas.css'}" />
+	
+	<thead>
+		<tr>
+			#{list items:_chavesCabecalho, as:'i'}
+				<th>${i}</th>
+			#{/list}
+			<th>&{'table.actions'}</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{doBody /}
+	</tbody>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var id = "#" + "${_id}";
+			
+			$(id).dataTable({
+				'responsive': true,
+			 	'bDestroy': true,
+				'iDisplayLength': 10,
+				 //<![CDATA[
+		        "dom": '<"top"f<"toolbar">>rt<"bottom" pl><"clear">'
+		    	//]]>
+		    });		    
+		});
+	</script>
+</table>

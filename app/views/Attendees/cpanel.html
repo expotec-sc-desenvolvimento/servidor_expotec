@@ -10,7 +10,7 @@
 %{ 
 	userid= session.get('userid');
 	eventid= session.get('eventid');
-	permission = user.permission.toString();
+	permission = ulogado.permission.toString();
 }%
 
 <div class="row">
@@ -132,7 +132,7 @@
 								</div>
 							</div><!-- ./tab-pane -->
 							<div class="tab-pane fade" id="eventTab2">
-								#{listActivities list:event.getActivities(), perm:permission/}				
+								#{listActivities list:event.getUndraftActivities(), perm:permission/}				
 							</div><!-- ./tab-pane -->
 							<div class="tab-pane fade" id="eventTab3">
 								

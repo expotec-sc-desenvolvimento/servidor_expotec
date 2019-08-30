@@ -6,3 +6,21 @@
 #{set 'panel-title'}
     &{'event.list'}
 #{/set}
+
+#{tabelaDinamica id:'listEvent', list:events, chavesCabecalho:['Título', 'Tema', 'Abertura', 'Encerramento']}
+	#{list items:events, as:'e'}
+		<tr>
+			<td>${e.title}</td>
+			<td>${e.edition}</td>
+			<td>${e.start}</td>
+			<td>${e.end}</td>
+			<td class="text-center">
+				#{btIconEdit url:@Administrators.editEvent(event.id) /}
+			</td>
+		</tr>
+	#{/list}
+#{/tabelaDinamica}
+
+#{set 'moreScripts'}
+		
+#{/set}

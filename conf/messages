@@ -35,8 +35,6 @@ validacao.unico.papel = Já existe um papel com esta Descrição. Digite outra.
 validacao.unico.instituicao = Já existe uma intituição com este nome. Digite outro.
 validacao.unico.dia = Já existe um dia com este nome. Digite outro.
 
-
-
 cpanel.menu.dashboard = Início
 cpanel.menu.myactivities = Minhas Inscrições
 cpanel.menu.mypapers= Meus Trabalhos
@@ -45,7 +43,7 @@ cpanel.menu.mycertificates= Certificado de Participação
 cpanel.menu.myprofile= Meu Perfil
 cpanel.menu.logout = Sair 
 cpanel.menu.admin = Administração
-cpanel.menu.events = Evento
+cpanel.menu.events = Eventos
 cpanel.menu.event = Evento
 cpanel.menu.activies = Atividades
 cpanel.menu.users = Usuários
@@ -85,8 +83,8 @@ index.menu.activities= Atividades
 index.menu.blog = Notícias
 index.menu.cpanel = Painel de Controle
 
-
-
+user.edit = Editar Usuário
+user.list = Lista de Usuários
 user.success = Cadastro efetuado! Agora você pode entrar no sistema.
 user.logout = Sair
 user.signup = Cadastro de Usuário
@@ -104,6 +102,16 @@ user.suap=Matrícula SUAP:
 user.picture=Foto do Perfil:
 user.changepassword= Alterar Senha
 user.newpassword=Nova senha:
+
+
+ulogado.name = Nome:
+ulogado.email = Email:
+ulogado.cel = Celular:
+ulogado.password = Senha:
+ulogado.outsider= Usuário Externo:
+ulogado.pwConfirmation= Confirmação:
+ulogado.permission= Permissão:
+
 
 event.success= Evento cadastrado com sucesso!
 event.list= Lista de Eventos
@@ -140,5 +148,5 @@ button.cracha= Ver Crachá
 button.submit= Enviar
 button.password= Alterar Senha
 
-
+table.actions = Ações
 badge.mybadge = Cracha Expotec

@@ -64,8 +64,14 @@ public class Event extends Model{
     public String contact;
     
     @Transient
-    public List<Activity> getActivities(){
+    public List<Activity> getAllActivities(){
         List<Activity> activities = JPA.em().createQuery("select a from Activity a where a.event.id =  '"+this.id+"'").getResultList();
+        return activities;
+    }
+    
+    @Transient
+    public List<Activity> getUndraftActivities(){
+        List<Activity> activities = JPA.em().createQuery("select a from Activity a where a.status != 'DRAFT' and a.event.id =  '"+this.id+"'").getResultList();
         return activities;
     }
 }

@@ -4,8 +4,16 @@
 #{/set}
 
 #{set 'panel-title'}
-    &{'event.edit'}
+    &{'user.edit'}
 #{/set}
+
+
+%{ 
+	userid= session.get('userid');
+	eventid= session.get('eventid');
+	permission = user.permission.toString();
+}%
+
 
 #{if flash.error}
 	<div class="alert alert-danger alert-dismissible" role="alert">
@@ -17,9 +25,10 @@
     	${messages.get(flash.error)}
 	</div>
 #{/if}
-#{form @Administrators.saveEvent(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
-    #{include 'template/event/form.html' /}
-    <input type='hidden' name="e.id" value="${event.id}">
+#{form @Administrators.saveUser(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
+    #{include 'template/user/form.html', perm:permission /}
+    
+    <input type='hidden' name="user.uuid" value="${user.uuid}">
     
     <div class="control-group form-actions">
     	<div class="row">
@@ -28,7 +37,7 @@
 	    	</div>
         
       		<div class="col-md-3 mb-4">
-      			#{btCancel url:@Administrators.listEvents()/}
+      			#{btCancel url:@Administrators.listUsers()/}
         	</div>
     	</div>
     </div>

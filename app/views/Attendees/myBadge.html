@@ -7,7 +7,7 @@
 	<div class="col-lg-3 cracha">
 	<div class="panel">
 		<div class="panel-body no-padding">
-			<div class="qrcode" id="${user.uuid}"></div>
+			<div class="qrcode" id="${ulogado.uuid}"></div>
 		</div>
 		<div class="panel-footer bg-white text-center">
 			<p class="text-muted m-top-sm">
@@ -20,9 +20,9 @@
 					#{/else}
 				</small>
 			</p>
-			<h4 class="font-500 text-success no-margin">${user.name}</h4>
+			<h4 class="font-500 text-success no-margin">${ulogado.name}</h4>
 			<div class="text-muted">
-				${user.permission.name} 
+				${ulogado.permission.name} 
 			</div>
 		</div>
 	</div>
@@ -32,8 +32,8 @@
 <script src="@{'/public/js/qrcode.min.js'}"></script>
 
 <script type="text/javascript">
-	var qrcode = new QRCode(document.getElementById("${user.uuid}"));
+	var qrcode = new QRCode(document.getElementById("${ulogado.uuid}"));
     qrcode.clear(); 
-    qrcode.makeCode(${user.uuid});    
+    qrcode.makeCode(${ulogado.uuid});    
 </script>
 #{/set}

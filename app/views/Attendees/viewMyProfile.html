@@ -10,12 +10,12 @@
 <div class="row">
 		#{include 'template/user/detail.html' /}
 		
-		#{if user.uuid.toString().equals(session.get('userid'))}
+		#{if ulogado.uuid.toString().equals(session.get('userid'))}
 		<div class="control-group form-actions marginTB-xs">
     		<div class="row text-right">
       	  		<div class="col-md-4 mb-4">
         			<div class="m-top-sm text-centers">
-						<a class="btn btn-info btn btn-lg  btn-block" 
+						<a  target="_blank" class="btn btn-info btn btn-lg  btn-block" 
 						href="@{Attendees.myBadge()}">
 							<i class="fa fa-print m-right-xs"></i>
 							&{'button.cracha'}
@@ -51,7 +51,7 @@
 			<div class="modal-body">
 		    	#{form @Attendees.saveMyPassword(), method:'POST', class:'form-horizontal', id:'formPassword', name:'formPassword'} 
 					#{field 'user.uuid'} 
-						<input type="hidden" id="${field.name}" name="${field.name}" value="${field.value}" />
+						<input type="hidden" id="${field.name}" name="${field.name}" value="${ulogado.uuid}" />
 					#{/field} 
 					#{field 'user.password'}
 					<div class="control-group">

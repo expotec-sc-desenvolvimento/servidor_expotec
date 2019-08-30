@@ -1,8 +1,8 @@
 	<div class="col-md-3">
 		<div class="foto-usuario">
-			#{if user.picture.get() != null}
+			#{if ulogado.picture.get() != null}
 				<img class="inline-block user-profile-pic"
-				src="@{Attendees.getUserPicture(user.uuid)}"/>
+				src="@{Attendees.getUserPicture(ulogado.uuid)}"/>
 			#{/if}
 			#{else}
 				<img class=" inline-block user-profile-pic" src="@{'/public/img/no_picture.png'}"/>
@@ -14,38 +14,38 @@
 		<div class="row">
 			<div class="col-md-1">
 				<p>
-					<strong>&{'user.name'}</strong>
+					<strong>&{'ulogado.name'}</strong>
 				</p>
 			</div>
 			<div class="col-md-11">
-				<p class="data-detail">${user.name}</p>
+				<p class="data-detail">${ulogado.name}</p>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-1">
 				<p>
-					<strong>&{'user.email'}</strong>
+					<strong>&{'ulogado.email'}</strong>
 				</p>
 			</div>
 			<div class="col-md-3">
-				<p class="data-detail">${user.email}</p>
+				<p class="data-detail">${ulogado.email}</p>
 			</div>
 			<div class="col-md-1">
 				<p id="">
-					<strong>&{'user.cel'}</strong>
+					<strong>&{'ulogado.cel'}</strong>
 				</p>
 			</div>
 			<div class="col-md-3">
-				<p class="data-detail">${user.cel}</p>
+				<p class="data-detail">${ulogado.cel}</p>
 			</div>
 			<div class="col-md-2">
 				<p>
-					<strong>&{'user.permission'}</strong>
+					<strong>&{'ulogado.permission'}</strong>
 				</p>
 			</div>
 			<div class="col-md-2">
-				<p class="data-detail">${user.permission.name}</p>
+				<p class="data-detail">${ulogado.permission.name}</p>
 			</div>
 		</div>
 
@@ -54,7 +54,7 @@
 			<div class="col-md-1">
 				<p>
 					<strong>
-					#{if user.outsider == true}
+					#{if ulogado.outsider == true}
 				 		&{'user.cpf'}
 					#{/if}
 					#{else}
@@ -65,18 +65,18 @@
 			</div>
 			<div class="col-md-7">
 				<p class="data-detail">
-					${user.cpf_suap}
+					${ulogado.cpf_suap}
 				</p>
 			</div>
 			<div class="col-md-2">
 				<p>
-					<strong>&{'user.outsider'}</strong>
+					<strong>&{'ulogado.outsider'}</strong>
 				</p>
 			</div>
 
 			<div class="col-md-2">
 				<p class="data-detail">
-				#{if user.outsider == true}
+				#{if ulogado.outsider == true}
 				 	&{'application.yes'}
 				#{/if}
 				#{else}

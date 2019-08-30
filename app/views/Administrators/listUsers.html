@@ -1,0 +1,29 @@
+#{extends 'template/layout.html' /}
+#{set 'title'}
+    &{'user.list'}
+#{/set}
+
+#{set 'panel-title'}
+    &{'user.list'}
+#{/set}
+
+#{tabelaDinamica id:'tbUsers', list:users, chavesCabecalho:['Nome', 'E-mail', 'Celular', 'Tipo', 'Status']}
+	#{list items:users, as:'u'}
+		#{if u.uuid != ulogado.uuid}
+		<tr>
+			<td>${u.name}</td>
+			<td>${u.email}</td>
+			<td>${u.cel}</td>
+			<td>${u.permission.name}</td>
+			<td>${u.status ? 'Credenciado': 'Não Credenciado'}</td>
+			<td class="text-center">
+				#{btIconEdit url:@Administrators.editUser(u.uuid) /}
+			</td>
+		</tr>
+		#{/if}
+	#{/list}
+#{/tabelaDinamica}
+
+#{set 'moreScripts'}
+		
+#{/set}

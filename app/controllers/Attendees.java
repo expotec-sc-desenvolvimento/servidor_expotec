@@ -26,7 +26,7 @@ public class Attendees extends Controller {
 	static void setUserAndEvent() {
 			User user = User.findById(Long.parseLong(session.get("userid")));
 			Event event = Event.findById(Long.parseLong(session.get("eventid")));
-			renderArgs.put("user", user);
+			renderArgs.put("ulogado", user);
 			renderArgs.put("event", event);
 	}
 
@@ -48,6 +48,8 @@ public class Attendees extends Controller {
 	}
 
 	public static void editMyProfile() {
+		User user = User.findById(Long.parseLong(session.get("userid")));
+		renderArgs.put("user", user);
 		renderTemplate("Attendees/editMyProfile.html");
 	}
 

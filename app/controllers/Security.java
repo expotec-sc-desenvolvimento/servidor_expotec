@@ -46,6 +46,7 @@ public class Security extends Secure.Security {
                 User user = User.find("byEmail", email).first();
                 if(user != null){
                     session.put("userid", user.uuid);
+                    session.put("permission", user.permission);
                 }
             }
         }
@@ -74,6 +75,7 @@ public class Security extends Secure.Security {
 		User user = User.find("byEmail", email).first();
 		if (user != null) {
 			session.put("userid", user.uuid);
+			session.put("permission", user.permission);
 		}
 		// Remember if needed
 		if (remember) {
@@ -101,7 +103,7 @@ public class Security extends Secure.Security {
 		if (user != null) {
 			
 			session.put("userid", user.uuid);
-			
+			session.put("permission", user.permission);
 			
 			Event event = Event.all().first();
             session.put("eventid", event.id);

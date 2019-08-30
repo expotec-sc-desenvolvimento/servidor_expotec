@@ -1,0 +1,45 @@
+
+div.dataTables_info {
+	display: inline-block;
+}
+
+div.dataTables_filter {
+	line-height: 45px;
+	float: left;
+}
+
+div.dataTables_filter input[type="search"] {
+    line-height: 20px;
+    font-weight: normal;
+    padding: 5px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.dataTables_length {
+	float: right;
+	margin: 3px;
+}
+.dataTables_paginate  span {
+    margin: 10px;
+}
+div.dataTables_paginate {
+	float: left;
+	margin: 0;
+	display: inline-block;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, 
+.pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    z-index: 0 !important;
+}
+
+.toolbar {
+	display: inline-block;
+	float: right;
+	line-height: 45px;
+}
+
+table .btn-link.confirm {
+    margin-left: 5px;
+}
