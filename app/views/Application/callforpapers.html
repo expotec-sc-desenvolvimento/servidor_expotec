@@ -1,0 +1,30 @@
+#{extends 'template/main.html' /} 
+
+#{set 'title'} 
+	&{'application.name'} - &{'index.title'} 
+#{/set}
+
+#{set 'moreStyles'}
+	<!-- SIMPLIFY CSS -->
+	<link rel="stylesheet" href="@{'/public/template/css/simplify.css'}">
+#{/set} 
+
+
+
+<div class="wrapper front-end-wrapper ">
+	#{include 'template/menus/application.html' /}
+	<div class="section " >
+		<div class="container  text-center">
+			<div class="jumbotron  no-margin fullheight no-bg">
+				<div class="row text-center">
+					<h3 class="text-upper ">
+						&{'callforpaper.title.first'}<span class="text-success">&{'callforpaper.title.second'}</span>
+					</h3>
+				</div>
+			
+  				#{listTracks list:event.getUndraftTracks() /}
+			</div>
+		</div>
+	</div>
+	#{include 'template/footer.html'/}
+</div>

@@ -1,4 +1,5 @@
 application.name= Expotec
+application.inscriptions= Inscrições
 application.finished=ENCERRADO
 application.participate= Participar
 application.author= IFRN/SC
@@ -153,6 +154,17 @@ button.cancel = Cancelar
 button.cracha= Ver Crachá
 button.submit= Enviar
 button.password= Alterar Senha
+
+track.deadline= Período de Submissão
+
+inscription.subscribe= Inscrever-se
+inscription.unsubscribe= Desinscrever-se
+
+schedule.title.first=#PROGRAMA
+schedule.title.second=DASATIVIDADES
+
+callforpaper.title.first=#CHAMADA
+callforpaper.title.second=DETRABALHOS
 
 table.actions = Ações
 badge.mybadge = Cracha Expotec

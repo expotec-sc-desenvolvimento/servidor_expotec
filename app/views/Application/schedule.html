@@ -15,10 +15,21 @@
 	#{include 'template/menus/application.html' /}
 	<div class="section " >
 		<div class="container  text-center">
-			<div class="jumbotron  no-margin fullheight">
+			<div class="jumbotron  no-margin fullheight no-bg">
+
+			<div class="row text-center">
+				<h3 class="text-upper ">
+					&{'schedule.title.first'}<span class="text-success">&{'schedule.title.second'}</span>
+				</h3>
+				
+			</div>
+			
+  				
   				#{listActivities list:event.getUndraftActivities() /}
+  				
 			</div>
 		</div>
 	</div>
+	
 	#{include 'template/footer.html'/}
 </div>

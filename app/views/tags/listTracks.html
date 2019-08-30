@@ -1,0 +1,43 @@
+<div class="mypanel-list clearfix">
+	<ul class="myflex">
+	#{list items:_list, as:'t'}
+    	<li class="item-flex">
+			<div class="panel panel-default clearfix">
+				<div class="mypanel-body">
+					<div class="mypanel-wrapper">
+						<div class="mypanel-avatar">
+							<span class="stat-icon bg-white">
+								<i class="fa fa-clipboard-check" aria-hidden="true"></i>
+							</span>
+						</div>
+						<div class="mypanel-detail small-img">
+							<div class="font-16">${t.name}</div>
+							<div>	
+								<small>	
+									<span class="label label-warning">${t.start.format("dd/MM/yyyy")}</span>
+									-
+									<span class="label label-danger">${t.end.format("dd/MM/yyyy")}</span>						
+								</small>	
+							</div>
+							
+							<div class="m-top-sm">
+								#{if session.get("userid") !=null}
+									#{if t.status.toString().equals("Aberta")}
+										<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">&{'inscription.subscribe'}</button>	
+                     				#{/if}
+                    				#{else}
+                    					<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${t.status.name}</button>
+                    				#{/else}
+                    				#{if _perm.equals("ADMIN")}
+										#{btSmallEdit url:@Administrators.editTrack(t.id)/}
+                     				#{/if}	
+                     			#{/if}
+							</div>
+						</div>
+					</div><!-- ./user-wrapper -->
+				</div>
+			</div>
+		</li>
+	#{/list}
+	</ul>
+</div>

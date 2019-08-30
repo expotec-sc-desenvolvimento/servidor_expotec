@@ -32,15 +32,17 @@
 								<small>${af}.</small>
 							#{/list}
 							</div>
-							<div class="m-top-sm">
-								#{if a.status.toString().equals("Aberta")}
-									<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">${a.status.name}</button>	
-                     			#{/if}
-                    			#{else}
-                    				<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${a.status.name}</button>
-                    			#{/else}
-                    			#{if _perm.equals("ADMIN")}
-									#{btSmallEdit url="#" /}
+							<div class="m-top-sm m-bottom-sm">
+								#{if session.get("userid") !=null}
+									#{if a.status.toString().equals("Aberta")}
+										<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">&{'inscription.subscribe'}</button>	
+                     				#{/if}
+                    				#{else}
+                    					<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${a.status.name}</button>
+                    				#{/else}
+                    				#{if _perm.equals("ADMIN")}
+										#{btSmallEdit url="#" /}
+                     				#{/if}
                      			#{/if}	
 							</div>
 						</div>

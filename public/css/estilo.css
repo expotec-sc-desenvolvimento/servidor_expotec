@@ -14,6 +14,25 @@ img.img-responsive.logo {
 	margin-bottom: 30px;
 }
 
+.mypanel-avatar span.stat-icon{
+	
+	display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 50em;
+    -moz-border-radius: 50em;
+    -webkit-border-radius: 50em;
+    float: left;
+    margin-right: 20px;
+    color: #fff;
+}
+
+.bg-white {
+    background: lightgray;
+}
 .note-editor .note-editing-area .note-editable {
 	padding: 6px 12px;
 	border: 1px solid #e4e4e4;
@@ -253,6 +272,13 @@ footer.main {
 
 .mypanel-body {
     padding: 10px;
+    margin-bottom: 10px;
+}
+
+.mypanel-wrapper {
+    /* height: 100%; */
+    /* min-height: 100%; */
+    overflow: hidden;
 }
 
 .myflex {
@@ -296,6 +322,9 @@ li.item-flex{
 	text-align: left;
 }
 
+.no-bg {
+    background: transparent;
+}
 
 
 @media print {
@@ -365,6 +394,11 @@ li.item-flex{
 		float: left;
 		width: 100%;
 		display: block;
+	}
+	
+	.mypanel-avatar span.stat-icon {
+		float: none;
+		margin:auto;
 	}
 }
 

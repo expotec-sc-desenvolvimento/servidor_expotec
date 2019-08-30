@@ -74,4 +74,10 @@ public class Event extends Model{
         List<Activity> activities = JPA.em().createQuery("select a from Activity a where a.status != 'DRAFT' and a.event.id =  '"+this.id+"'").getResultList();
         return activities;
     }
+    
+    @Transient
+    public List<Track> getUndraftTracks(){
+        List<Track> tracks = JPA.em().createQuery("select t from Track t where t.status != 'DRAFT' and t.event.id =  '"+this.id+"'").getResultList();
+        return tracks;
+    }
 }
