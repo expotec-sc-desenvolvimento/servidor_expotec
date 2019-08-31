@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +22,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import play.data.binding.As;
+import play.data.validation.MaxSize;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 import play.db.jpa.JPA;
@@ -29,48 +33,50 @@ import play.db.jpa.Model;
 @Table(name="tracks")
 public class Track extends Model {
 	@MinSize(0)
+	@MaxSize(150)
 	@Required(message = "validacao.requerido")
     public String name;
     
     @Temporal(TemporalType.DATE)
+    @As("yyyy-MM-dd") 
     @Required(message = "validacao.requerido")
     public Date start;
     
     @Temporal(TemporalType.DATE)
+    @As("yyyy-MM-dd") 
     public Date end;
-    
-    @NotNull
-    @Min(1)
-    public int minEvaluations;
     
     @Lob
     @Required(message = "validacao.requerido")
     public String guidelines;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    public TrackStatus status;
+    
+    @Min(1)
+    public int minEvaluations;
     
     @NotNull
     public boolean privacy;
     
-    @NotNull
+    @Enumerated(EnumType.STRING)
+    public TrackStatus status;
+
     @Enumerated(EnumType.STRING)
     public CalculationType calcType;
     
     @Enumerated(EnumType.STRING)
     public TrackType type;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    public List<Criteria> criterias = new ArrayList<Criteria>();
+    
     
     @ManyToOne
     @Required(message = "validacao.requerido")
     public Event event;
     
+
     @ManyToOne
     public Track prior;
-    
-    @OneToMany(fetch = FetchType.LAZY)
-    @Fetch(value = FetchMode.SUBSELECT)
-    public List<Criteria> criterias = new ArrayList<Criteria>();
     
     @Transient
     public List<Paper> getPapers (){
@@ -78,12 +84,5 @@ public class Track extends Model {
         return papers;
     }
     
-    /*
-     * @Transient
-     
-    public List<Criteria> getCriterias (){
-        List<Criteria> criterias = JPA.em().createQuery("select c from Criteria c where c.track.id =  '"+this.id+"'").getResultList();
-        return criterias;
-    }
-    */
+  
 }

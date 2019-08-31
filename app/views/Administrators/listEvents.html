@@ -12,8 +12,8 @@
 		<tr>
 			<td>${e.title}</td>
 			<td>${e.edition}</td>
-			<td>${e.start}</td>
-			<td>${e.end}</td>
+			<td>${e.start.format('dd/MM/yyyy')}</td>
+			<td>${e.end.format('dd/MM/yyyy')}</td>
 			<td class="text-center">
 				#{btIconEdit url:@Administrators.editEvent(event.id) /}
 			</td>

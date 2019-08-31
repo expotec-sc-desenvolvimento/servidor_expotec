@@ -11,8 +11,20 @@ application.comingsoon=EM BREVE
 application.info=Para mais informações contactar a organização do evento
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
+
+button.save = Salvar
+button.delete = Deletar
+button.edit = Editar
+button.view = Detalhar
+button.cancel = Cancelar
+button.cracha= Ver Crachá
+button.submit= Enviar
+button.password= Alterar Senha
+
 erro.permissao= Você não tem permissão para fazer essa operação.
 erro.operacao= Não foi possível realizar esta operação.
+
+
 
 secure.title= Acessar o Sistema
 secure.username= E-mail
@@ -60,7 +72,6 @@ index.sponsored = Patrocinadores e Parceiros
 index.organized = Organização 
 index.title= Início
 index.countdown= Contagem regressiva
-
 index.feature=#PARTIUEXPOTEC: 
 index.features.first=#FIQUE
 index.features.second=LIGADO
@@ -73,10 +84,8 @@ index.features.tech.title=Mostra Tecnológica
 index.features.tech.subtitle=Conheça os projetos de ensino e pesquisa desenvolvidos pelos alunos
 index.features.etc.title=Muito Mais
 index.features.etc.subtitle=Veja a programação do evento
-
 index.about.first=#QUEM
 index.about.second=VAMOS
-
 index.menu.index = Início
 index.menu.submission= Chamada de Trabalhos
 index.menu.schedule = Programação
@@ -132,6 +141,7 @@ event.organization= Organização
 event.contact= Contatos
 event.logo= Logo
 event.empty = Você não possui eventos cadastrados.
+
 activity.detail = Detalhes da Atividade
 activity.edit = Editar Atividade
 activity.list= Lista de Atividades
@@ -144,18 +154,21 @@ activity.users= Responsáveis
 track.list = Chamadas de Trabalho
 track.edit = Editar Chamada
 track.detail = Detalhes da Chamada
-
-
-button.save = Salvar
-button.delete = Deletar
-button.edit = Editar
-button.view = Detalhar
-button.cancel = Cancelar
-button.cracha= Ver Crachá
-button.submit= Enviar
-button.password= Alterar Senha
-
 track.deadline= Período de Submissão
+track.name= Nome
+track.start= Abertura de Submissões
+track.end= Encerremento de Submissões
+track.guidelines= Instruções aos autores
+track.minEvaluations = Num. Mínimo de Avaliações
+track.privacy= Visibilidade
+track.privacy.true=Chamada Pública
+track.privacy.false=Chamada Interna
+track.calcType= Forma de Cálculo
+track.status= Status
+track.type= Tipo da Chamada
+track.prior= Etapa anterior
+track.success = Chamada cadastrada com sucesso!
+
 
 inscription.subscribe= Inscrever-se
 inscription.unsubscribe= Desinscrever-se
@@ -165,5 +178,7 @@ schedule.title.second=DASATIVIDADES
 
 callforpaper.title.first=#CHAMADA
 callforpaper.title.second=DETRABALHOS
-table.actions = Ações
+
 badge.mybadge = Cracha Expotec
+
+table.actions = Ações

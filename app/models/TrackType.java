@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Arrays;
 
 public enum TrackType {
-    SOFTWARE("Software"),
+	PI("Projeto Integrador"),
+	TCC("Trabalho de Conclusão de Curso"),
+	SOFTWARE("Software"),
 	RESEARCH("Pesquisa"),
     PRESENTATION("Apresentação");
 
@@ -16,10 +18,5 @@ public enum TrackType {
 
     public static List<TrackType> list() {
         return Arrays.asList(TrackType.values());
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

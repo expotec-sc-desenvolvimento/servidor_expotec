@@ -26,7 +26,24 @@
 	</div>
 #{/if}
 
-FORMULARIO DE CHAMADAS
+#{form @Administrators.saveTrack(),method:'POST', class: 'form-horizontal'} 
+    #{include 'template/track/form.html' /}
+   
+    <input type='hidden' name="track.id" value="${track.id}">
+    <input type='hidden' name="track.event.id" value="${track.event.id}">
+    
+    <div class="control-group form-actions">
+    	<div class="row">
+        	<div class="col-md-3 mb-4">
+            	#{btSubmit /}
+	    	</div>
+        
+      		<div class="col-md-3 mb-4">
+      			#{btCancel url:@Administrators.listTracks(track.event.id)/}
+        	</div>
+    	</div>
+    </div>
+#{/form}
 
 
 #{set 'moreScripts'}

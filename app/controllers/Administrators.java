@@ -40,6 +40,24 @@ public class Administrators extends Attendants {
         listEvents();
 	}
 
+	public static void saveTrack(@Valid Track track) {
+		if (validation.hasErrors() ) {
+			System.out.println(validation.errorsMap());
+            flash.error("erro.operacao");
+            renderArgs.put("track", track);
+            List<TrackType> trackTypes = TrackType.list();
+    		renderArgs.put("tktypes", trackTypes);
+    		
+    		List<CalculationType> calcTypes = CalculationType.list();
+    		renderArgs.put("calcTypes", calcTypes);
+            renderTemplate("Administrators/editTrack.html");
+        }
+		track.save();
+		flash.success("track.success");
+        
+		listTracks(track.event.id);
+	}
+	
 	public static void saveUser(@Valid User user) {
 		if (validation.hasErrors() ) {
 			System.out.println(validation.errorsMap());
@@ -66,8 +84,14 @@ public class Administrators extends Attendants {
 	}
 	
 	public static void editTrack(Long id) {
+		List<TrackType> trackTypes = TrackType.list();
+		renderArgs.put("tktypes", trackTypes);
+		
+		List<CalculationType> calcTypes = CalculationType.list();
+		renderArgs.put("calcTypes", calcTypes);
+		
 		Track t = Track.findById(id);
-		renderArgs.put("t", t);
+		renderArgs.put("track", t);
 		render();
 	}
 	

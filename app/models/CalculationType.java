@@ -17,8 +17,4 @@ public enum CalculationType {
         return Arrays.asList(CalculationType.values());
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }

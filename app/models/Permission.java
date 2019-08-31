@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 public enum Permission {
     ADMIN("Administrador"),
-    EXPERT("Especialista"),
     ATTENDANT("Atendente"),
     ATTENDEE("Participante");
     
