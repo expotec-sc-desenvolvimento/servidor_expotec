@@ -42,14 +42,8 @@ public class Administrators extends Attendants {
         listEvents();
 	}
 
-	public static void saveTrack(Track track) {
-		
-		if(track.criterias != null) {
-			System.out.println(track.criterias.toString());
-		}
-		
-		 
-		/*
+	public static void saveTrack(@Valid Track track) {
+		validation.future(track.end, track.start);
 		if (validation.hasErrors() ) {
 			System.out.println(validation.errorsMap());
             flash.error("erro.operacao");
@@ -61,8 +55,16 @@ public class Administrators extends Attendants {
     		renderArgs.put("calcTypes", calcTypes);
             renderTemplate("Administrators/editTrack.html");
         }
-        */
-		track.merge();
+        
+		List<Criteria> criterias = new ArrayList<Criteria>();
+		for(Criteria c:track.criterias) {
+			if(c != null) {
+				criterias.add(Criteria.findById(c.id));
+			}
+		}
+		
+		track.criterias = criterias;
+		track.save();
 		flash.success("track.success");
         
 		listTracks(track.event.id);

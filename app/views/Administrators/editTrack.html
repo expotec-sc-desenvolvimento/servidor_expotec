@@ -49,12 +49,12 @@
 					<div class="row">
 						<div  class="col-md-6  mb-4" >
 						 	<label  for="cdescription" >&{'track.criteria.description'}</label>
-							<input class="form-control" id="cdescription"  type="text" required class="form-control" name="descr" placeholder="&{'track.criteria.description'}">
+							<input class="form-control" id="cdescription"  type="text"  class="form-control" name="descr" placeholder="&{'track.criteria.description'}">
 						</div>
 						
 						<div class="col-md-4  mb-4">
 							<label  for="cweight" >&{'track.criteria.weight'}</label>
-							<input  class="form-control" id="cweight" type="number" min="0" placeholder="&{'track.criteria.weight'}" novalidate name="weight" value='1' class="form-control">
+							<input  class="form-control" id="cweight" type="number" min="0" placeholder="&{'track.criteria.weight'}"  name="weight" value='1' class="form-control">
 						</div>
 						
 						<div class="col-md-2 mb-4">
@@ -105,9 +105,7 @@
     <div class="control-group form-actions">
     	<div class="row">
         	<div class="col-md-3 mb-4">
-            	<a id="submiter" class="btn btn-primary btn btn-lg  btn-block" >
-					&{'button.save'}
-				</a>
+            	#{btSubmit /}
 	    	</div>
         
       		<div class="col-md-3 mb-4">
@@ -168,7 +166,6 @@
 				$("#tbCriterias").append(item);
 				$("#cdescription").val("");
 				$("#cweight").val(1);
-				$("#configCriteria").trigger("click");
 			} else {
 				alert("A descrição do critério é obrigatória");
 			}

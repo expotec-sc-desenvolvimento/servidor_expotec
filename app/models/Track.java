@@ -30,6 +30,7 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="tracks")
 public class Track extends Model {
+	@NotNull
 	@MinSize(0)
 	@MaxSize(150)
 	@Required(message = "validacao.requerido")
