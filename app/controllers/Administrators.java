@@ -1,11 +1,13 @@
 package controllers;
 
+import play.libs.Crypto;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 
 import javax.validation.Valid;
 
+import org.apache.commons.collections.iterators.ArrayListIterator;
 import org.junit.After;
 
 import java.util.*;
@@ -40,7 +42,14 @@ public class Administrators extends Attendants {
         listEvents();
 	}
 
-	public static void saveTrack(@Valid Track track) {
+	public static void saveTrack(Track track) {
+		
+		if(track.criterias != null) {
+			System.out.println(track.criterias.toString());
+		}
+		
+		 
+		/*
 		if (validation.hasErrors() ) {
 			System.out.println(validation.errorsMap());
             flash.error("erro.operacao");
@@ -52,7 +61,8 @@ public class Administrators extends Attendants {
     		renderArgs.put("calcTypes", calcTypes);
             renderTemplate("Administrators/editTrack.html");
         }
-		track.save();
+        */
+		track.merge();
 		flash.success("track.success");
         
 		listTracks(track.event.id);
@@ -90,6 +100,9 @@ public class Administrators extends Attendants {
 		List<CalculationType> calcTypes = CalculationType.list();
 		renderArgs.put("calcTypes", calcTypes);
 		
+		List<Criteria> criterias = new ArrayList<Criteria>();
+		renderArgs.put("criterias", criterias);
+		
 		Track t = Track.findById(id);
 		renderArgs.put("track", t);
 		render();
@@ -111,6 +124,16 @@ public class Administrators extends Attendants {
 		renderTemplate("Administrators/listEvents.html");
 	}
 
+	public static void removeCriteria(Long id) {
+		Criteria c = Criteria.findById(id);
+		if (c == null) {
+			renderJSON("Critério inválido");
+		}
+		
+		c.delete();
+		renderJSON("Critério removido com sucesso");
+	}
+	
 	public static void listUsers() {
 		List<User> users = User.all().fetch();
 		renderArgs.put("users", users);

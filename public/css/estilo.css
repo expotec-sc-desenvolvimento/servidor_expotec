@@ -3,13 +3,24 @@ img.img-responsive.logo {
 	margin: auto;
 }
 
+.panel .table > thead > tr > th:first-child {
+    padding-left: 10px;
+}
+
 .navbar-default .brand {
 	padding: 0px 19px;
 	background-color: #fff;
 	width: 260px;
 	text-align: center;
 }
+hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+   }
 
+.smart-widget.no-borders {
+    border: 0px;
+}
 .feature-wrapper {
 	margin-bottom: 30px;
 }

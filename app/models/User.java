@@ -74,7 +74,7 @@ public class User extends GenericModel {
     @ManyToOne
     public Event event;
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     public List<Expertise> expertises = new ArrayList<Expertise>();
     
     

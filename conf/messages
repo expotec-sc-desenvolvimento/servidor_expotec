@@ -20,7 +20,7 @@ button.cancel = Cancelar
 button.cracha= Ver Crachá
 button.submit= Enviar
 button.password= Alterar Senha
-
+button.add=Adicionar
 erro.permissao= Você não tem permissão para fazer essa operação.
 erro.operacao= Não foi possível realizar esta operação.
 
@@ -169,6 +169,9 @@ track.type= Tipo da Chamada
 track.prior= Etapa anterior
 track.success = Chamada cadastrada com sucesso!
 
+track.criterias = Critérios de Avaliação
+track.criteria.description = Descrição
+track.criteria.weight = Peso 
 
 inscription.subscribe= Inscrever-se
 inscription.unsubscribe= Desinscrever-se

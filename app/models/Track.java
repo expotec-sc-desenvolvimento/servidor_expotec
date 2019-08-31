@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,9 +19,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import play.data.binding.As;
 import play.data.validation.MaxSize;
@@ -39,7 +37,6 @@ public class Track extends Model {
     
     @Temporal(TemporalType.DATE)
     @As("yyyy-MM-dd") 
-    @Required(message = "validacao.requerido")
     public Date start;
     
     @Temporal(TemporalType.DATE)
@@ -65,10 +62,8 @@ public class Track extends Model {
     @Enumerated(EnumType.STRING)
     public TrackType type;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "track", cascade = CascadeType.ALL)
     public List<Criteria> criterias = new ArrayList<Criteria>();
-    
     
     @ManyToOne
     @Required(message = "validacao.requerido")

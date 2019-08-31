@@ -26,16 +26,88 @@
 	</div>
 #{/if}
 
-#{form @Administrators.saveTrack(),method:'POST', class: 'form-horizontal'} 
+#{form @Administrators.saveTrack(),method:'POST', class: 'form-horizontal', id:"editTrack", enctype:'multipart/form-data'} 
     #{include 'template/track/form.html' /}
    
     <input type='hidden' name="track.id" value="${track.id}">
     <input type='hidden' name="track.event.id" value="${track.event.id}">
+    <hr/>
+		<div class="smart-widget no-borders">
+			<div class="smart-widget-header">
+				<strong>&{'track.criterias'}</strong>
+				<span class="smart-widget-option">
+					<span class="refresh-icon-animated" style="display: none;">
+						<i class="fa fa-circle-o-notch fa-spin"></i>
+					</span>
+	                <a  id="configCriteria" class="widget-toggle-hidden-option">
+	                	<i class="fa fa-cog"></i>
+	                </a>
+	            </span>
+			</div>
+			<div class="smart-widget-inner">
+				<div class="smart-widget-hidden-section" style="display: none;">
+					<div class="row">
+						<div  class="col-md-6  mb-4" >
+						 	<label  for="cdescription" >&{'track.criteria.description'}</label>
+							<input class="form-control" id="cdescription"  type="text" required class="form-control" name="descr" placeholder="&{'track.criteria.description'}">
+						</div>
+						
+						<div class="col-md-4  mb-4">
+							<label  for="cweight" >&{'track.criteria.weight'}</label>
+							<input  class="form-control" id="cweight" type="number" min="0" placeholder="&{'track.criteria.weight'}" novalidate name="weight" value='1' class="form-control">
+						</div>
+						
+						<div class="col-md-2 mb-4">
+							<button id="btAddCriteria" class="btn btn-success marginTB-md" type="button">&{'button.add'}</button>
+						</div>
+					</div>
+				</div>
+			
+				<div class="smart-widget-body">
+					<table  class="table table-striped">
+						<thead>
+							<tr>
+								<th>&{'track.criteria.description'}</th>
+								<th>&{'track.criteria.weight'}</th>
+								<th>&{'table.actions'}</th>
+							</tr>
+						</thead>
+						<tbody id="tbCriterias">
+							%{
+								itemId = 0
+							}%					
+							#{list items:track.criterias, as:'c'}
+							<tr class="criteria">				
+								<input type="hidden" name="track.criterias[${itemId}].id" value="${c.id}" />
+								<input type="hidden" name="track.criterias[${itemId}].description" value="${c.description}" />
+								<input type="hidden" name="track.criterias[${itemId}].weight" value="${c.weight}" />
+								<input type="hidden" name="track.criterias[${itemId}].track.id" value="${track.id}" />
+								<td>${c.description}</td>
+								<td>${c.weight ? c.weight: '1'}</td>
+								<td>
+									<span class="remove-list" data-id="${c.id}">
+										<i class="fa fa-trash-o fa-lg"></i>
+									</span>
+								</td>
+							</tr>
+							%{
+								itemId += 1
+							}%					
+							#{/list}
+						</tbody>
+					</table>
+				</div>
+			</div><!-- ./smart-widget-inner -->
+		</div><!-- ./smart-widget -->
+
+    
     
     <div class="control-group form-actions">
     	<div class="row">
         	<div class="col-md-3 mb-4">
-            	#{btSubmit /}
+            	<a id="submiter" class="btn btn-primary btn btn-lg  btn-block" >
+					&{'button.save'}
+				</a>
 	    	</div>
         
       		<div class="col-md-3 mb-4">
@@ -50,6 +122,72 @@
 
 <script>
 	$(function(){
+		$("#submiter").on("click",function() {
+			$("#cdescription").remove();
+			$("#cweight").remove();
+			$("#editTrack").submit();
+		});
+		
+		$("#tbCriterias").on('click', '.remove-list', function() {
+			var criteriaID = $(this).attr("data-id");
+			if(criteriaID != undefined){
+				$.ajax({
+				     url: '@{Administrators.removeCriteria()}',
+				     data: {id: criteriaID},
+				     type: 'POST'
+				}).always(function(data) {
+					console.log(data.responseText);
+				});
+			}else{
+				console.log("Critério removido com sucesso!")
+			}
+			
+			$(this).parent().parent().remove();
+		});
+		
+		$("#btAddCriteria").click(function() {
+			var criteria = $("#cdescription").val();
+			var weight = $("#cweight").val();
+			var idItem = _getProximoId();
+			
+			if (criteria.trim().length > 0) {
+				var item = '<tr class="criteria">'								
+				item += '<input type="hidden" name="track.criterias['+idItem+'].id" value="" />';
+				item += '<input type="hidden" name="track.criterias['+idItem+'].description" value="'+criteria+'" />';
+				item += '<input type="hidden" name="track.criterias['+idItem+'].weight" value="'+weight+'" />';
+				item += '<input type="hidden" name="track.criterias['+idItem+'].track.id" value="'+${track.id}+'" />';
+				
+				item += '<td>'+criteria+'</td>';
+				item += '<td>'+weight+'</td>';
+				item += '<td>';
+				item += '	<span class="remove-list">';
+				item += '		<i class="fa fa-trash-o fa-lg"></i>';
+				item += '	</span>';
+				item += '</td>';
+				item += '</tr>';
+				$("#tbCriterias").append(item);
+				$("#cdescription").val("");
+				$("#cweight").val(1);
+				$("#configCriteria").trigger("click");
+			} else {
+				alert("A descrição do critério é obrigatória");
+			}
+			
+		});
+		
+		$("#tbCriteria").on('click', '.remove-list', function() {
+			$(this).parent().remove();
+		});
+		
+		function _getProximoId() {
+			var max = -1;
+
+			$('.criteria').each(function() {
+			  max += 1;
+			});
+			
+			return ++max;
+		}
 	});
 	
 </script>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,5 +28,9 @@ public class Criteria extends Model {
 	public String description;
 	
 	@Min(0)
-	public double weight;
+	public int weight;
+	
+	@ManyToOne
+	@JoinColumn(name = "track_id")
+	public Track track;
 }
