@@ -28,3 +28,40 @@
 	</div>
 	#{include 'template/footer.html'/}
 </div>
+
+#{set 'moreScripts'}
+<!-- Revolution Slider -->
+<script src="@{'/public/js/jquery.countdown.min.js'}"></script>
+<script type="text/javascript">
+$(function(){
+	//Section Animation
+	if (Modernizr.mq('(min-width: 1349px)')) {
+		$('.animation-element').waypoint(function() {
+				$(this).removeClass('disabled');
+		}, { offset: 700 });
+	}
+	else if (Modernizr.mq('(min-width: 992px)') && Modernizr.mq('(max-width: 1349px)')) {
+		$('.animation-element').waypoint(function() {
+				$(this).removeClass('disabled');
+		}, { offset: 550 });
+	}
+	else	{
+		$('.animation-element').removeClass('disabled');
+	}
+
+	//Scrollto section
+    $('.front-end-wrapper .navbar-collapse .navbar-nav').localScroll({
+      duration:800,
+      offset: -100
+    });
+	
+    var dtAbertura = "${event.start.format('yyyy/MM/dd')} ";
+	dtAbertura += "08:00:00";
+	cont = $("#countdown").countdown({
+          image: "@{'public/img/digits.png'}",
+          format: "dd:hh:mm:ss",
+          endTime: new Date(dtAbertura)
+    });
+});
+</script>
+#{/set}

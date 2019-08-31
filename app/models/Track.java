@@ -52,6 +52,9 @@ public class Track extends Model {
     public TrackStatus status;
     
     @NotNull
+    public boolean privacy;
+    
+    @NotNull
     @Enumerated(EnumType.STRING)
     public CalculationType calcType;
     

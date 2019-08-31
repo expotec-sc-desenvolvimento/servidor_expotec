@@ -41,7 +41,7 @@
                     					<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${a.status.name}</button>
                     				#{/else}
                     				#{if _perm.equals("ADMIN")}
-										#{btSmallEdit url="#" /}
+										#{btSmallEdit url:@Administrators.editActivity(a.uuid) /}
                      				#{/if}
                      			#{/if}	
 							</div>

@@ -262,8 +262,7 @@
 <script src="@{'/public/landing/rs-plugin/js/jquery.themepunch.revolution.min.js'}"></script>
 <script src="@{'/public/js/jquery.countdown.min.js'}"></script>
 <script type="text/javascript">
-
-	$(function(){
+$(function(){
 		
 		
 		//Section Animation
@@ -299,20 +298,6 @@
           offset: -100
         });
 		
-		function checarURL(url) {
-	        var n = url.indexOf("youtu.be");
-	        if (n >= 0) {
-	            return url.replace("youtu.be", "youtube.com/embed");
-	        }
-
-	        var n = url.indexOf("https://www.youtube.com/watch?v=");
-	        if (n >= 0) {
-	            return url.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
-	        }
-
-		}
-	   
-		
 		//Slider Revolution	
 		$('.tp-banner').show().revolution({
 			dottedOverlay:"none",
@@ -344,6 +329,13 @@
 			fullScreenOffsetContainer: ".header"	
 		});		
 
-	});
+		var dtAbertura = "${event.start.format('yyyy/MM/dd')} ";
+		dtAbertura += "08:00:00";
+		cont = $("#countdown").countdown({
+			image: "@{'public/img/digits.png'}",
+		    format: "dd:hh:mm:ss",
+		    endTime: new Date(dtAbertura)
+		});
+});
 </script>
 #{/set}
