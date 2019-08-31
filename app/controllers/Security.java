@@ -119,13 +119,11 @@ public class Security extends Secure.Security {
 		if (user != null) {
 			if ("administrador".equalsIgnoreCase(profile)) {
 				return user.permission == Permission.ADMIN;
-			} else if ("Especialista".equalsIgnoreCase(profile)) {
-				return user.permission == Permission.EXPERT;
-			} else if ("Atendente".equalsIgnoreCase(profile)) {
+			}  else if ("Atendente".equalsIgnoreCase(profile)) {
 				return user.permission == Permission.ATTENDANT || user.permission == Permission.ADMIN;
 			} else if ("Participante".equalsIgnoreCase(profile)) {
 				return user.permission == Permission.ATTENDEE || user.permission == Permission.ADMIN
-						|| user.permission == Permission.EXPERT || user.permission == Permission.ATTENDANT;
+						 || user.permission == Permission.ATTENDANT;
 			} else {
 				return false;
 			}

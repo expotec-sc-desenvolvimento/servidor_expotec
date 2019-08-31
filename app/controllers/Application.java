@@ -63,8 +63,6 @@ public class Application extends Controller {
 				// Redirect to the original URL (or /)
 				if (user.permission == Permission.ADMIN) {
 					Administrators.cpanel();
-				} else if (user.permission == Permission.EXPERT) {
-					Experts.cpanel();
 				} else if (user.permission == Permission.ATTENDANT) {
 					Attendants.cpanel();
 				} else if (user.permission == Permission.ATTENDEE) {
