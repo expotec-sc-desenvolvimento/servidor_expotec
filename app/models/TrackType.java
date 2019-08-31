@@ -7,8 +7,10 @@ public enum TrackType {
 	PI("Projeto Integrador"),
 	TCC("Trabalho de Conclusão de Curso"),
 	SOFTWARE("Software"),
-	RESEARCH("Pesquisa"),
-    PRESENTATION("Apresentação");
+	SHORTPAPER("Artigos Resumidos"),
+	FULLPAPER("Artigos Completos"),
+    WORKSHOP("Oficinas"),
+    SHORTCOURSE("Minicursos");
 
     public String name;
 
