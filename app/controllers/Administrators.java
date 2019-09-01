@@ -56,7 +56,11 @@ public class Administrators extends Attendants {
     		
     		List<CalculationType> calcTypes = CalculationType.list();
     		renderArgs.put("calcTypes", calcTypes);
-            renderTemplate("Administrators/editTrack.html");
+            
+    		List<TrackStatus> trackStatus = TrackStatus.list();
+    		renderArgs.put("tkStatus", trackStatus);
+            
+    		renderTemplate("Administrators/editTrack.html");
         }
         
 		List<Criteria> criterias = Criteria.find("select c from Criteria c where c.track.id = "+track.id).fetch();
@@ -128,7 +132,10 @@ public class Administrators extends Attendants {
 		
 		List<Criteria> criterias = new ArrayList<Criteria>();
 		renderArgs.put("criterias", criterias);
-		
+ 		
+		List<TrackStatus> trackStatus = TrackStatus.list();
+		renderArgs.put("tkStatus", trackStatus);
+        
 		Track t = Track.findById(id);
 		renderArgs.put("track", t);
 		render();
@@ -144,7 +151,9 @@ public class Administrators extends Attendants {
 		List<Criteria> criterias = new ArrayList<Criteria>();
 		renderArgs.put("criterias", criterias);
 		
-		
+ 		List<TrackStatus> trackStatus = TrackStatus.list();
+		renderArgs.put("tkStatus", trackStatus);
+        
 		Track t = new Track();
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));
 		t.event = event;

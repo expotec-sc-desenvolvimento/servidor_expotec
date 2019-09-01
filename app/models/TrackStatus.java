@@ -19,8 +19,5 @@ public enum TrackStatus {
         return Arrays.asList(TrackStatus.values());
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+    
 }

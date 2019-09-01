@@ -23,8 +23,5 @@ public enum PaperStatus {
         return Arrays.asList(PaperStatus.values());
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+
 }

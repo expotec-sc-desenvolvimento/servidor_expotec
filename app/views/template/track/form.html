@@ -1,6 +1,20 @@
+
 <div class="row">
-	#{field 'track.name'}
-	<div class="col-md-6  mb-8">
+	#{field 'track.type'}
+	<div class="col-md-3  mb-4">
+        	<label  for="${field.name}" >&{'track.type'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"track.type" }
+				#{list items:tktypes, as:'t'}
+					#{option t}
+						${t.name}
+					#{/option}
+				#{/list}
+			#{/select}
+     </div>
+     #{/field}
+     
+     #{field 'track.name'}
+	<div class="col-md-3  mb-8">
 		<label for="${field.name}">&{'track.name'}</label> <input
 			type="text" id="${field.name}" name="${field.name}"
 			value="${field.value}" class="form-control"
@@ -11,6 +25,35 @@
 		</div>
 	</div>
 	#{/field}
+     
+	#{field 'track.minEvaluations'}
+	<div class="col-md-3  mb-4">
+		<label for="${field.name}">&{'track.minEvaluations'}</label> <input
+			type="number" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control" min="1"
+			placeholder="&{'track.minEvaluations'}" required >
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	
+	#{field 'track.calcType'}
+	<div class="col-md-3  mb-4">
+        	<label  for="${field.name}" >&{'track.calcType'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"track.calcType" }
+				#{list items:calcTypes, as:'c'}
+					#{option c} ${c.name} #{/option}
+				#{/list}
+			#{/select}
+     </div>
+     #{/field}
+
+	
+</div>
+
+<div class="row">
+
 	#{field 'track.start'}
 	<div class="col-md-3 mb-4">
 		<label class="control-label">&{'track.start'}</label>
@@ -38,7 +81,28 @@
 		</div>
 	</div>
 	#{/field}
+	
+	#{field 'track.privacy'}
+	<div class="col-md-3  mb-4">
+        	<label  for="${field.name}" >&{'track.privacy'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"track.privacy" }
+				#{option true}&{'track.privacy.true'}#{/option}
+				#{option false}&{'track.privacy.false'}#{/option}
+			#{/select}
+     </div>
+     #{/field}
+	#{field 'track.status'}
+	<div class="col-md-3 mb-4">
+		<label  for="${field.name}" >&{'track.status'}</label>
+		 #{select field.name, class:"form-control", value:field.value, id:"track.status" }
+				#{list items:tkStatus, as:'s'}
+					#{option s} ${s.name} #{/option}
+				#{/list}
+		#{/select}
+	</div>
+	#{/field}
 </div>
+
 <div class="row">
 	#{field 'track.guidelines'}
 	<div class="col-md-12  mb-4">
@@ -51,55 +115,6 @@
 		</div>
 	</div>
 	#{/field}
-</div>
-
-<div class="row">
-	#{field 'track.type'}
-	<div class="col-md-3  mb-4">
-        	<label  for="${field.name}" >&{'track.type'}</label>
-		    #{select field.name, class:"form-control", value:field.value, id:"track.type" }
-				#{list items:tktypes, as:'t'}
-					#{option t}
-						${t.name}
-					#{/option}
-				#{/list}
-			#{/select}
-     </div>
-     #{/field}
-     
-	#{field 'track.minEvaluations'}
-	<div class="col-md-3  mb-4">
-		<label for="${field.name}">&{'track.minEvaluations'}</label> <input
-			type="number" id="${field.name}" name="${field.name}"
-			value="${field.value}" class="form-control" min="1"
-			placeholder="&{'track.minEvaluations'}" required >
-		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
-			${errors.forKey(field.name)}
-		</div>
-	</div>
-	#{/field}
-	
-	#{field 'track.calcType'}
-	<div class="col-md-3  mb-4">
-        	<label  for="${field.name}" >&{'track.calcType'}</label>
-		    #{select field.name, class:"form-control", value:field.value, id:"track.calcType" }
-				#{list items:calcTypes, as:'c'}
-					#{option c} ${c.name} #{/option}
-				#{/list}
-			#{/select}
-     </div>
-     #{/field}
-     
-     #{field 'track.privacy'}
-	<div class="col-md-3  mb-4">
-        	<label  for="${field.name}" >&{'track.privacy'}</label>
-		    #{select field.name, class:"form-control", value:field.value, id:"track.privacy" }
-				#{option true}&{'track.privacy.true'}#{/option}
-				#{option false}&{'track.privacy.false'}#{/option}
-			#{/select}
-     </div>
-     #{/field}
-	
 </div>
 
 
