@@ -26,10 +26,9 @@
 	</div>
 #{/if}
 
-#{form @Administrators.saveTrack(),method:'POST', class: 'form-horizontal', id:"editTrack", enctype:'multipart/form-data'} 
+#{form @Administrators.saveTrack(),method:'POST', class: 'form-horizontal', id:"newTrack", enctype:'multipart/form-data'} 
     #{include 'template/track/form.html' /}
    
-    <input type='hidden' name="track.id" value="${track.id}">
     <input type='hidden' name="track.event.id" value="${track.event.id}">
     <hr/>
 		<div class="smart-widget no-borders ">
@@ -77,11 +76,10 @@
 								itemId = 0
 							}%					
 							#{list items:track.getCriterias(), as:'c'}
-							<tr>				
-								<input type="hidden" name="oCriterias[${itemId}].id" value="${c.id}" />
-								<input type="hidden" name="oCriterias[${itemId}].description" value="${c.description}" />
-								<input type="hidden" name="oCriterias[${itemId}].weight" value="${c.weight}" />
-								<input type="hidden" name="oCriterias[${itemId}].track.id" value="${track.id}" />
+							<tr class="criteria">				
+								<input type="hidden" name="nCriterias[${itemId}].id" value="${c.id}" />
+								<input type="hidden" name="nCriterias[${itemId}].description" value="${c.description}" />
+								<input type="hidden" name="nCriterias[${itemId}].weight" value="${c.weight}" />
 								<td>${c.description}</td>
 								<td>${c.weight ? c.weight: '1'}</td>
 								<td>
@@ -142,7 +140,6 @@
 				item += '<input type="hidden" name="nCriterias['+idItem+'].id" value="" />';
 				item += '<input type="hidden" name="nCriterias['+idItem+'].description" value="'+criteria+'" />';
 				item += '<input type="hidden" name="nCriterias['+idItem+'].weight" value="'+weight+'" />';
-				item += '<input type="hidden" name="nCriterias['+idItem+'].track.id" value="'+${track.id}+'" />';
 				
 				item += '<td>'+criteria+'</td>';
 				item += '<td>'+weight+'</td>';

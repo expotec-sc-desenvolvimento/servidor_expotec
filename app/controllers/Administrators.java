@@ -61,13 +61,15 @@ public class Administrators extends Attendants {
         
 		List<Criteria> criterias = Criteria.find("select c from Criteria c where c.track.id = "+track.id).fetch();
 		
-		//remove totas
+		//atual 
 		for (Criteria c : criterias) { 
     	    c.track = null;
     	    c.save();
     	} 
 		
-		//mantem antigas
+		track.save();
+		
+		//antigas
 		if(oCriterias != null) {
 			for (Criteria c : oCriterias) {
 				Criteria update = Criteria.findById(c.getId());
@@ -75,8 +77,9 @@ public class Administrators extends Attendants {
 				update.save();
 			} 
 		}
-				
-		//adiciona novas
+		
+		
+		//novas
 		if(nCriterias != null) {
 			for (Criteria c : nCriterias) {
 				Criteria nova = new Criteria(c.description, c.weight);
@@ -86,8 +89,7 @@ public class Administrators extends Attendants {
 		}
 		
 		JPA.em().createQuery("delete from Criteria c where c.track is null").executeUpdate();
-		
-		track.save();
+	
 		flash.success("track.success");
 		listTracks(track.event.id);
 	}
@@ -132,6 +134,25 @@ public class Administrators extends Attendants {
 		render();
 	}
 	
+	public static void newTrack() {
+		List<TrackType> trackTypes = TrackType.list();
+		renderArgs.put("tktypes", trackTypes);
+		
+		List<CalculationType> calcTypes = CalculationType.list();
+		renderArgs.put("calcTypes", calcTypes);
+		
+		List<Criteria> criterias = new ArrayList<Criteria>();
+		renderArgs.put("criterias", criterias);
+		
+		
+		Track t = new Track();
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		t.event = event;
+		t.status = TrackStatus.DRAFT;
+		renderArgs.put("track", t);
+		render();
+	}
+	
 	public static void editUser(Long id) {
 		
 		List<Permission> permissions = Permission.list();
@@ -147,16 +168,6 @@ public class Administrators extends Attendants {
 		renderArgs.put("events", events);
 		renderTemplate("Administrators/listEvents.html");
 	}
-
-	/*public static void removeCriteria(Long id) {
-		Criteria c = Criteria.findById(id);
-		if (c == null) {
-			renderJSON("Critério inválido");
-		}
-		
-		c.delete();
-		renderJSON("Critério removido com sucesso");
-	}*/
 	
 	public static void listUsers() {
 		List<User> users = User.all().fetch();

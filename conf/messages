@@ -12,6 +12,7 @@ application.info=Para mais informações contactar a organização do evento
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
 
+button.new = Nova
 button.save = Salvar
 button.delete = Deletar
 button.edit = Editar

@@ -6,7 +6,9 @@
 #{set 'panel-title'}
     &{'track.list'}
 #{/set}
-
+<div class="row toptoolbar">
+	#{btSmallNew url:@Administrators.newTrack() /}
+</div>
 #{tabelaDinamica id:'tbTracks', list:tracks, chavesCabecalho:['Tipo', 'Nome','DeadLine', 'Visibilidade', 'Status']}
 	#{list items:tracks, as:'t'}
 		<tr>
