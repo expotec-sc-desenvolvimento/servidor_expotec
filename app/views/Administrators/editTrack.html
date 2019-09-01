@@ -76,12 +76,12 @@
 							%{
 								itemId = 0
 							}%					
-							#{list items:track.criterias, as:'c'}
-							<tr class="criteria">				
-								<input type="hidden" name="track.criterias[${itemId}].id" value="${c.id}" />
-								<input type="hidden" name="track.criterias[${itemId}].description" value="${c.description}" />
-								<input type="hidden" name="track.criterias[${itemId}].weight" value="${c.weight}" />
-								<input type="hidden" name="track.criterias[${itemId}].track.id" value="${track.id}" />
+							#{list items:track.getCriterias(), as:'c'}
+							<tr>				
+								<input type="hidden" name="oCriterias[${itemId}].id" value="${c.id}" />
+								<input type="hidden" name="oCriterias[${itemId}].description" value="${c.description}" />
+								<input type="hidden" name="oCriterias[${itemId}].weight" value="${c.weight}" />
+								<input type="hidden" name="oCriterias[${itemId}].track.id" value="${track.id}" />
 								<td>${c.description}</td>
 								<td>${c.weight ? c.weight: '1'}</td>
 								<td>
@@ -96,6 +96,7 @@
 							#{/list}
 						</tbody>
 					</table>
+				
 				</div>
 			</div><!-- ./smart-widget-inner -->
 		</div><!-- ./smart-widget -->
@@ -128,18 +129,6 @@
 		
 		$("#tbCriterias").on('click', '.remove-list', function() {
 			var criteriaID = $(this).attr("data-id");
-			if(criteriaID != undefined){
-				$.ajax({
-				     url: '@{Administrators.removeCriteria()}',
-				     data: {id: criteriaID},
-				     type: 'POST'
-				}).always(function(data) {
-					console.log(data.responseText);
-				});
-			}else{
-				console.log("Critério removido com sucesso!")
-			}
-			
 			$(this).parent().parent().remove();
 		});
 		
@@ -150,10 +139,10 @@
 			
 			if (criteria.trim().length > 0) {
 				var item = '<tr class="criteria">'								
-				item += '<input type="hidden" name="track.criterias['+idItem+'].id" value="" />';
-				item += '<input type="hidden" name="track.criterias['+idItem+'].description" value="'+criteria+'" />';
-				item += '<input type="hidden" name="track.criterias['+idItem+'].weight" value="'+weight+'" />';
-				item += '<input type="hidden" name="track.criterias['+idItem+'].track.id" value="'+${track.id}+'" />';
+				item += '<input type="hidden" name="nCriterias['+idItem+'].id" value="" />';
+				item += '<input type="hidden" name="nCriterias['+idItem+'].description" value="'+criteria+'" />';
+				item += '<input type="hidden" name="nCriterias['+idItem+'].weight" value="'+weight+'" />';
+				item += '<input type="hidden" name="nCriterias['+idItem+'].track.id" value="'+${track.id}+'" />';
 				
 				item += '<td>'+criteria+'</td>';
 				item += '<td>'+weight+'</td>';

@@ -43,3 +43,8 @@ div.dataTables_paginate {
 table .btn-link.confirm {
     margin-left: 5px;
 }
+
+
+.dataTables_wrapper  {
+    overflow: overlay;
+}

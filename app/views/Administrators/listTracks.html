@@ -7,7 +7,7 @@
     &{'track.list'}
 #{/set}
 
-#{tabelaDinamica id:'tbTracks', list:tracks, chavesCabecalho:['Tipo', 'Nome','DeadLine', 'Avaliações', 'Status']}
+#{tabelaDinamica id:'tbTracks', list:tracks, chavesCabecalho:['Tipo', 'Nome','DeadLine', 'Visibilidade', 'Status']}
 	#{list items:tracks, as:'t'}
 		<tr>
 			<td>${t.type.name}</td>
@@ -15,7 +15,7 @@
 			<td>
 				<small>${t.start.format("dd/MM/yyyy")} - ${t.end.format("dd/MM/yyyy")}</small>
 			</td>
-			<td>0/${t.minEvaluations}</td>
+			<td>${t.privacy? 'Chamada Pública': 'Chamda Interna'}</td>
 			<td>${t.status.name}</td>
 			<td class="text-center">
 				#{btIconEdit url:@Administrators.editTrack(t.id)/}

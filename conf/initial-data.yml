@@ -82,13 +82,8 @@ Activity(minicurso):
    facilitators: [admin, participante]
 
 
-Criteria(c1):
-   description: "Potencial"
-   
-Criteria(c2):
-   description: "Qualidade da Discussão"   
 
-Track(artigosResumidos):
+Track(miniCursos):
    name: "Artigo Resumidos"
    start: 2019-08-28
    end: 2019-08-29
@@ -96,10 +91,19 @@ Track(artigosResumidos):
    guidelines: "Os autores deverão submeter resumos de no máximo 2 páginas, no formato da SBC, que atendam aos critérios pré-estabelecidos, detalhados adiante. Os artigos deverão ser preparados conforme o padrão (template) da Sociedade Brasileira de Computação (SBC), cujos formatos Word e Latex estão disponíveis aqui."
    status: SOON
    calcType: ARITHMETIC_AVG
-   type: PRESENTATION
+   type: SHORTCOURSE
    event: expotecsc
-   criterias: [c1, c2]
-  
+   
+Criteria(c1):
+   description: "Potencial"
+   weight: 1
+   track: miniCursos
+   
+Criteria(c2):
+   description: "Qualidade da Discussão"   
+   weight: 1
+   track: miniCursos
+   
 Area(exata):
    description: "Ciências Exatas e da Terra"
 

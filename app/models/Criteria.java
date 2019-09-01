@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -23,6 +22,8 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="criterias")
 public class Criteria extends Model {
+	
+
 	@Required
 	@MinSize(1)
 	public String description;
@@ -30,7 +31,12 @@ public class Criteria extends Model {
 	@Min(0)
 	public int weight;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "track_id")
 	public Track track;
+	
+	public Criteria(String description, int weight) {
+		this.description = description;
+		this.weight = weight;
+	}
 }

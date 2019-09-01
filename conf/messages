@@ -172,6 +172,7 @@ track.success = Chamada cadastrada com sucesso!
 track.criterias = Critérios de Avaliação
 track.criteria.description = Descrição
 track.criteria.weight = Peso 
+track.criteria.description.error = Descrição nao informada
 
 inscription.subscribe= Inscrever-se
 inscription.unsubscribe= Desinscrever-se

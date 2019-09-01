@@ -25,6 +25,7 @@ import play.data.validation.MaxSize;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 import play.db.jpa.JPA;
+import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 @Entity
@@ -63,7 +64,7 @@ public class Track extends Model {
     @Enumerated(EnumType.STRING)
     public TrackType type;
 
-    @OneToMany(mappedBy = "track", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "track", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Criteria> criterias = new ArrayList<Criteria>();
     
     @ManyToOne
@@ -76,8 +77,14 @@ public class Track extends Model {
     
     @Transient
     public List<Paper> getPapers (){
-        List<Paper> papers = JPA.em().createQuery("select p from Papers p where p.track.id =  '"+this.id+"'").getResultList();
+        List<Paper> papers = JPA.em().createQuery("select p from Paper p where p.track.id =  '"+this.id+"'").getResultList();
         return papers;
+    }
+    
+    @Transient
+    public List<Criteria> getCriterias (){
+        List<Criteria> criterias = JPA.em().createQuery("select c from Criteria c where c.track.id =  '"+this.id+"'").getResultList();
+        return criterias;
     }
     
   

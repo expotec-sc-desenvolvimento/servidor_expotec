@@ -1,5 +1,6 @@
 package controllers;
 
+import play.db.jpa.JPA;
 import play.libs.Crypto;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -8,6 +9,7 @@ import play.mvc.With;
 import javax.validation.Valid;
 
 import org.apache.commons.collections.iterators.ArrayListIterator;
+import org.h2.tools.Console;
 import org.junit.After;
 
 import java.util.*;
@@ -42,7 +44,8 @@ public class Administrators extends Attendants {
         listEvents();
 	}
 
-	public static void saveTrack(@Valid Track track) {
+	public static void saveTrack(@Valid Track track, Criteria[] oCriterias, Criteria[] nCriterias) {
+
 		validation.future(track.end, track.start);
 		if (validation.hasErrors() ) {
 			System.out.println(validation.errorsMap());
@@ -56,17 +59,36 @@ public class Administrators extends Attendants {
             renderTemplate("Administrators/editTrack.html");
         }
         
-		List<Criteria> criterias = new ArrayList<Criteria>();
-		for(Criteria c:track.criterias) {
-			if(c != null) {
-				criterias.add(Criteria.findById(c.id));
-			}
+		List<Criteria> criterias = Criteria.find("select c from Criteria c where c.track.id = "+track.id).fetch();
+		
+		//remove totas
+		for (Criteria c : criterias) { 
+    	    c.track = null;
+    	    c.save();
+    	} 
+		
+		//mantem antigas
+		if(oCriterias != null) {
+			for (Criteria c : oCriterias) {
+				Criteria update = Criteria.findById(c.getId());
+				update.track = track;
+				update.save();
+			} 
+		}
+				
+		//adiciona novas
+		if(nCriterias != null) {
+			for (Criteria c : nCriterias) {
+				Criteria nova = new Criteria(c.description, c.weight);
+				nova.track = track;
+				nova.save();
+			} 
 		}
 		
-		track.criterias = criterias;
+		JPA.em().createQuery("delete from Criteria c where c.track is null").executeUpdate();
+		
 		track.save();
 		flash.success("track.success");
-        
 		listTracks(track.event.id);
 	}
 	
@@ -126,7 +148,7 @@ public class Administrators extends Attendants {
 		renderTemplate("Administrators/listEvents.html");
 	}
 
-	public static void removeCriteria(Long id) {
+	/*public static void removeCriteria(Long id) {
 		Criteria c = Criteria.findById(id);
 		if (c == null) {
 			renderJSON("Critério inválido");
@@ -134,7 +156,7 @@ public class Administrators extends Attendants {
 		
 		c.delete();
 		renderJSON("Critério removido com sucesso");
-	}
+	}*/
 	
 	public static void listUsers() {
 		List<User> users = User.all().fetch();
