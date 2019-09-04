@@ -76,8 +76,26 @@ public class Event extends Model{
     }
     
     @Transient
+    public List<Track> getAllTracks(){
+        List<Track> tracks = JPA.em().createQuery("select t from Track t where t.event.id =  '"+this.id+"'").getResultList();
+        return tracks;
+    }
+    
+    @Transient
+    public List<Track> getOpenedTracks(){
+        List<Track> tracks = JPA.em().createQuery("select t from Track t where t.status = 'OPENED' and t.event.id =  '"+this.id+"'").getResultList();
+        return tracks;
+    }
+    
+    @Transient
     public List<Track> getUndraftTracks(){
         List<Track> tracks = JPA.em().createQuery("select t from Track t where t.status != 'DRAFT' and t.event.id =  '"+this.id+"'").getResultList();
+        return tracks;
+    }
+    
+    @Transient
+    public List<Track> getPublicUndraftTracks(){
+        List<Track> tracks = JPA.em().createQuery("select t from Track t where t.status != 'DRAFT' and t.privacy = true  and t.event.id =  '"+this.id+"'").getResultList();
         return tracks;
     }
 }

@@ -1,0 +1,123 @@
+<spam id="${_id}">
+    
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+   
+   
+    <div class="input-group">
+		<input id="area-descr" type="text" class="form-control" disabled="disabled" value="${_area != null ? _area.description:''}" />
+		<input id="area-id" type="hidden" name="${_name ? _name : '' }"  value="${_area != null ? _area.id : ''}"/>
+		<span class="input-group-btn">
+			<a id="bt-area-selecao" class="btn btn-default" type="button" 
+				data-toggle="modal" href="#modalSelecaoArea">
+				<i class="fa  fa-check-square-o"></i>
+				&{'button.select'}
+			</a>
+		</span>
+	</div>
+    
+	<div class="modal fade" id="modalSelecaoArea" role="dialog" 
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="smart-widget">
+					<div class="smart-widget-inner">
+						<ul class="nav nav-tabs tab-style1">
+							<li class="active">
+						  		<a href="#tab-areas-lista" data-toggle="tab">
+						  			<span class="icon-wrapper">
+						  				<i class="fa fa-sitemap"></i>
+						  			</span>
+						  			&{'area.list'}
+						  		</a>
+						  	</li>
+						</ul>
+						<div class="smart-widget-body">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" 
+									id="tab-areas-lista">
+									<input id="search-input" placeholder="Buscar" class="search-input fullwidth" />
+									<div id="sa-arvore-areas" class="form-group"></div>
+									<hr />
+									<div class="m-top-md text-right">
+										<a id="bt-area-selecionar" class="btn btn-success">
+											<i class="fa fa-check-square-o"></i> 
+											&{'button.select'}
+										</a>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="@{'public/plugins/jstree/jstree.min.js'}"></script>
+	<script type="text/javascript">
+		var _data = []
+        $("#bt-area-selecao").on("click",function () {
+        	$.ajax({
+	      		async: false,
+	      		dataType: "json",
+	      		url: "@{Attendees.carregarAreas()}"
+	       	}).done(function(data) {
+	       		_data = data;
+	       		var jsondata = []
+	       		$(data).each(function(i){
+	       			
+	       			if(this.parent != undefined){
+	       				
+	       				jsondata.push({"id": this.id, "parent": this.parent.id, "text": this.description})
+	       			}else{
+	       				jsondata.push({"id": this.id, "parent": "#", "text": this.description})
+	       			}
+	       		});
+                
+	       		createJSTree(jsondata);
+	        }).fail(function(jqXHR, textStatus, errorThrown) {
+	            
+	        });
+        });
+
+        function createJSTree(jsondata) {
+            $('#sa-arvore-areas').jstree({
+                "core": {                    
+                    'data': jsondata
+                },
+                "plugins": ["search"],
+                "search": {
+                    "case_sensitive": false,
+                    "show_only_matches": true
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $("#search-input").keyup(function () {
+                var searchString = $(this).val();
+                $('#sa-arvore-areas').jstree('search', searchString);
+            });
+        });
+        
+        function _getIdAreaSelecionada() {
+        	return $("#sa-arvore-areas").jstree("get_selected")[0];
+       	}
+	   	
+        function _limparFormulario() {
+            $("#search-input").attr("value", "");
+        }
+	   	
+        $("#bt-area-selecionar").on("click",function () {
+        	var idAreaSelecionada = _getIdAreaSelecionada();
+	    	if (idAreaSelecionada != null) {
+			   	$("#area-id").val(idAreaSelecionada);
+				$("#area-descr").val($('.jstree-clicked').text());
+				$("#modalSelecaoArea").modal('hide');
+	    	}
+        });
+        
+    </script>
+</spam>

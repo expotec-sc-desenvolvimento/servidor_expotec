@@ -9,6 +9,7 @@ GET     /login                                  Secure.login
 GET     /logout									Secure.logout
 GET	 	/signup									Application.signup
 POST    /newuser								Application.save(user: User)
+GET     /attendees/getuserpicture/{userid}/		Attendees.getUserPicture(userid: Long)
 GET		/{controller}/viewevent/{id}			{controller}.viewEvent(id: Long)
 # Ignore favicon requests
 GET     /favicon.ico                            404

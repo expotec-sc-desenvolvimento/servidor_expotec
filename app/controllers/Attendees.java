@@ -1,12 +1,16 @@
 package controllers;
 
 import java.io.File;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import models.Activity;
+import models.Area;
 import models.Event;
+import models.Paper;
+import models.PaperStatus;
 import models.Permission;
 import models.User;
 import play.Play;
@@ -24,10 +28,10 @@ public class Attendees extends Controller {
 
 	@Before
 	static void setUserAndEvent() {
-			User user = User.findById(Long.parseLong(session.get("userid")));
-			Event event = Event.findById(Long.parseLong(session.get("eventid")));
-			renderArgs.put("ulogado", user);
-			renderArgs.put("event", event);
+		User user = User.findById(Long.parseLong(session.get("userid")));
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		renderArgs.put("ulogado", user);
+		renderArgs.put("event", event);
 	}
 
 	public static void printMyBadge() {
@@ -38,10 +42,12 @@ public class Attendees extends Controller {
 		renderTemplate("Attendees/cpanel.html");
 	}
 
-
-
 	public static void viewMyProfile() {
 		renderTemplate("Attendees/viewMyProfile.html");
+	}
+
+	public static void listMyPapers() {
+		renderTemplate("Attendees/listMyPapers.html");
 	}
 
 	public static void editMyProfile() {
@@ -50,16 +56,55 @@ public class Attendees extends Controller {
 		renderTemplate("Attendees/editMyProfile.html");
 	}
 
+	public static void editMyPaper(Long idPaper) {
+		Paper paper = Paper.findById(idPaper);
+		User user = User.findById(Long.parseLong(session.get("userid")));
+
+		if ((paper.author == user || paper.coauthors.contains(user))) {
+			renderArgs.put("paper", paper);
+			Event event = Event.findById(Long.parseLong(session.get("eventid")));
+
+			if (paper.status == PaperStatus.DRAFT) {
+				renderArgs.put("tracks", event.getOpenedTracks());
+				renderTemplate("Attendees/editMyPaper.html");
+			} else {
+				detailMyPaper(idPaper);
+			}
+		} else {
+			renderText("Acesso negado!");
+		}
+	}
+
+	public static void detailMyPaper(Long idPaper) {
+		Paper paper = Paper.findById(idPaper);
+		User user = User.findById(Long.parseLong(session.get("userid")));
+
+		if ((paper.author == user || paper.coauthors.contains(user))) {
+			renderArgs.put("paper", paper);
+			renderTemplate("Attendees/detailMyPaper.html");
+		} else {
+			renderText("Acesso negado!");
+		}
+	}
+
 	public static void myBadge() {
 		renderTemplate("Attendees/myBadge.html");
 	}
 
 	public static void getUserPicture(Long userid) {
-		User user = User.findById(userid);
-		if (user.picture.getFile() != null) {
-			renderBinary(user.picture.get());
+		try {
+			final User user = User.findById(userid);
+			System.out.println();
+			if(user.picture.get() != null) {
+				response.setContentTypeIfNotSet(user.picture.type());
+				InputStream binaryData = user.picture.get();
+				renderBinary(binaryData);
+			}
+			InputStream is = null;
+			renderBinary(is);
+		}catch (NullPointerException e) {
+			
 		}
-		renderBinary(new File("public/img/default.jpg"));
 	}
 
 	public static void saveMyPassword(User user) {
@@ -111,6 +156,10 @@ public class Attendees extends Controller {
 		}
 	}
 
+	public static void savePaper(Paper paper) {
+		listMyPapers();
+	}
+
 	public static void getEventLogo(Long eventid) {
 		try {
 			Event event = Event.findById(eventid);
@@ -123,6 +172,31 @@ public class Attendees extends Controller {
 			File f = vf.getRealFile();
 			renderBinary(f);
 		}
+	}
+
+	public static void carregarAreas() {
+		List<Area> areas = Area.findAll();
+		renderJSON(areas);
+
+	}
+
+	public static void carregarUser(Long id) {
+		User user = User.findById(id);
+		renderJSON(user);
+	}
+
+	public static void carregarActiveUsers(String name) {
+		User logado = User.findById(Long.parseLong(session.get("userid").toString()));
+
+		List<User> _users = User.find("select distinct u from User u where lower(u.name) like '%" + name.toLowerCase()
+				+ "%' and u.status = true and u.uuid != " + logado.uuid).fetch();
+		List<User> users = new ArrayList<User>();
+		for (User u : _users) {
+			User novo = new User(u.uuid, u.name, u.picture);
+			users.add(novo);
+		}
+		renderJSON(users);
+
 	}
 
 }

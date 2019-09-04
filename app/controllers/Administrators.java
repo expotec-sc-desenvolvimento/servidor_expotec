@@ -196,5 +196,11 @@ public class Administrators extends Attendants {
 		renderArgs.put("tracks", tracks);
 		renderTemplate("Administrators/listTracks.html");
 	}
+	
+	public static void listPapers(Long eventid) {
+		List<Paper> papers = Paper.find("select p from Paper p where p.track.event.id = "+eventid).fetch();
+		renderArgs.put("papers", papers);
+		renderTemplate("Administrators/listPapers.html");
+	}
 
 }

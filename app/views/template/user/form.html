@@ -1,6 +1,6 @@
-#{field 'user.name'}
 <div class="row">
-    <div class="col-md-12  mb-4">
+	#{field 'user.name'}
+    <div class="col-md-9  mb-4">
         <label  for="${field.name}" >&{'user.name'}</label>
         <input type="text"  id="${field.name}" name="${field.name}" 
                value="${field.value}" class="form-control"  
@@ -10,10 +10,9 @@
             <span class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">${errors.forKey(field.name)}</span>
         </div>
     </div>
-</div>
-#{/field} 
-<div class="row">
-    #{field 'user.email'}
+    #{/field} 
+   
+	 #{field 'user.email'}
     <div class="col-md-3 mb-4">
         <label for="${field.name}">&{'user.email'}</label>
         <input type="email"  id="${field.name}" name="${field.name}" 
@@ -24,6 +23,22 @@
         </div>
     </div>
     #{/field} 
+</div>
+
+<div class="row">
+    #{field 'user.picture'}
+    <div class="col-md-3  mb-4">
+        <label  for="${field.name}" >&{'user.picture'}</label>
+        <input type="file"  id="${field.name}" name="${field.name}" class="form-control"
+        	#{if user.picture.get() !=null}
+               value="@{Attendees.getUserPicture(user.uuid)}" 
+            #{/if}   
+        />
+        <div class="invalid-feedback">
+            <span class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">${errors.forKey(field.name)}</span>
+        </div>
+    </div>
+	#{/field}
     #{field 'user.cel'}
     <div class="col-md-3 mb-4">
         <label for="${field.name}">&{'user.cel'}</label>
@@ -63,22 +78,8 @@
     #{/field} 
 </div>
 <div class="row">
-	#{field 'user.picture'}
-    <div class="col-md-6  mb-4">
-        <label  for="${field.name}" >&{'user.picture'}</label>
-        <input type="file"  id="${field.name}" name="${field.name}" class="form-control"
-        	#{if user.picture.get() !=null}
-               value="@{Attendees.getUserPicture(user.uuid)}" 
-            #{/if}   
-        />
-        <div class="invalid-feedback">
-            <span class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">${errors.forKey(field.name)}</span>
-        </div>
-    </div>
-	#{/field}
-	
 	#{if permissions && ulogado.permission.toString().equals("ADMIN") }
-	<div class="col-md-6  mb-4">
+	<div class="col-md-12  mb-4">
         	<label  for="selectPermission" >&{'user.permission'}</label>
 		    #{select 'user.permission', class:"form-control", value:user.permission, id:'selectPermission'}
 				#{list items:permissions, as:'p'}

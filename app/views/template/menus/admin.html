@@ -11,12 +11,7 @@
 				<span>&{'cpanel.menu.events'}</span>
 			</a>
 		</li>
-		<li>
-			<a href="@{Administrators.listUsers()}">
-				<i class="lnr lnr-users"></i>
-				<span>&{'cpanel.menu.users'}</span>
-			</a>
-		</li>
+		
 		<li>
 			<a href="@{Administrators.listActivities(eventid)}">
 				<i class="lnr lnr-list"></i>
@@ -30,7 +25,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="@{Administrators.listPapers(eventid)}">
 				<i class="lnr lnr-layers"></i>
 				<span>&{'cpanel.menu.papers'}</span>
 			</a>
@@ -52,9 +47,9 @@
 	</a>
 	<ul class="dropdown-menu">
 		<li>
-			<a href="#">
-				<i class="lnr lnr-printer"></i>
-				<span>&{'cpanel.menu.badge'}</span>
+			<a href="@{Administrators.listUsers()}">
+				<i class="lnr lnr-users"></i>
+				<span>&{'cpanel.menu.users'}</span>
 			</a>
 		</li>
 		<li>

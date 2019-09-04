@@ -23,7 +23,6 @@ import play.db.jpa.Model;
 @Table(name="criterias")
 public class Criteria extends Model {
 	
-
 	@Required
 	@MinSize(1)
 	public String description;

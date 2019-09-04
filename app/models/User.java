@@ -32,6 +32,7 @@ import play.data.validation.Required;
 import play.data.validation.Unique;
 import play.db.jpa.Blob;
 import play.db.jpa.GenericModel;
+import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 @Entity
@@ -76,11 +77,26 @@ public class User extends GenericModel {
     
     @OneToMany(fetch = FetchType.LAZY)
     public List<Expertise> expertises = new ArrayList<Expertise>();
-    
-    
-    public String toString(){
+  
+    public User() {
+    	super();
+    }
+    public User(Long uuid, String name, Blob picture) {
+    	super();
+    	this.uuid = uuid;
+    	this.name = name;
+    	this.picture = picture;
+	}
+
+	public String toString(){
     	this.name += " "; 
     	int pos = this.name.indexOf(" ");
         return this.name.substring(0,pos);
+    }
+    
+    @Transient
+    public List<Paper> getMyPapers (){
+        List<Paper> papers = JPA.em().createQuery("select p from Paper p inner join p.coauthors ca where p.author.uuid =  "+this.uuid+" or ca.uuid = "+this.uuid).getResultList();
+        return papers;
     }
 }

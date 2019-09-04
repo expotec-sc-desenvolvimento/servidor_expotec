@@ -88,18 +88,19 @@
                             <span>&{'cpanel.menu.dashboard'}</span>
                         </a>
                     </li>
+      
                     
+                    <li>
+                        <a href="@{Attendees.listMyPapers()}" class="${session.get('page').equals('cpanel') ? 'active':''}">
+                            <i class="lnr lnr-pencil"></i> 
+                            <span>&{'cpanel.menu.mypapers'}</span>
+                        </a>
+                    </li>
+                                  
                     <li>
                         <a href="#" class="${session.get('page').equals('cpanel') ? 'active':''}">
                             <i class="lnr lnr-list"></i> 
                             <span>&{'cpanel.menu.myactivities'}</span>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a href="#" class="${session.get('page').equals('cpanel') ? 'active':''}">
-                            <i class="lnr lnr-pencil"></i> 
-                            <span>&{'cpanel.menu.mypapers'}</span>
                         </a>
                     </li>
                     <li>

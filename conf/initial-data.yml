@@ -81,9 +81,7 @@ Activity(minicurso):
    startInscription: 2019-08-29
    facilitators: [admin, participante]
 
-
-
-Track(miniCursos):
+Track(miniCurso):
    name: "Artigo Resumidos"
    start: 2019-08-28
    end: 2019-08-29
@@ -97,12 +95,12 @@ Track(miniCursos):
 Criteria(c1):
    description: "Potencial"
    weight: 1
-   track: miniCursos
+   track: miniCurso
    
 Criteria(c2):
    description: "Qualidade da Discussão"   
    weight: 1
-   track: miniCursos
+   track: miniCurso
    
 Area(exata):
    description: "Ciências Exatas e da Terra"
@@ -118,5 +116,13 @@ Area(estat):
 Area(comp):
    parent: exata
    description: "Ciência da Computação"
- 
- 
+   
+   
+Paper(p1):
+   track: miniCurso
+   title: "Uma arquitetura de suporte à coleta e análise de dados educacionais em ambientes de ensino institucionais"
+   abs: "Embora atualmente exista uma grande quantidade de dados educacionais, o acesso e o processamento a esses dados ainda é uma tarefa desafiadora aos pesquisadores e desenvolvedores de aplicações baseadas em análise de aprendizagem. De forma fragmentada, cada desenvolvedor utiliza uma abordagem diferente para implementar sua aplicação, mesmo quando ela compartilha um conjunto essencial de dados e ferramentas em comum com outros sistemas. Nesse sentido, este artigo propõe como desafio a promoção de um modelo de referência que descreva como integrar eficientemente os componentes e ferramentas comuns a automação de um processo de Análise de Aprendizagem."
+   author: admin  
+   coauthors: [participante]
+   mainArea: comp
+   status: DRAFT

@@ -12,6 +12,7 @@ application.info=Para mais informações contactar a organização do evento
 application.error= Essa operação não pode ser realizada.
 application.success=  Essa operação foi realizada com sucesso.
 
+button.select = Selecionar
 button.new = Nova
 button.save = Salvar
 button.delete = Deletar
@@ -51,7 +52,7 @@ validacao.unico.dia = Já existe um dia com este nome. Digite outro.
 
 cpanel.menu.dashboard = Início
 cpanel.menu.myactivities = Minhas Inscrições
-cpanel.menu.mypapers= Meus Trabalhos
+cpanel.menu.mypapers= Minhas Submissões
 cpanel.menu.myevaluations= Minhas Avaliações 
 cpanel.menu.mycertificates= Certificado de Participação
 cpanel.menu.myprofile= Meu Perfil
@@ -66,7 +67,7 @@ cpanel.menu.papers = Submissões
 cpanel.menu.attendant = Atendimento
 cpanel.menu.badge = Crachá
 cpanel.menu.attendance = Presença
-cpanel.menu.expertise = Saberes
+cpanel.menu.expertise = Áreas
 
 
 index.sponsored = Patrocinadores e Parceiros
@@ -183,7 +184,27 @@ schedule.title.second=DASATIVIDADES
 
 callforpaper.title.first=#CHAMADA
 callforpaper.title.second=DETRABALHOS
+callforpaper.submit=Submeter
+
+
+paper.list=Lista de Submissões
+paper.mylist=Minhas Submissões
+paper.edit=Editar Submissão
+paper.detail=Detalhes da Submissão
+paper.title = Título
+paper.track = Chamada
+paper.abstract = Resumo
+paper.file= Arquivo
+paper.mainArea= Área 
+paper.authors= Autores
+
+
 
 badge.mybadge = Cracha Expotec
 
 table.actions = Ações
+
+area.list= Áreas
+area.parent= Grande Área
+area.description= Descrição
+area.new = Nova Área

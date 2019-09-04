@@ -1,0 +1,145 @@
+<div class="row">
+	#{field 'paper.track'}
+	<div class="col-md-4  mb-4">
+        	<label  for="${field.name}" >&{'paper.track'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"paper.track" }
+				#{list items:tracks, as:'t'}
+					#{option t}
+						${t.name}
+					#{/option}
+				#{/list}
+			#{/select}
+     </div>
+    #{/field}
+     
+	#{field 'paper.title'}
+	<div class="col-md-8  mb-8">
+		<label for="${field.name}">&{'paper.title'}</label> 
+		<input type="text" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control"
+			placeholder="&{'paper.name'}" required minlength="0" maxlength="150">
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+ 	#{field 'paper.author'}
+	<input type="hidden" id="${field.name}" name="${field.name}" value="${field.value}"/>
+	#{/field}
+	
+	#{field 'paper.coauthors'}
+	<div class="col-md-12 ">
+        <label  for="${field.name}" >&{'paper.authors'}</label>
+		<div class="form-group">
+			<input id="${id}coauthors" type="hidden" class="coauthors-input"  name="coauthors}" value="${paper.coauthors}"/>
+		</div>
+        
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'paper.abs'}
+	<div class="col-md-12  mb-4">
+		<label for="${field.name}">&{'paper.abstract'}</label> 
+		
+		<textarea id="abstract" name="${field.name}"  rows="10"
+			 class="form-control" >${field.value}</textarea>
+			 
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	<div class="col-md-4  mb-4">
+		<label  for="${field.name}" >&{'paper.mainArea'}</label>
+		#{selectArea id:'selectArea', area:paper.mainArea, name:'paper.mainArea' /}
+    </div>
+    #{field 'paper.file'}
+    <div class="col-md-8  mb-4">
+        <label  for="${field.name}" >&{'paper.file'}</label>
+        <input type="file"  id="${field.name}" name="${field.name}"
+         class="form-control"  accept=".pdf" />
+        <div class="invalid-feedback">
+            <span class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">${errors.forKey(field.name)}</span>
+        </div>
+    </div>
+	#{/field}
+</div>
+
+
+<link href="@{'public/plugins/select2/select2.css'}" rel="stylesheet"/>
+<script src="@{'public/plugins/select2/select2.min.js'}"></script>
+
+<script>
+	$(function(){
+		 $('#abstract').summernote({
+			 airMode: true,
+			 popover: {
+			 	air: [
+				    // [groupName, [list of button]]
+				    ['style', ['bold', 'italic', 'underline', 'clear']],
+				    ['fontsize', ['fontsize']],
+				    ['color', ['color']]
+				  ]
+			 }
+		 });
+		 
+		 var myResults = [
+			 	{ id: '${paper.author.uuid}', text: '${paper.author}', locked: true}
+			 	#{list items:paper.coauthors, as:'ca'}
+			 	,{ id: '${ca.uuid}', text: '${ca}', locked: false}
+			 	#{/list}
+		 ];
+		         
+		 $('#coauthors').select2({
+			 	placeholder: "Buscar ",
+			    multiple: true,
+			    minimumInputLength: 1,
+				maximumSelectionSize: 6,
+				formatResult: format,
+				formatSelection: format,
+				ajax : {
+					url : "@{Attendees.carregarActiveUsers()}",
+					dataType : "json",
+					quietMillis : 1000,
+					data : function(term) {
+						return {
+							name : term
+						};
+					},
+					results : function(data) {
+						myResults = [
+							 	{ id: '${paper.author.uuid}', text: '${paper.author}', locked: true}
+						];
+						$.each(data, function(index, item) {
+							myResults.push({
+								'id' : item.uuid,
+								'text' : item.name
+							});
+						});
+						console.log(data);
+						return {
+								results : myResults
+							};
+					}
+			  	}
+		});
+		 
+		 function format(user) {
+			 	console.log(user);
+			    if (!user.id) 
+			    	return user.text; // optgroup
+			    _linkTo = "@{Attendees.getUserPicture()}"+"/"+user.id+"/"; 
+			    return "<img class='flag' src='"+_linkTo+"'/>" + user.text;
+		}
+		$('#coauthors').select2('data', myResults );
+	});
+</script>
+

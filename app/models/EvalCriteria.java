@@ -21,7 +21,7 @@ public class EvalCriteria extends Model {
 	
 	@ManyToOne
 	@Required(message = "validacao.requerido")
-	public EvalPaper evalPaper;
+	public Evaluation evaluation;
 	
 	
 }

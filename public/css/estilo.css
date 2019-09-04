@@ -3,7 +3,8 @@ img.img-responsive.logo {
 	margin: auto;
 }
 
-.panel .table>thead>tr>th:first-child {
+.panel .table>thead>tr>th:first-child, .panel .table>thead>tr>th:last-child,
+.panel .table>tbody>tr>td:first-child,.panel .table>tbody>tr>td:last-child{
 	padding-left: 10px;
 }
 
@@ -13,19 +14,54 @@ img.img-responsive.logo {
 	width: 260px;
 	text-align: center;
 }
-
+.fullwidth{
+	width: 100%;
+}
 hr {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
 
+td>ul {
+    padding: 0px 10px;
+}
+
+.note-editor ul{
+	padding: inherit !important;
+}
 .no-top-padding {
 	padding-top: 0px !important;
 }
 
+div#tab-areas-lista {
+    padding-top: 10px;
+}
+.jstree-default .jstree-search {
+    font-style: normal !important; 
+    color: black !important;
+    font-weight: 700;
+}
+.smart-widget{
+    margin-bottom: 0px;
+}
+}
+
+
 .row.toptoolbar {
 	margin-bottom: -43px;
 	text-align: right;
+}
+img.flag {
+    width: 24px;
+    height: 24px;
+    margin: 0px 5px 0px 0px;
+}
+div#s2id_coauthors {
+    width: 100%;
+}
+
+.form-group {
+    width: 100%;
 }
 
 .panel .table>tbody>tr>td:first-child {

@@ -22,8 +22,8 @@
 							
 							<div class="m-top-sm">
 								#{if session.get("userid") !=null}
-									#{if t.status.toString().equals("Aberta")}
-										<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">&{'inscription.subscribe'}</button>	
+									#{if t.status.toString().equals("OPENED")}
+										<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">&{'callforpaper.submit'}</button>	
                      				#{/if}
                     				#{else}
                     					<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${t.status.name}</button>

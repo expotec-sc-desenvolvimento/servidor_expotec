@@ -64,14 +64,13 @@ public class Track extends Model {
     @Enumerated(EnumType.STRING)
     public TrackType type;
 
-    @OneToMany(mappedBy = "track", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "track", fetch = FetchType.LAZY)
     public List<Criteria> criterias = new ArrayList<Criteria>();
     
     @ManyToOne
     @Required(message = "validacao.requerido")
     public Event event;
     
-
     @ManyToOne
     public Track prior;
     
@@ -86,6 +85,8 @@ public class Track extends Model {
         List<Criteria> criterias = JPA.em().createQuery("select c from Criteria c where c.track.id =  '"+this.id+"'").getResultList();
         return criterias;
     }
+    
+  
     
   
 }
