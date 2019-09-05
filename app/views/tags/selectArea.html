@@ -6,7 +6,7 @@
    
     <div class="input-group">
 		<input id="area-descr" type="text" class="form-control" disabled="disabled" value="${_area != null ? _area.description:''}" />
-		<input id="area-id" type="hidden" name="${_name ? _name : '' }"  value="${_area != null ? _area.id : ''}"/>
+		<input id="area-id" type="hidden" name="${_name ? _name : '' }"  value="${_area != null ? _area.id : ''}" required/>
 		<span class="input-group-btn">
 			<a id="bt-area-selecao" class="btn btn-default" type="button" 
 				data-toggle="modal" href="#modalSelecaoArea">
@@ -69,7 +69,6 @@
 	       		$(data).each(function(i){
 	       			
 	       			if(this.parent != undefined){
-	       				
 	       				jsondata.push({"id": this.id, "parent": this.parent.id, "text": this.description})
 	       			}else{
 	       				jsondata.push({"id": this.id, "parent": "#", "text": this.description})

@@ -20,7 +20,7 @@ button.edit = Editar
 button.view = Detalhar
 button.cancel = Cancelar
 button.cracha= Ver Crachá
-button.submit= Enviar
+button.submit= Submeter
 button.password= Alterar Senha
 button.add=Adicionar
 erro.permissao= Você não tem permissão para fazer essa operação.
@@ -62,7 +62,7 @@ cpanel.menu.events = Eventos
 cpanel.menu.event = Evento
 cpanel.menu.activies = Atividades
 cpanel.menu.users = Usuários
-cpanel.menu.evalutions = Chamadas de Trabalho
+cpanel.menu.evalutions = Chamadas
 cpanel.menu.papers = Submissões
 cpanel.menu.attendant = Atendimento
 cpanel.menu.badge = Crachá
@@ -197,9 +197,9 @@ paper.abstract = Resumo
 paper.file= Arquivo
 paper.mainArea= Área 
 paper.authors= Autores
-
-
-
+paper.new=Nova submissão
+paper.keyword.new=Adicionar
+paper.keywords=Palavras-chave
 badge.mybadge = Cracha Expotec
 
 table.actions = Ações

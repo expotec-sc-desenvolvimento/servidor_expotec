@@ -7,12 +7,14 @@
     &{'paper.list'}
 #{/set}
 
+
+
 #{tabelaDinamica id:'tbPapers', list:papers, chavesCabecalho:['Chamada', 'Título', 'Área', 'Autores',  'Avalições', 'Status']}
 	#{list items:papers, as:'p'}
 		<tr>
-			<td>${p.track.name}</td>
+			<td>${p?.track?.name}</td>
 			<td>${p.title}</td>
-			<td>${p.mainArea.description}</td>
+			<td>${p?.mainArea?.description}</td>
 			<td>
 				<ul>
 			 	<li>${p.author}</li>
@@ -21,7 +23,7 @@
 				#{/list}
 				</ul>
 			</td>
-			<td>0/${p.track.minEvaluations}</td>
+			<td>0/${p?.track.minEvaluations}</td>
 			<td>${p.status.name}</td>
 			<td class="text-center">
 			</td>

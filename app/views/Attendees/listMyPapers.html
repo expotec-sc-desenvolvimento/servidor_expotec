@@ -7,12 +7,16 @@
     &{'paper.mylist'}
 #{/set}
 
+<div class="row toptoolbar">
+	#{btSmallNew url:@Attendees.newPaper() /}
+</div>
+
 #{tabelaDinamica id:'tbPapers', list:ulogado.getMyPapers(), chavesCabecalho:['Chamada', 'TÍtulo do Trabalho', 'Área', 'Autores',  'Avalições', 'Status']}
 	#{list items:ulogado.getMyPapers(), as:'p'}
 		<tr>
-			<td>${p.track.name}</td>
+			<td>${p?.track?.name}</td>
 			<td>${p.title}</td>
-			<td>${p.mainArea.description}</td>
+			<td>${p?.mainArea?.description}</td>
 			<td>
 				<ul>
 			 	<li>${p.author}</li>
@@ -21,14 +25,14 @@
 				#{/list}
 				</ul>
 			</td>
-			<td>0/${p.track.minEvaluations}</td>
+			<td>0/${p?.track?.minEvaluations}</td>
 			<td>${p.status.name}</td>
 			<td class="text-center">
 				#{if p.status.toString().equals("DRAFT")}
-					#{btIconEdit url:@Attendees.editMyPaper(p.uuid)/}
+					#{btIconEdit url:@Attendees.editPaper(p.uuid)/}
 				#{/if}
 				#{else}
-					#{btIconView url:@Attendees.detailMyPaper(p.uuid)/}
+					#{btIconView url:@Attendees.detailPaper(p.uuid)/}
 				#{/else}
 			</td>
 		</tr>

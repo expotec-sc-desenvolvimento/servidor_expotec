@@ -110,7 +110,6 @@ public class Administrators extends Attendants {
         listUsers();
 	}
 
-	
 	public static void editEvent(Long id) {
 		Event e = Event.findById(id);
 		renderArgs.put("e", e);

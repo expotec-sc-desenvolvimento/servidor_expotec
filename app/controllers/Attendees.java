@@ -56,26 +56,22 @@ public class Attendees extends Controller {
 		renderTemplate("Attendees/editMyProfile.html");
 	}
 
-	public static void editMyPaper(Long idPaper) {
-		Paper paper = Paper.findById(idPaper);
+	public static void newPaper() {
+		Paper paper = new Paper();
+		
 		User user = User.findById(Long.parseLong(session.get("userid")));
-
-		if ((paper.author == user || paper.coauthors.contains(user))) {
-			renderArgs.put("paper", paper);
-			Event event = Event.findById(Long.parseLong(session.get("eventid")));
-
-			if (paper.status == PaperStatus.DRAFT) {
-				renderArgs.put("tracks", event.getOpenedTracks());
-				renderTemplate("Attendees/editMyPaper.html");
-			} else {
-				detailMyPaper(idPaper);
-			}
-		} else {
-			renderText("Acesso negado!");
-		}
+		paper.author = user;
+		paper.status = PaperStatus.DRAFT;
+		
+		renderArgs.put("paper", paper);
+		
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		renderArgs.put("tracks", event.getOpenedTracks());
+		
+		renderTemplate("Attendees/newPaper.html");
 	}
 
-	public static void detailMyPaper(Long idPaper) {
+	public static void detailPaper(Long idPaper) {
 		Paper paper = Paper.findById(idPaper);
 		User user = User.findById(Long.parseLong(session.get("userid")));
 
@@ -87,6 +83,59 @@ public class Attendees extends Controller {
 		}
 	}
 
+	public static void editPaper(Long idPaper) {
+		Paper paper = Paper.findById(idPaper);
+		User user = User.findById(Long.parseLong(session.get("userid")));
+
+		if ((paper.author == user || paper.coauthors.contains(user))) {
+			renderArgs.put("paper", paper);
+			Event event = Event.findById(Long.parseLong(session.get("eventid")));
+
+			if (paper.status == PaperStatus.DRAFT) {
+				renderArgs.put("tracks", event.getOpenedTracks());
+				renderTemplate("Attendees/editPaper.html");
+			} else {
+				detailPaper(idPaper);
+			}
+		} else {
+			renderText("Acesso negado!");
+		}
+	}
+
+	public static void savePaper(Paper paper, String coauthors) {
+		boolean isNewPaper = paper.uuid == null || paper.uuid == 0;
+		if (validation.hasErrors()) {
+			System.out.println(validation.errorsMap());
+			renderArgs.put("paper", paper);
+			flash.error("erro.operacao");
+			if(paper.uuid != 0) {
+				renderTemplate("Attendees/editPaper.html");
+			}else {
+				renderTemplate("Attendees/newPaper.html");
+			}
+		}
+		String uuidArray[] = coauthors.split(",");
+		List<User> cas = new ArrayList<User>();
+		for(String uuid: uuidArray) {
+			if(!uuid.trim().equals("")) {
+				User ca = User.findById(Long.parseLong(uuid));
+				if (ca != paper.author) {
+					cas.add(ca);
+				}
+			}
+		}
+		paper.coauthors = cas;
+		paper.save();
+		
+		flash.success("event.success");
+		if(isNewPaper) {
+			editPaper(paper.uuid);
+		}else {
+			listMyPapers();
+		}
+	}
+
+	
 	public static void myBadge() {
 		renderTemplate("Attendees/myBadge.html");
 	}
@@ -99,11 +148,12 @@ public class Attendees extends Controller {
 				response.setContentTypeIfNotSet(user.picture.type());
 				InputStream binaryData = user.picture.get();
 				renderBinary(binaryData);
+			}else {
+				throw new NullPointerException();
 			}
+		}catch (NullPointerException e) {
 			InputStream is = null;
 			renderBinary(is);
-		}catch (NullPointerException e) {
-			
 		}
 	}
 
@@ -156,24 +206,7 @@ public class Attendees extends Controller {
 		}
 	}
 
-	public static void savePaper(Paper paper) {
-		listMyPapers();
-	}
-
-	public static void getEventLogo(Long eventid) {
-		try {
-			Event event = Event.findById(eventid);
-			response.setContentTypeIfNotSet(event.logo.type());
-			java.io.InputStream binaryData = event.logo.get();
-			renderBinary(binaryData);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			VirtualFile vf = VirtualFile.fromRelativePath("/public/img/logo_2.png");
-			File f = vf.getRealFile();
-			renderBinary(f);
-		}
-	}
-
+	
 	public static void carregarAreas() {
 		List<Area> areas = Area.findAll();
 		renderJSON(areas);
@@ -196,7 +229,6 @@ public class Attendees extends Controller {
 			users.add(novo);
 		}
 		renderJSON(users);
-
 	}
 
 }

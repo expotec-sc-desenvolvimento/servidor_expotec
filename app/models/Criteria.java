@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -20,18 +21,21 @@ import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="criterias")
+@Table(name="criterio")
 public class Criteria extends Model {
 	
 	@Required
 	@MinSize(1)
+	@Column(name = "descricao")
+	
 	public String description;
 	
 	@Min(0)
+	@Column(name = "peso")
 	public int weight;
 	
 	@ManyToOne()
-	@JoinColumn(name = "track_id")
+	@JoinColumn(name = "idmodalidade")
 	public Track track;
 	
 	public Criteria(String description, int weight) {

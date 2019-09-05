@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -106,14 +107,16 @@ public class Application extends Controller {
 	public static void getEventLogo(Long eventid) {
 		try {
 			Event event = Event.findById(eventid);
-			response.setContentTypeIfNotSet(event.logo.type());
-			java.io.InputStream binaryData = event.logo.get();
-			renderBinary(binaryData);
+			if(event.logo.get() != null) {
+				response.setContentTypeIfNotSet(event.logo.type());
+				InputStream binaryData = event.logo.get();
+				renderBinary(binaryData);
+			}else {
+				throw new Exception();
+			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			VirtualFile vf = VirtualFile.fromRelativePath("/public/img/logo.jpg");
-			File f  = vf.getRealFile();
-			renderBinary(f);
+			InputStream binaryData = null;
+			renderBinary(binaryData);
 		}
 	}
 

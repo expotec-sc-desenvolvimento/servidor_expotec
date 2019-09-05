@@ -322,7 +322,10 @@ footer.main {
 .cracha .panel {
 	padding: 30px;
 }
-
+.row.toptoolbar{
+  text-align:end;
+  margin-bottom:-40px;
+}
 .cracha small img {
 	height: 40px;
 }

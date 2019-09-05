@@ -63,6 +63,8 @@ public class Paper extends GenericModel {
     @ManyToOne
     public User author;
 	
+	public String keywords;
+	
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     public List<User> coauthors = new ArrayList<User>();

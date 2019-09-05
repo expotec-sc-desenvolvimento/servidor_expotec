@@ -75,12 +75,15 @@ public class User extends GenericModel {
     @ManyToOne
     public Event event;
     
+    public String citation;
+    
     @OneToMany(fetch = FetchType.LAZY)
     public List<Expertise> expertises = new ArrayList<Expertise>();
   
     public User() {
     	super();
     }
+    
     public User(Long uuid, String name, Blob picture) {
     	super();
     	this.uuid = uuid;
@@ -96,7 +99,7 @@ public class User extends GenericModel {
     
     @Transient
     public List<Paper> getMyPapers (){
-        List<Paper> papers = JPA.em().createQuery("select p from Paper p inner join p.coauthors ca where p.author.uuid =  "+this.uuid+" or ca.uuid = "+this.uuid).getResultList();
+        List<Paper> papers = JPA.em().createQuery("select p from Paper p left join p.coauthors ca where p.author.uuid =  "+this.uuid+" or ca.uuid = "+this.uuid).getResultList();
         return papers;
     }
 }

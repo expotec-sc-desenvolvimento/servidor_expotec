@@ -29,7 +29,7 @@ import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="tracks")
+@Table(name="modalidade")
 public class Track extends Model {
 	@NotNull
 	@MinSize(0)

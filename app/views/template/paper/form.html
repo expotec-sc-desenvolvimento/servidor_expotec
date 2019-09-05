@@ -1,10 +1,11 @@
+	
 <div class="row">
-	#{field 'paper.track'}
+	#{field 'paper.track.id'}
 	<div class="col-md-4  mb-4">
         	<label  for="${field.name}" >&{'paper.track'}</label>
 		    #{select field.name, class:"form-control", value:field.value, id:"paper.track" }
 				#{list items:tracks, as:'t'}
-					#{option t}
+					#{option t.id}
 						${t.name}
 					#{/option}
 				#{/list}
@@ -17,7 +18,7 @@
 		<label for="${field.name}">&{'paper.title'}</label> 
 		<input type="text" id="${field.name}" name="${field.name}"
 			value="${field.value}" class="form-control"
-			placeholder="&{'paper.name'}" required minlength="0" maxlength="150">
+			placeholder="&{'paper.title'}" required minlength="0" maxlength="150">
 		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
 			${errors.forKey(field.name)}
 		</div>
@@ -26,17 +27,12 @@
 </div>
 
 <div class="row">
- 	#{field 'paper.author'}
-	<input type="hidden" id="${field.name}" name="${field.name}" value="${field.value}"/>
-	#{/field}
-	
-	#{field 'paper.coauthors'}
+ 	#{field 'paper.coauthors'}
 	<div class="col-md-12 ">
         <label  for="${field.name}" >&{'paper.authors'}</label>
 		<div class="form-group">
-			<input id="${id}coauthors" type="hidden" class="coauthors-input"  name="coauthors}" value="${paper.coauthors}"/>
+			<input id="coauthors" type="hidden" class="coauthors-input"  name="coauthors" value="${field.values}"/>
 		</div>
-        
 	</div>
 	#{/field}
 </div>
@@ -57,10 +53,24 @@
 </div>
 
 <div class="row">
+	#{field 'paper.keywords'}
+	<div class="col-md-12 ">
+        <label  for="${field.name}" >&{'paper.keywords'}</label>
+		<div class="form-group">
+			<input id="keywords" type="hidden" class="keywords-input"  name="${field.name}" value="${field.value}"/>
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'paper.mainArea'}
 	<div class="col-md-4  mb-4">
 		<label  for="${field.name}" >&{'paper.mainArea'}</label>
-		#{selectArea id:'selectArea', area:paper.mainArea, name:'paper.mainArea' /}
+		#{selectArea id:'selectArea', area:field.value, name:'paper.mainArea.id'/}
     </div>
+    #{/field}
+    
     #{field 'paper.file'}
     <div class="col-md-8  mb-4">
         <label  for="${field.name}" >&{'paper.file'}</label>
@@ -73,9 +83,13 @@
 	#{/field}
 </div>
 
-
+<!-- SELECT2 INPUT-->
 <link href="@{'public/plugins/select2/select2.css'}" rel="stylesheet"/>
 <script src="@{'public/plugins/select2/select2.min.js'}"></script>
+
+<!-- TAG INPUT-->
+<link rel="stylesheet" href="@{'/public/css/jquery.tagsinput.css'}">
+<script src="@{'public/js/jquery.tagsinput.min.js'}"></script>
 
 <script>
 	$(function(){
@@ -91,12 +105,13 @@
 			 }
 		 });
 		 
-		 var myResults = [
-			 	{ id: '${paper.author.uuid}', text: '${paper.author}', locked: true}
+		 var coauthors = [
+			 	{ id: '${paper.author?.uuid}', text: '${paper?.author}', locked: true}
 			 	#{list items:paper.coauthors, as:'ca'}
-			 	,{ id: '${ca.uuid}', text: '${ca}', locked: false}
+			 	,{ id: '${ca?.uuid}', text: '${ca}', locked: false}
 			 	#{/list}
 		 ];
+		 
 		         
 		 $('#coauthors').select2({
 			 	placeholder: "Buscar ",
@@ -115,18 +130,18 @@
 						};
 					},
 					results : function(data) {
-						myResults = [
-							 	{ id: '${paper.author.uuid}', text: '${paper.author}', locked: true}
+						coauthors = [
+							 	{ id: '${paper?.author?.uuid}', text: '${paper?.author}', locked: true}
 						];
 						$.each(data, function(index, item) {
-							myResults.push({
+							coauthors.push({
 								'id' : item.uuid,
 								'text' : item.name
 							});
 						});
 						console.log(data);
 						return {
-								results : myResults
+								results : coauthors
 							};
 					}
 			  	}
@@ -139,7 +154,17 @@
 			    _linkTo = "@{Attendees.getUserPicture()}"+"/"+user.id+"/"; 
 			    return "<img class='flag' src='"+_linkTo+"'/>" + user.text;
 		}
-		$('#coauthors').select2('data', myResults );
+		 
+		$('#coauthors').select2('data', coauthors );
+		
+		$('#keywords').tagsInput({
+			'height':'auto',
+			'width':'100%',
+			'interactive':true,
+			'defaultText':"&{'paper.keyword.new'}",
+			'minChars' : 0,
+			'placeholderColor' : '#666666'
+		});
 	});
 </script>
 
