@@ -161,14 +161,14 @@ track.name= Nome
 track.start= Abertura de Submissões
 track.end= Encerremento de Submissões
 track.guidelines= Instruções aos autores
-track.minEvaluations = Num. Mínimo de Avaliações
+track.minEvaluations = Num. Avaliações
 track.privacy= Etapa
 track.privacy.true=Chamada Pública
 track.privacy.false=Chamada Interna
 track.calcType= Forma de Cálculo
 track.status= Status
 track.type= Tipo da Chamada
-track.prior= Etapa anterior
+track.prior= Chamada anterior
 track.success = Chamada cadastrada com sucesso!
 
 track.criterias = Critérios de Avaliação

@@ -6,7 +6,7 @@
 		    #{select field.name, class:"form-control", value:field.value, id:"paper.track" }
 				#{list items:tracks, as:'t'}
 					#{option t.id}
-						${t.name}
+						${t}
 					#{/option}
 				#{/list}
 			#{/select}

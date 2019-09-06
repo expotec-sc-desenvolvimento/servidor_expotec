@@ -58,7 +58,23 @@ public class Track extends Model {
     @Column(name = "ordem")
     public int order;
     
-    @Enumerated(EnumType.STRING)
+    @Override
+	public String toString() {
+    	String r = this.name+" - ";
+    	if(order == 1) {
+    		r += "Parcial";
+    	}else if(order ==2) {
+    		r += "Correção";
+    	}else if(order ==3) {
+    		r += "Final";
+    	}else {
+    		r += this.order+"º ";
+    	}
+    		
+		return r;
+	}
+
+	@Enumerated(EnumType.STRING)
     public TrackStatus status;
 
     @Enumerated(EnumType.STRING)

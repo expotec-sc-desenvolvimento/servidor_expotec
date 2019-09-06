@@ -135,6 +135,9 @@ public class Administrators extends Attendants {
 		List<TrackStatus> trackStatus = TrackStatus.list();
 		renderArgs.put("tkStatus", trackStatus);
         
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		renderArgs.put("tracks", event.getOpenedTracks());
+		
 		Track t = Track.findById(id);
 		renderArgs.put("track", t);
 		render();
@@ -152,9 +155,11 @@ public class Administrators extends Attendants {
 		
  		List<TrackStatus> trackStatus = TrackStatus.list();
 		renderArgs.put("tkStatus", trackStatus);
+		
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		renderArgs.put("tracks", event.getOpenedTracks());
         
 		Track t = new Track();
-		Event event = Event.findById(Long.parseLong(session.get("eventid")));
 		t.event = event;
 		t.status = TrackStatus.DRAFT;
 		renderArgs.put("track", t);

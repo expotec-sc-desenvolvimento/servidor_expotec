@@ -9,14 +9,11 @@
 <div class="row toptoolbar">
 	#{btSmallNew url:@Administrators.newTrack() /}
 </div>
-#{tabelaDinamica id:'tbTracks', list:tracks, chavesCabecalho:['Tipo', 'Nome','DeadLine', 'Visibilidade', 'Status']}
+#{tabelaDinamica id:'tbTracks', list:tracks, chavesCabecalho:['Tipo', 'Nome', 'Etapa', 'DeadLine', 'Status']}
 	#{list items:tracks, as:'t'}
 		<tr>
 			<td>${t.type.name}</td>
 			<td>${t.name}</td>
-			<td>
-				<small>${t.start.format("dd/MM/yyyy")} - ${t.end.format("dd/MM/yyyy")}</small>
-			</td>
 			#{if t.order ==1}
 			<td>&{'track.order.first'}</td>
 			#{/if}
@@ -29,6 +26,10 @@
 			#{else}
 			<td>${track.order}º</td>
 			#{/else}
+			<td>
+				<small>${t.start.format("dd/MM/yyyy")} - ${t.end.format("dd/MM/yyyy")}</small>
+			</td>
+
 			<td>${t.status.name}</td>
 			<td class="text-center">
 				#{btIconEdit url:@Administrators.editTrack(t.id)/}

@@ -12,6 +12,19 @@
 						</div>
 						<div class="mypanel-detail small-img">
 							<div class="font-16">${t.name}</div>
+							<div>&{'track.privacy'}: 
+							#{if t.order ==1}
+								&{'track.order.first'}
+							#{/if}
+							#{elseif t.order ==2}
+								&{'track.order.second'}
+							#{/elseif}
+							#{elseif t.order ==3}
+								&{'track.order.third'}
+							#{/elseif}
+							#{else}
+								${track.order}º
+							#{/else}
 							<div>	
 								<small>	
 									<span class="label label-warning">${t.start.format("dd/MM/yyyy")}</span>
