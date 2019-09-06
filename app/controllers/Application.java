@@ -13,6 +13,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Parameter;
 import org.junit.After;
 
+import models.Activity;
 import models.Event;
 import models.Permission;
 import models.User;
@@ -53,6 +54,24 @@ public class Application extends Controller {
 		renderTemplate("Application/index.html");
 	}
 
+	
+	public static void detailUserJSON(Long id) {
+		
+		User user = User.findById(id);
+		renderJSON(user);
+	}
+	
+	public static void listActivitiesJSON(Long id) {
+		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+id).fetch();
+		
+		renderJSON(activities);
+	}
+	
+	public static void listEventsJSON() {
+		List<Event> events = Event.findAll();
+		renderJSON(events);
+	}
+	
 	public static void cpanel() throws Throwable {
 		if (session.get("userid") == null) {
 			Security.login();

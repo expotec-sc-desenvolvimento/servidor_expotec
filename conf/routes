@@ -11,6 +11,13 @@ GET	 	/signup									Application.signup
 POST    /newuser								Application.save(user: User)
 GET     /attendees/getuserpicture/{userid}/		Attendees.getUserPicture(userid: Long)
 GET		/{controller}/viewevent/{id}			{controller}.viewEvent(id: Long)
+
+GET		/detail/user/{id}						Application.detailUserJSON(id: Long)
+GET		/list/activities/{id}					Application.listActivitiesJSON(id: Long)
+GET		/list/events							Application.listEventsJSON
+
+#POST    /presenca/{idAtividade}/{idUsuario}		Attendants.registrarPresenca{idAtividade: Long, idUsuario: Long}
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

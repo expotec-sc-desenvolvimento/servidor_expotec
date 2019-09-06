@@ -171,6 +171,9 @@ public class Administrators extends Attendants {
 		render();
 	}
 
+	
+
+	
 	public static void listEvents() {
 		List<Event> events = Event.all().fetch();
 		renderArgs.put("events", events);

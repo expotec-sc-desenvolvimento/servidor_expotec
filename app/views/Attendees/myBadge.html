@@ -28,12 +28,19 @@
 	</div>
 </div>
 
-#{set 'moreScripts'}
 <script src="@{'/public/js/qrcode.min.js'}"></script>
 
+#{set 'moreScripts'}
+
 <script type="text/javascript">
-	var qrcode = new QRCode(document.getElementById("${ulogado.uuid}"));
-    qrcode.clear(); 
-    qrcode.makeCode(${ulogado.uuid});    
+	$(function(){
+		var uuid= ${ulogado.uuid};
+		var qrcode = new QRCode(
+			document.getElementById("${ulogado.uuid}"),{
+				text: "${ulogado.uuid}"
+			}
+		);
+	});
+	    
 </script>
 #{/set}

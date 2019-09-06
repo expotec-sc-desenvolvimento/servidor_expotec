@@ -24,7 +24,12 @@
 					<li><a href="@{Application.index()}">&{'index.menu.index'}</a></li>
 					<li><a href="@{Application.callForPapers()}">&{'index.menu.submission'}</a></li>
 					<li><a href="@{Application.sheduleOfActivities()}">&{'index.menu.schedule'}</a></li>
-					<li><a href="@{Application.comingSoon()}">&{'index.menu.blog'}</a></li>
+					#{if event.blog.trim().equals("")}
+						<li><a href="@{Application.comingSoon()}">&{'index.menu.blog'}</a></li>
+					#{/if}
+					#{else}
+						<li><a href="${event.blog}">&{'index.menu.blog'}</a></li>
+					#{/else}
 					<li>
 						<a href="@{Application.cpanel()}" class="btn-info">
 						#{if session.get("userid") == null}
