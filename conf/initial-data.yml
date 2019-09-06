@@ -82,7 +82,7 @@ Activity(minicurso):
    facilitators: [admin, participante]
 
 Track(miniCurso):
-   name: "Artigo Resumidos"
+   name: "Minicursos Expotec/S"
    start: 2019-08-28
    end: 2019-08-29
    minEvaluations: 3
@@ -91,6 +91,7 @@ Track(miniCurso):
    calcType: ARITHMETIC_AVG
    type: SHORTCOURSE
    event: expotecsc
+   order: 1
    
 Criteria(c1):
    description: "Potencial"

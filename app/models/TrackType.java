@@ -6,7 +6,7 @@ import java.util.Arrays;
 public enum TrackType {
 	PI("Projeto Integrador"),
 	TCC("Trabalho de Conclusão de Curso"),
-	SOFTWARE("Software"),
+	SHOWCASE("Mostra"),
 	SHORTPAPER("Artigos Resumidos"),
 	FULLPAPER("Artigos Completos"),
     WORKSHOP("Oficinas"),

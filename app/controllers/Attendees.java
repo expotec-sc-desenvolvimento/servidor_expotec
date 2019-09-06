@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import models.Activity;
 import models.Area;
 import models.Event;
 import models.Paper;
 import models.PaperStatus;
 import models.Permission;
+import models.Track;
 import models.User;
 import play.Play;
 import play.data.validation.Valid;
@@ -68,6 +70,24 @@ public class Attendees extends Controller {
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));
 		renderArgs.put("tracks", event.getOpenedTracks());
 		
+		renderTemplate("Attendees/newPaper.html");
+	}
+	
+	public static void newPaperTrack(Long id) {
+		Paper paper = new Paper();
+		
+		User user = User.findById(Long.parseLong(session.get("userid")));
+		paper.author = user;
+		paper.status = PaperStatus.DRAFT;
+		
+		renderArgs.put("paper", paper);
+		
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		renderArgs.put("tracks", event.getOpenedTracks());
+		
+		Track track = Track.findById(id);
+		paper.track = track;
+				
 		renderTemplate("Attendees/newPaper.html");
 	}
 

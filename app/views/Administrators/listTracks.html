@@ -17,7 +17,18 @@
 			<td>
 				<small>${t.start.format("dd/MM/yyyy")} - ${t.end.format("dd/MM/yyyy")}</small>
 			</td>
-			<td>${t.privacy? 'Chamada Pública': 'Chamda Interna'}</td>
+			#{if t.order ==1}
+			<td>&{'track.order.first'}</td>
+			#{/if}
+			#{elseif t.order ==2}
+			<td>&{'track.order.second'}</td>
+			#{/elseif}
+			#{elseif t.order ==3}
+			<td>&{'track.order.third'}</td>
+			#{/elseif}
+			#{else}
+			<td>${track.order}º</td>
+			#{/else}
 			<td>${t.status.name}</td>
 			<td class="text-center">
 				#{btIconEdit url:@Administrators.editTrack(t.id)/}

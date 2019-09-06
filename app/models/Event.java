@@ -94,8 +94,8 @@ public class Event extends Model{
     }
     
     @Transient
-    public List<Track> getPublicUndraftTracks(){
-        List<Track> tracks = JPA.em().createQuery("select t from Track t where t.status != 'DRAFT' and t.privacy = true  and t.event.id =  '"+this.id+"'").getResultList();
+    public List<Track> getParcialUndraftTracks(){
+        List<Track> tracks = JPA.em().createQuery("select t from Track t where t.status != 'DRAFT' and t.order = 1  and t.event.id =  '"+this.id+"'").getResultList();
         return tracks;
     }
 }

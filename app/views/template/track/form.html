@@ -26,28 +26,27 @@
 	</div>
 	#{/field}
      
-	#{field 'track.minEvaluations'}
-	<div class="col-md-3  mb-4">
-		<label for="${field.name}">&{'track.minEvaluations'}</label> <input
-			type="number" id="${field.name}" name="${field.name}"
-			value="${field.value}" class="form-control" min="1"
-			placeholder="&{'track.minEvaluations'}" required >
-		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
-			${errors.forKey(field.name)}
-		</div>
-	</div>
-	#{/field}
 	
-	#{field 'track.calcType'}
+	#{field 'track.order'}
 	<div class="col-md-3  mb-4">
-        	<label  for="${field.name}" >&{'track.calcType'}</label>
-		    #{select field.name, class:"form-control", value:field.value, id:"track.calcType" }
-				#{list items:calcTypes, as:'c'}
-					#{option c} ${c.name} #{/option}
-				#{/list}
+        	<label  for="${field.name}" >&{'track.privacy'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"track.privacy" }
+				#{option 1}&{'track.order.first'}#{/option}
+				#{option 2}&{'track.order.second'}#{/option}
+				#{option 3}&{'track.order.third'}#{/option}
 			#{/select}
      </div>
      #{/field}
+	#{field 'track.status'}
+	<div class="col-md-3 mb-4">
+		<label  for="${field.name}" >&{'track.status'}</label>
+		 #{select field.name, class:"form-control", value:field.value, id:"track.status" }
+				#{list items:tkStatus, as:'s'}
+					#{option s} ${s.name} #{/option}
+				#{/list}
+		#{/select}
+	</div>
+	#{/field}
 
 	
 </div>
@@ -81,26 +80,28 @@
 		</div>
 	</div>
 	#{/field}
-	
-	#{field 'track.privacy'}
+	#{field 'track.minEvaluations'}
 	<div class="col-md-3  mb-4">
-        	<label  for="${field.name}" >&{'track.privacy'}</label>
-		    #{select field.name, class:"form-control", value:field.value, id:"track.privacy" }
-				#{option true}&{'track.privacy.true'}#{/option}
-				#{option false}&{'track.privacy.false'}#{/option}
+		<label for="${field.name}">&{'track.minEvaluations'}</label> <input
+			type="number" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control" min="1"
+			placeholder="&{'track.minEvaluations'}" required >
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	
+	#{field 'track.calcType'}
+	<div class="col-md-3  mb-4">
+        	<label  for="${field.name}" >&{'track.calcType'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"track.calcType" }
+				#{list items:calcTypes, as:'c'}
+					#{option c} ${c.name} #{/option}
+				#{/list}
 			#{/select}
      </div>
      #{/field}
-	#{field 'track.status'}
-	<div class="col-md-3 mb-4">
-		<label  for="${field.name}" >&{'track.status'}</label>
-		 #{select field.name, class:"form-control", value:field.value, id:"track.status" }
-				#{list items:tkStatus, as:'s'}
-					#{option s} ${s.name} #{/option}
-				#{/list}
-		#{/select}
-	</div>
-	#{/field}
 </div>
 
 <div class="row">

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -53,7 +54,9 @@ public class Track extends Model {
     public int minEvaluations;
     
     @NotNull
-    public boolean privacy;
+    @Min(1)
+    @Column(name = "ordem")
+    public int order;
     
     @Enumerated(EnumType.STRING)
     public TrackStatus status;

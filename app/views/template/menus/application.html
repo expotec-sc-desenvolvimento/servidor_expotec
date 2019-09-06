@@ -24,7 +24,7 @@
 					<li><a href="@{Application.index()}">&{'index.menu.index'}</a></li>
 					<li><a href="@{Application.callForPapers()}">&{'index.menu.submission'}</a></li>
 					<li><a href="@{Application.sheduleOfActivities()}">&{'index.menu.schedule'}</a></li>
-					#{if event.blog.trim().equals("")}
+					#{if event?.blog == null || event?.blog?.trim().equals("")}
 						<li><a href="@{Application.comingSoon()}">&{'index.menu.blog'}</a></li>
 					#{/if}
 					#{else}
