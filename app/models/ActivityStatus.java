@@ -18,9 +18,4 @@ public enum ActivityStatus {
     public static List<ActivityStatus> list() {
         return Arrays.asList(ActivityStatus.values());
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

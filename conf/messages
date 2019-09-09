@@ -3,15 +3,17 @@ application.inscriptions= Inscrições
 application.finished=ENCERRADO
 application.participate= Participar
 application.author= IFRN/SC
+
 application.year= 2019
 application.date= Hoje é %s
 application.yes= Sim
 application.no= Não
 application.comingsoon=EM BREVE
 application.info=Para mais informações contactar a organização do evento
-application.error= Essa operação não pode ser realizada.
-application.success=  Essa operação foi realizada com sucesso.
+application.error= A operação não pode ser realizada.
+application.success=  Operação foi realizada com sucesso.
 
+button.close=Fechar
 button.select = Selecionar
 button.new = Nova
 button.save = Salvar
@@ -143,7 +145,7 @@ event.organization= Organização
 event.contact= Contatos
 event.logo= Logo
 event.empty = Você não possui eventos cadastrados.
-
+activity.new = Nova Atividade
 activity.detail = Detalhes da Atividade
 activity.edit = Editar Atividade
 activity.list= Lista de Atividades
@@ -152,6 +154,17 @@ activity.limited.true= Acesso Limitado
 activity.limited.false= Acesso Ilimitado
 activity.numMinutes.min= min.
 activity.users= Responsáveis
+activity.type = Tipo 
+activity.title = Título
+activity.mainGoal = Objetivo
+activity.description = Descrição
+activity.program = Conteúdo Programado
+activity.numMinutes= Carga Horária (Minutos)
+activity.status=Status
+activity.limited=Acesso limitado
+activity.maxAttendees=Máx. Inscrições
+activity.startInscription=Início das Inscrições
+activity.facilitators=Responsáveis
 
 track.list = Chamadas
 track.edit = Editar Chamada
@@ -169,6 +182,7 @@ track.calcType= Forma de Cálculo
 track.status= Status
 track.type= Tipo da Chamada
 track.prior= Chamada anterior
+
 track.success = Chamada cadastrada com sucesso!
 
 track.criterias = Critérios de Avaliação

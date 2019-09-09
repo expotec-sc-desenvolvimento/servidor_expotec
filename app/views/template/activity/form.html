@@ -1,0 +1,201 @@
+<div class="row">
+	#{field 'activity.event.id'}
+	<input type="hidden" name="${field.name}" value="${field.value}"/>
+	#{/field}
+	
+	#{field 'activity.type.id'}
+	<div class="col-md-3  mb-4">
+        	<label  for="${field.name}" >&{'activity.type'}</label>
+		    #{select field.name, class:"form-control", value:field.value, id:"activity.type" }
+				#{list items:types, as:'t'}
+					#{option t.id}
+						${t.name}
+					#{/option}
+				#{/list}
+			#{/select}
+     </div>
+     #{/field}
+     
+     #{field 'activity.title'}
+	<div class="col-md-9  mb-8">
+		<label for="${field.name}">&{'activity.title'}</label> <input
+			type="text" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control"
+			placeholder="&{'activity.title'}" required 
+			minlength="0" maxlength="150">
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	
+</div>
+
+<div class="row">
+	
+	#{field 'activity.mainGoal'}
+	<div class="col-md-12 mb-4">
+		<label class="control-label">&{'activity.mainGoal'}</label>
+		<input type="text" value="${field.value}" id="${field.name}"
+			name="${field.name}" class="form-control" maxlength="150">
+		
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'activity.description'}
+	<div class="col-md-12  mb-4">
+		<label for="${field.name}">&{'activity.description'}</label> 
+		
+		<textarea id="description" name="${field.name}" style="height:100px;"
+			 class="form-control" >${field.value}</textarea>
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+ 	#{field 'activity.facilitators'}
+	<div class="col-md-12 ">
+        <label  for="${field.name}" >&{'activity.facilitators'}</label>
+		<div class="form-group">
+			<input id="facilitators" type="hidden" class="facilitators-input"  name="facilitators" value="${field.values}"/>
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">	
+	#{field 'activity.numMinutes'}
+	<div class="col-md-3  mb-4">
+		<label for="${field.name}">&{'activity.numMinutes'}</label> 
+		<input
+			type="number" id="${field.name}" name="${field.name}"
+			value="${field.value}" class="form-control" min="1"
+			placeholder="&{'track.minEvaluations'}" required >
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	<div class="col-md-3 mb-4">
+		<label  for="${field.name}">&{'activity.limited'}</label>
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="custom-checkbox">
+					#{field 'activity.limited'}
+					#{checkbox id:field.name, name:field.name, checked: field.value /}
+					
+					#{/field}
+				</span>
+			</span>
+			#{field 'activity.maxAttendees'}
+			<input type="number" class="form-control" value="${field.value}" id="${field.name}"
+			name="${field.name}" min="0" placeholder="&{'activity.maxAttendees'}"/>
+			#{/field}
+		</div>
+	</div>
+	
+	#{field 'activity.startInscription'}
+	<div class="col-md-3 mb-4">
+		<label class="control-label">&{'activity.startInscription'}</label>
+		<input type="date" value="${field.value}" id="${field.name}"
+			name="${field.name}" class="form-control">
+		
+		<div class="help-inline ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+	#{field 'activity.status'}
+	<div class="col-md-3 mb-4">
+		<label  for="${field.name}" >&{'activity.status'}</label>
+		 #{select field.name, class:"form-control", value:field.value, id:"activity.status" }
+				#{list items:status, as:'s'}
+					#{option s} ${s.name} #{/option}
+				#{/list}
+		#{/select}
+	</div>
+	#{/field}
+</div>
+
+
+
+
+<!-- SELECT2 INPUT-->
+<link href="@{'public/plugins/select2/select2.css'}" rel="stylesheet"/>
+<script src="@{'public/plugins/select2/select2.min.js'}"></script>
+
+<script>
+	$(function(){
+		 $('#description').summernote({
+			 airMode: true,
+			 popover: {
+			 	air: [
+				    // [groupName, [list of button]]
+				    ['style', ['bold', 'italic', 'underline', 'clear']],
+				    ['fontsize', ['fontsize']],
+				    ['color', ['color']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				  ]
+			 }
+		 });
+		 
+		 var facilitators = [
+			 	#{list items:activity.facilitators, as:'fa'}
+			 	{ id: '${fa?.uuid}', text: '${fa}', locked: false},
+			 	#{/list}
+		 ];
+		 
+		 $('#facilitators').select2({
+			 	placeholder: "Buscar ",
+			    multiple: true,
+			    minimumInputLength: 1,
+				maximumSelectionSize: 6,
+				formatResult: format,
+				formatSelection: format,
+				ajax : {
+					url : "@{Administrators.carregarActiveUsers()}",
+					dataType : "json",
+					quietMillis : 1000,
+					data : function(term) {
+						return {
+							name : term
+						};
+					},
+					results : function(data) {
+						facilitators = [];
+						$.each(data, function(index, item) {
+							facilitators.push({
+								'id' : item.uuid,
+								'text' : item.name
+							});
+						});
+						return {
+								results : facilitators
+							};
+					}
+			  	}
+		});
+		 
+		 function format(user) {
+			 	console.log(user);
+			    if (!user.id) 
+			    	return user.text; // optgroup
+			    _linkTo = "@{Attendees.getUserPicture()}"+"/"+user.id+"/"; 
+			    return "<img class='flag' src='"+_linkTo+"'/>" + user.text;
+		}
+		 
+		$('#facilitators').select2('data', facilitators );
+		 
+		 
+	});
+	
+</script>
+

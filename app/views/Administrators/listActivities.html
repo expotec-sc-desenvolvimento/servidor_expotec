@@ -6,11 +6,13 @@
 #{set 'panel-title'}
     &{'activity.list'}
 #{/set}
-
+<div class="row toptoolbar">
+	#{btSmallNew url:@Administrators.newActivity() /}
+</div>
 #{tabelaDinamica id:'tbActivities', list:activities, chavesCabecalho:['Tipo', 'Nome','Responsáveis', 'Num. Inscritos', 'Status']}
 	#{list items:activities, as:'a'}
 		<tr>
-			<td>${a.type.name}</td>
+			<td>${a?.type?.name}</td>
 			<td>${a.title}</td>
 			<td>
 				#{list items:a.facilitators, as:'af'}

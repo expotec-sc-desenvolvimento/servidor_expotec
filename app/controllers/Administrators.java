@@ -44,6 +44,40 @@ public class Administrators extends Attendants {
         listEvents();
 	}
 
+	public static void saveActivity(@Valid Activity activity, String facilitators) {
+		boolean isNewActivity = activity.uuid == null || activity.uuid == 0;
+		if (validation.hasErrors() ) {
+			System.out.println(validation.errorsMap());
+            flash.error("application.error");
+            renderArgs.put("activity", activity);
+            
+            List<ActivityType> activityTypes = ActivityType.findAll();
+    		renderArgs.put("types", activityTypes);
+    		
+    		List<ActivityStatus> status = ActivityStatus.list();
+    		renderArgs.put("status", status);
+    		
+            if(isNewActivity) {
+				renderTemplate("Attendees/editActivity.html");
+			}else {
+				renderTemplate("Administrators/newActivity.html");
+			}
+        }
+		String uuidArray[] = facilitators.split(",");
+		List<User> fas = new ArrayList<User>();
+		for(String uuid: uuidArray) {
+			if(!uuid.trim().equals("")) {
+				User fa = User.findById(Long.parseLong(uuid));
+				fas.add(fa);
+			}
+		}
+		activity.facilitators = fas;
+		
+		activity.save();
+		flash.success("application.success");
+		listActivities(activity.event.id);
+	}
+	
 	public static void saveTrack(@Valid Track track, Criteria[] oCriterias, Criteria[] nCriterias) {
 
 		validation.future(track.end, track.start);
@@ -94,7 +128,7 @@ public class Administrators extends Attendants {
 		
 		JPA.em().createQuery("delete from Criteria c where c.track is null").executeUpdate();
 	
-		flash.success("track.success");
+		flash.success("application.success");
 		listTracks(track.event.id);
 	}
 	
@@ -118,7 +152,31 @@ public class Administrators extends Attendants {
 
 	public static void editActivity(Long id) {
 		Activity a = Activity.findById(id);
-		renderArgs.put("a", a);
+		renderArgs.put("activity", a);
+		
+		List<ActivityType> activityTypes = ActivityType.findAll();
+		renderArgs.put("types", activityTypes);
+		
+		List<ActivityStatus> status = ActivityStatus.list();
+		renderArgs.put("status", status);
+		
+		render();
+	}
+	public static void newActivity() {
+		Activity a = new Activity();
+		a.status = ActivityStatus.DRAFT;
+		Event event = Event.findById(Long.parseLong(session.get("eventid")));
+		a.event =event; 
+		a.startInscription = new Date();
+		
+		renderArgs.put("activity", a);
+		
+		List<ActivityType> activityTypes = ActivityType.findAll();
+		renderArgs.put("types", activityTypes);
+		
+		List<ActivityStatus> status = ActivityStatus.list();
+		renderArgs.put("status", status);
+		
 		render();
 	}
 	
@@ -176,9 +234,6 @@ public class Administrators extends Attendants {
 		render();
 	}
 
-	
-
-	
 	public static void listEvents() {
 		List<Event> events = Event.all().fetch();
 		renderArgs.put("events", events);
@@ -205,9 +260,21 @@ public class Administrators extends Attendants {
 	}
 	
 	public static void listPapers(Long eventid) {
+
 		List<Paper> papers = Paper.find("select p from Paper p where p.track.event.id = "+eventid).fetch();
 		renderArgs.put("papers", papers);
 		renderTemplate("Administrators/listPapers.html");
+	}
+	
+	public static void carregarActiveUsers(String name) {
+		List<User> _users = User.find("select distinct u from User u where lower(u.name) like '%" + name.toLowerCase()
+				+ "%' and u.status = true").fetch();
+		List<User> users = new ArrayList<User>();
+		for (User u : _users) {
+			User novo = new User(u.uuid, u.name, u.picture);
+			users.add(novo);
+		}
+		renderJSON(users);
 	}
 
 }

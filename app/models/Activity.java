@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import play.data.binding.As;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.data.validation.Unique;
@@ -42,55 +43,42 @@ public class Activity extends GenericModel{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UUID_SEQ")
 	@SequenceGenerator(name = "UUID_SEQ", sequenceName = "UUID_SEQ", initialValue = 1, allocationSize = 1)
 	public Long uuid;	
-	
+    
+	@NotNull
+    @ManyToOne
+    public Event event;
+    
+    @NotNull
+    @ManyToOne
+    public ActivityType type;
+    
 	@Unique
 	@NotNull
 	@Required(message="validacao.requerido")
+	@MaxSize(150)
     public String title;
-	
-	@Lob
-    @MaxSize(255)
-    public String description;
-    
-    @MaxSize(100)
-    public String targetPublic;
-	
-    @Lob
-    @MaxSize(255)
-	public String requirements;
-    
-	@Min(1)
-    public int numDays;
     
     @Min(0)
     public int numMinutes;
-   
-    
-    @NotNull
+	
+	@MaxSize(150)
+    public String mainGoal;
+	
+	@Lob
+    public String description;
+	
     public boolean limited;
     
     @Min(0)
     public int maxAttendees;
     
     @Temporal(TemporalType.DATE)
-    @Required(message = "validacao.requerido")
+    @As("yyyy-MM-dd")
     public Date startInscription;
-    
-    @Temporal(TemporalType.DATE)
-    @Required(message = "validacao.requerido")
-    public Date endInscription;
     
     @NotNull
     @Enumerated(EnumType.STRING)
     public ActivityStatus status;
-    
-    @NotNull
-    @ManyToOne
-    public ActivityType type;
-    
-    @NotNull
-    @ManyToOne
-    public Event event;
     
     @OneToMany(fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)

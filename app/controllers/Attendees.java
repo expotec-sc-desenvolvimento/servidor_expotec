@@ -128,7 +128,7 @@ public class Attendees extends Controller {
 			System.out.println(validation.errorsMap());
 			renderArgs.put("paper", paper);
 			flash.error("erro.operacao");
-			if(paper.uuid != 0) {
+			if(isNewPaper) {
 				renderTemplate("Attendees/editPaper.html");
 			}else {
 				renderTemplate("Attendees/newPaper.html");
@@ -147,7 +147,7 @@ public class Attendees extends Controller {
 		paper.coauthors = cas;
 		paper.save();
 		
-		flash.success("event.success");
+		flash.success("application.success");
 		if(isNewPaper) {
 			editPaper(paper.uuid);
 		}else {
