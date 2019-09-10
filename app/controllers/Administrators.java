@@ -87,7 +87,7 @@ public class Administrators extends Attendants {
         }
 		activitytype.save();
 		flash.success("applicaiton.success");
-		
+		listActivityTypes();
 	}
 	
 	public static void saveActivityType(String name, String color) {

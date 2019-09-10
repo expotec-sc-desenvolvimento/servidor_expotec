@@ -16,6 +16,9 @@
 							<div class="font-16">${a.title}</div>
 							<div>	
 							<small>							
+									&{'activity.ch'}:
+									${a.numMinutes} &{'activity.numMinutes.min'}
+									
 									#{if a.limited}
 										&{'activity.limited.true'}
 									#{/if}
@@ -23,7 +26,6 @@
 										&{'activity.limited.false'}
 									#{/else}	
 									
-									${a.numMinutes} &{'activity.numMinutes.min'}
 							</small>
 							</div>
 							<div>

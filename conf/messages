@@ -151,6 +151,7 @@ activitytype.new=Novo Tipo
 activitytype.name=Descrição
 activitytype.color=Cor
 
+activity.ch=Duração
 activity.new = Nova Atividade
 activity.detail = Detalhes da Atividade
 activity.edit = Editar Atividade
