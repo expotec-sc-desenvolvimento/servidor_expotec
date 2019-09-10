@@ -158,7 +158,6 @@ public class Administrators extends Attendants {
 	}
 	
 	public static void newActivity() {
-		session.put("url", "/administrators/newActivity");
 		Activity a = new Activity();
 		a.status = ActivityStatus.DRAFT;
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));

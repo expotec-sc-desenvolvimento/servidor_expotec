@@ -85,14 +85,12 @@ public class Attendees extends Controller {
 	
 	
 	public static void editMyProfile() {
-		session.put("url", "/attendees/editMyProfile");
 		User user = User.findById(Long.parseLong(session.get("userid")));
 		renderArgs.put("user", user);
 		renderTemplate("Attendees/editMyProfile.html");
 	}
 
 	public static void newPaper() {
-		session.put("url", "/attendees/newPaper");
 		Paper paper = new Paper();
 		
 		User user = User.findById(Long.parseLong(session.get("userid")));
@@ -189,6 +187,7 @@ public class Attendees extends Controller {
 		}
 	}
 	public static void listMyInscriptions() {
+		session.put("url", "/attendees/listMyInscriptions");
 		renderTemplate("Attendees/listMyInscriptions.html");
 	}
 	
