@@ -98,7 +98,7 @@
                     </li>
                                   
                     <li>
-                        <a href="#" class="${session.get('page').equals('cpanel') ? 'active':''}">
+                        <a href="@{Attendees.listMyInscriptions()}" class="${session.get('page').equals('cpanel') ? 'active':''}">
                             <i class="lnr lnr-list"></i> 
                             <span>&{'cpanel.menu.myactivities'}</span>
                         </a>

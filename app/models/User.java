@@ -102,4 +102,13 @@ public class User extends GenericModel {
         List<Paper> papers = JPA.em().createQuery("select p from Paper p left join p.coauthors ca where p.author.uuid =  "+this.uuid+" or ca.uuid = "+this.uuid).getResultList();
         return papers;
     }
+    
+    @Transient
+    public List<Inscription> getMyInscriptions (){
+        List<Inscription> inscriptions = JPA.em().createQuery("select i from Inscription i where i.user.uuid =  "+this.uuid).getResultList();
+        return inscriptions;
+    }
+    
+   
+    
 }

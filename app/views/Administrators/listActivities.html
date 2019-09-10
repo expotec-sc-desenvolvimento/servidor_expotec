@@ -7,9 +7,19 @@
     &{'activity.list'}
 #{/set}
 <div class="row toptoolbar">
-	#{btSmallNew url:@Administrators.newActivity() /}
+#{if flash.error}
+	<div class="alert alert-danger alert-dismissible text-left" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+        	</span>
+		</button>
+    	${messages.get(flash.error)}
+	</div>
+#{/if}
+#{btSmallNew url:@Administrators.newActivity() /}
 </div>
-#{tabelaDinamica id:'tbActivities', list:activities, chavesCabecalho:['Tipo', 'Nome','Responsáveis', 'Num. Inscritos', 'Status']}
+#{tabelaDinamica id:'tbActivities', list:activities, chavesCabecalho:['Tipo', 'Nome','Responsáveis', 'Inscrições', 'Status']}
 	#{list items:activities, as:'a'}
 		<tr>
 			<td>${a?.type?.name}</td>
@@ -19,10 +29,16 @@
 					<small>${af}.</small>
 				#{/list}
 			</td>
-			<td>0</td>
+			#{if a.limited}
+			<td>${a.getInscriptions().size()}/${a?.maxAttendees}</td>
+			#{/if}
+			#{else}
+			<td>${a.getInscriptions().size()}</td>
+			#{/else}
 			<td>${a.status.name}</td>
 			<td class="text-center">
 				#{btIconEdit url:@Administrators.editActivity(a.uuid) /}
+				#{btIconRemove url:@Administrators.removeActivity(a.uuid) /}
 			</td>
 		</tr>
 	#{/list}

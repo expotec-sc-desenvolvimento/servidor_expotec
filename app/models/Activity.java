@@ -93,6 +93,17 @@ public class Activity extends GenericModel{
         List<Inscription> inscriptions = Inscription.find("byActivity", this).fetch();
         return inscriptions;
     }
+    
+    @Override
+    public String toString() {
+    	return this.type.name +" - "+this.title;
+    }
+    
+    @Transient
+    public boolean hasInscription(Long id) {
+    	Inscription inscription = Inscription.find("select i from Inscription i where i.user.uuid =  "+id+" and i.activity.uuid = "+this.uuid).first();
+    	return inscription!= null;
+    }
    
     
 }

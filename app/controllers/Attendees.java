@@ -10,6 +10,7 @@ import java.util.List;
 import models.Activity;
 import models.Area;
 import models.Event;
+import models.Inscription;
 import models.Paper;
 import models.PaperStatus;
 import models.Permission;
@@ -17,6 +18,7 @@ import models.Track;
 import models.User;
 import play.Play;
 import play.data.validation.Valid;
+import play.db.jpa.JPA;
 import play.libs.Crypto;
 import play.mvc.After;
 import play.mvc.Before;
@@ -27,13 +29,15 @@ import play.vfs.VirtualFile;
 @With(Secure.class)
 @Check("participante")
 public class Attendees extends Controller {
-
+	private static String _url;
 	@Before
 	static void setUserAndEvent() {
 		User user = User.findById(Long.parseLong(session.get("userid")));
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));
 		renderArgs.put("ulogado", user);
 		renderArgs.put("event", event);
+		_url = session.get("url");
+		
 	}
 
 	public static void printMyBadge() {
@@ -41,24 +45,54 @@ public class Attendees extends Controller {
 	}
 
 	public static void cpanel() {
+		session.put("url", "/attendees/cpanel");
 		renderTemplate("Attendees/cpanel.html");
 	}
 
 	public static void viewMyProfile() {
+		session.put("url", "/attendees/viewMyProfile");
 		renderTemplate("Attendees/viewMyProfile.html");
 	}
 
 	public static void listMyPapers() {
+		session.put("url", "/attendees/listMyPapers");
 		renderTemplate("Attendees/listMyPapers.html");
 	}
 
+	public static void subscribe(Long id) {
+		User u = User.findById(Long.parseLong(session.get("userid")));		
+		Inscription i = Inscription.find("select i from Inscription i where i.activity.uuid = "+id+" and i.user.uuid =  "+u.uuid).first();
+		if(i == null) {
+			i = new Inscription();
+			Activity a = Activity.findById(id);
+			i.activity = a;
+			i.user = u;
+			i.save();
+		}
+		redirect(Play.ctxPath+_url);
+		
+	}
+	
+	public static void unsubscribe(Long id) {
+		User u = User.findById(Long.parseLong(session.get("userid")));		
+		Inscription i = Inscription.find("select i from Inscription i where i.activity.uuid = "+id+" and i.user.uuid =  "+u.uuid).first();
+		if(i != null) {
+			i.delete();
+		}
+		redirect(Play.ctxPath+_url);
+		
+	}
+	
+	
 	public static void editMyProfile() {
+		session.put("url", "/attendees/editMyProfile");
 		User user = User.findById(Long.parseLong(session.get("userid")));
 		renderArgs.put("user", user);
 		renderTemplate("Attendees/editMyProfile.html");
 	}
 
 	public static void newPaper() {
+		session.put("url", "/attendees/newPaper");
 		Paper paper = new Paper();
 		
 		User user = User.findById(Long.parseLong(session.get("userid")));
@@ -154,7 +188,9 @@ public class Attendees extends Controller {
 			listMyPapers();
 		}
 	}
-
+	public static void listMyInscriptions() {
+		renderTemplate("Attendees/listMyInscriptions.html");
+	}
 	
 	public static void myBadge() {
 		renderTemplate("Attendees/myBadge.html");

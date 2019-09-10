@@ -39,18 +39,22 @@ public class Application extends Controller {
 	}
 	
 	public static void comingSoon() throws Throwable {
+		session.put("url", "/application/commingSoon");
 		renderTemplate("Application/comingsoon.html");
 	}
 	
 	public static void callForPapers() throws Throwable {
+		session.put("url", "/application/callForPapers");
 		renderTemplate("Application/callforpapers.html");
 	}
 	
 	public static void sheduleOfActivities() throws Throwable {
+		session.put("url", "/application/sheduleOfActivities");
 		renderTemplate("Application/schedule.html");
 	}
 	
 	public static void index() throws Throwable {
+		session.put("url", "/application/index");
 		renderTemplate("Application/index.html");
 	}
 

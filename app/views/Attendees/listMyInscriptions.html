@@ -1,0 +1,45 @@
+#{extends 'template/layout.html' /}
+#{set 'title'}
+    &{'inscription.mylist'}
+#{/set}
+
+#{set 'panel-title'}
+    &{'inscription.mylist'}
+#{/set}
+
+<div class="row">
+#{if flash.error}
+	<div class="alert alert-danger alert-dismissible text-left" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+        	</span>
+		</button>
+    	${messages.get(flash.error)}
+	</div>
+#{/if}	
+</div>
+
+#{tabelaDinamica id:'tbInscricoes', list:ulogado.getMyInscriptions(), chavesCabecalho:['Atividade', 'Programacao', 'Presença']}
+	#{list items:ulogado.getMyInscriptions(), as:'i'}
+		<tr>
+			<td>${i?.activity}</td>
+			<td>
+				<ul>
+			 	#{list items:i.activity.schedules, as:'s'}
+			 		<li>${s}</li>	
+				#{/list}
+				</ul>
+			</td>
+			<td>${i?.present}</td>
+			<td class="text-center">
+				
+			</td>
+		</tr>
+	#{/list}
+#{/tabelaDinamica}
+
+
+#{set 'moreScripts'}
+		
+#{/set}

@@ -1,5 +1,6 @@
 package controllers;
 
+import play.Play;
 import play.db.jpa.JPA;
 import play.libs.Crypto;
 import play.mvc.Before;
@@ -19,6 +20,8 @@ import models.*;
 @With(Secure.class)
 @Check("administrador")
 public class Administrators extends Attendants {
+	private static String _url;
+	
 	public Administrators() {
 		super();
 	}
@@ -29,6 +32,7 @@ public class Administrators extends Attendants {
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));
 		renderArgs.put("ulogado", user);
 		renderArgs.put("event", event);
+		_url = session.get("url");
 	}
 
 	public static void listActivityTypes() {
@@ -83,7 +87,7 @@ public class Administrators extends Attendants {
         }
 		activitytype.save();
 		flash.success("applicaiton.success");
-		listActivityTypes();
+		
 	}
 	
 	public static void saveActivityType(String name, String color) {
@@ -120,12 +124,26 @@ public class Administrators extends Attendants {
         listEvents();
 	}
 	
-	public static void listActivities(Long eventid) {
-		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+eventid).fetch();
+	public static void listActivities(Long id) {
+		session.put("url", "/administrators/listActivities?id="+id);
+		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+id).fetch();
 		renderArgs.put("activities", activities);
 		renderTemplate("Administrators/listActivities.html");
 	}
 
+	public static void removeActivity(Long id) {
+		Activity a = Activity.findById(id);
+		Long eventid = a.event.id;
+		if(a.getInscriptions().size() > 0) {
+			List<Activity> activities = Activity.find("select a from Activity a where a.event.id = "+eventid).fetch();
+			renderArgs.put("activities", activities);
+			flash.error("erro.dependencia");
+			renderTemplate("Administrators/listActivities.html");
+		}	
+		a.delete();
+		listActivities(eventid);
+	}
+	
 	public static void editActivity(Long id) {
 		Activity a = Activity.findById(id);
 		renderArgs.put("activity", a);
@@ -140,6 +158,7 @@ public class Administrators extends Attendants {
 	}
 	
 	public static void newActivity() {
+		session.put("url", "/administrators/newActivity");
 		Activity a = new Activity();
 		a.status = ActivityStatus.DRAFT;
 		Event event = Event.findById(Long.parseLong(session.get("eventid")));
@@ -187,12 +206,13 @@ public class Administrators extends Attendants {
 		
 		activity.save();
 		flash.success("application.success");
-		listActivities(activity.event.id);
+		redirect(Play.ctxPath+_url);
 	}
 	
 	
-	public static void listTracks(Long eventid) {
-		List<Track> tracks = Track.find("select t from Track t where t.event.id = "+eventid).fetch();
+	public static void listTracks(Long id) {
+		session.put("url", "/administrators/listTracks");
+		List<Track> tracks = Track.find("select t from Track t where t.event.id = "+id).fetch();
 		renderArgs.put("tracks", tracks);
 		renderTemplate("Administrators/listTracks.html");
 	}
@@ -200,6 +220,7 @@ public class Administrators extends Attendants {
 	
 	
 	public static void editTrack(Long id) {
+		session.put("url", "/administrators/editTrack?id="+id);
 		List<TrackType> trackTypes = TrackType.list();
 		renderArgs.put("tktypes", trackTypes);
 		
@@ -221,6 +242,7 @@ public class Administrators extends Attendants {
 	}
 	
 	public static void newTrack() {
+		session.put("url", "/administrators/newTrack");
 		List<TrackType> trackTypes = TrackType.list();
 		renderArgs.put("tktypes", trackTypes);
 		
@@ -301,7 +323,7 @@ public class Administrators extends Attendants {
 	}
 	
 	public static void editUser(Long id) {
-		
+		session.put("url", "/administrators/editUser?id="+id);
 		List<Permission> permissions = Permission.list();
 		renderArgs.put("permissions", permissions);
 		
@@ -313,6 +335,7 @@ public class Administrators extends Attendants {
 	
 	
 	public static void listUsers() {
+		session.put("url", "/administrators/listUsers");
 		List<User> users = User.all().fetch();
 		renderArgs.put("users", users);
 		renderTemplate("Administrators/listUsers.html");
@@ -343,9 +366,9 @@ public class Administrators extends Attendants {
 		renderJSON(users);
 	}
 	
-	public static void listPapers(Long eventid) {
-
-		List<Paper> papers = Paper.find("select p from Paper p where p.track.event.id = "+eventid).fetch();
+	public static void listPapers(Long id) {
+		session.put("url", "/administrators/listPapers?id="+id);
+		List<Paper> papers = Paper.find("select p from Paper p where p.track.event.id = "+id).fetch();
 		renderArgs.put("papers", papers);
 		renderTemplate("Administrators/listPapers.html");
 	}

@@ -10,7 +10,6 @@
 #{/set} 
 
 
-
 <div class="wrapper front-end-wrapper ">
 	#{include 'template/menus/application.html' /}
 	<div class="section " >
@@ -25,7 +24,7 @@
 			</div>
 			
   				
-  				#{listActivities list:event.getUndraftActivities() /}
+  				#{listActivities list:event.getUndraftActivities(), userid:session.get('userid') /}
   				
 			</div>
 		</div>

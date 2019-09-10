@@ -201,6 +201,7 @@ track.order.third=Final
 
 inscription.subscribe= Inscrever-se
 inscription.unsubscribe= Desinscrever-se
+inscription.mylist = Minhas Inscrições
 
 schedule.title.first=#PROGRAMA
 schedule.title.second=DASATIVIDADES
@@ -231,3 +232,5 @@ area.list= Áreas
 area.parent= Grande Área
 area.description= Descrição
 area.new = Nova Área
+
+

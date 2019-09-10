@@ -33,12 +33,15 @@
 							#{/list}
 							</div>
 							<div class="m-top-sm m-bottom-sm btn-group">
-								#{if session.get("userid") !=null}
-									#{if a.status.toString().equals("OPENED")}
-										<button type="button" class="btn btn-info btn-sm marginTB-xs" data-toggle="modal">&{'inscription.subscribe'}</button>	
-                     				#{/if}
-                    				#{else}
-                    					<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${a.status.name}</button>
+								#{if session.get("userid") !=null }
+									#{if a.hasInscription(session.get('userid').toLong())}
+										<a href="@{Attendees.unsubscribe(a.uuid)}" class="btn btn-danger btn-sm marginTB-xs">&{'inscription.unsubscribe'}</a>										
+									#{/if}
+									#{elseif a.status.toString().equals("OPENED")}
+										<a href="@{Attendees.subscribe(a.uuid)}" class="btn btn-info btn-sm marginTB-xs">&{'inscription.subscribe'}</a>
+                     				#{/elseif}
+                     				#{else}
+                    						<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${a.status.name}</button>
                     				#{/else}
                     				#{if _perm.equals("ADMIN")}
 										#{btSmallEdit url:@Administrators.editActivity(a.uuid) /}

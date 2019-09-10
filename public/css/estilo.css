@@ -406,7 +406,7 @@ li.item-flex {
 .mypanel-list ul li .mypanel-detail {
 	margin-left: 100px;
 	text-align: left;
-	max-width: 186px;
+	max-width: 225px;
 	word-wrap: break-word;
 }
 
@@ -418,6 +418,14 @@ li.item-flex {
 	.col-lg-3.cracha {
 		width: 50%;
 	}
+}
+
+a.paginate_button.current {
+    text-decoration: underline;
+}
+
+span a.paginate_button {
+    margin: 0px 3px 0px 3px;
 }
 
 @media screen and (max-width: 767px) {
