@@ -27,7 +27,7 @@ button.password= Alterar Senha
 button.add=Adicionar
 erro.permissao= Você não tem permissão para fazer essa operação.
 erro.operacao= Não foi possível realizar esta operação.
-
+erro.dependencia= Essa entidade possui dependência(s).
 
 
 secure.title= Acessar o Sistema
@@ -51,7 +51,7 @@ validacao.max = O tamanho máximo é %s.
 validacao.unico.papel = Já existe um papel com esta Descrição. Digite outra.
 validacao.unico.instituicao = Já existe uma intituição com este nome. Digite outro.
 validacao.unico.dia = Já existe um dia com este nome. Digite outro.
-
+cpanel.menu.types=Tipos de Atividade
 cpanel.menu.dashboard = Início
 cpanel.menu.myactivities = Minhas Inscrições
 cpanel.menu.mypapers= Minhas Submissões
@@ -145,6 +145,12 @@ event.organization= Organização
 event.contact= Contatos
 event.logo= Logo
 event.empty = Você não possui eventos cadastrados.
+
+activitytype.edit=Editar Tipo
+activitytype.new=Novo Tipo
+activitytype.name=Descrição
+activitytype.color=Cor
+
 activity.new = Nova Atividade
 activity.detail = Detalhes da Atividade
 activity.edit = Editar Atividade

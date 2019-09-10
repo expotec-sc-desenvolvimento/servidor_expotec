@@ -6,13 +6,21 @@
 	#{field 'activity.type.id'}
 	<div class="col-md-3  mb-4">
         	<label  for="${field.name}" >&{'activity.type'}</label>
-		    #{select field.name, class:"form-control", value:field.value, id:"activity.type" }
+        	<div class="input-group">
+		    #{select field.name, class:"form-control", value:field.value, id:"activityType" }
 				#{list items:types, as:'t'}
 					#{option t.id}
 						${t.name}
 					#{/option}
 				#{/list}
 			#{/select}
+			<div class="input-group-btn">
+				<a href="#formNewType" class="btn btn-success no-shadow" data-toggle="modal">
+					<span><i class="fa fa-plus"></i></span>
+				</a>
+				
+			</div>
+			</div>
      </div>
      #{/field}
      
@@ -125,14 +133,12 @@
 	#{/field}
 </div>
 
-
-
-
 <!-- SELECT2 INPUT-->
 <link href="@{'public/plugins/select2/select2.css'}" rel="stylesheet"/>
 <script src="@{'public/plugins/select2/select2.min.js'}"></script>
 
 <script>
+var $typeSelect = null;
 	$(function(){
 		 $('#description').summernote({
 			 airMode: true,
@@ -184,8 +190,7 @@
 			  	}
 		});
 		 
-		 function format(user) {
-			 	console.log(user);
+		function format(user) {
 			    if (!user.id) 
 			    	return user.text; // optgroup
 			    _linkTo = "@{Attendees.getUserPicture()}"+"/"+user.id+"/"; 
@@ -193,8 +198,8 @@
 		}
 		 
 		$('#facilitators').select2('data', facilitators );
-		 
-		 
+		
+		
 	});
 	
 </script>

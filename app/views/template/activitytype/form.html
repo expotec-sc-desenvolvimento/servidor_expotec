@@ -1,0 +1,27 @@
+<div class="row">
+     #{field 'activitytype.name'}
+	<div class="col-md-12  mb-8">
+		<label for="${field.name}">&{'activitytype.name'}</label> <input
+			type="text" id="atname" name="${field.name}"
+			value="${field.value}" class="form-control"
+			placeholder="&{'activitytype.name'}" required 
+			maxlength="50">
+		<div class="help-inline error ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+<div class="row">
+	#{field 'activitytype.color'}
+	<div class="col-md-3 mb-4">
+		<label class="control-label">&{'activitytype.color'}</label>
+		<input type="color" value="${field.value}" id="atcolor"
+			name="${field.name}" class="form-control"  required>
+		
+		<div class="help-inline error ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>

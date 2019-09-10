@@ -26,16 +26,16 @@
 	</div>
 #{/if}
 
-#{form @Administrators.saveActivity(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
-    #{include 'template/activity/form.html' /}
-    <input type='hidden' name="activity.uuid" value="${activity.uuid}">
+#{form @Administrators.saveActType(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
+    #{include 'template/activitytype/form.html' /}
+    <input type='hidden' name="id" value="activitytype.id">
     
     <div class="control-group form-actions">
     	<div class="row">
         	<div class="col-md-12 mb-4 text-right">
             	#{btSave /}
 	    	
-      			#{btCancel url:@Administrators.listActivities(activity.event.id)/}
+      			#{btCancel url:@Administrators.listActivityTypes()/}
         	</div>
     	</div>
     </div>

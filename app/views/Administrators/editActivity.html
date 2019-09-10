@@ -32,11 +32,9 @@
     
     <div class="control-group form-actions">
     	<div class="row">
-        	<div class="col-md-3 mb-4">
+        	<div class="col-md-12 mb-4 text-right">
             	#{btSave /}
-	    	</div>
-        
-      		<div class="col-md-3 mb-4">
+	    	
       			#{btCancel url:@Administrators.listActivities(activity.event.id)/}
         	</div>
     	</div>
@@ -44,11 +42,59 @@
 #{/form}
 
 
+<!-- Modal -->
+<div id="formNewType" class="modal fade" role="dialog" 
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">&{'activitytype.new'}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div class="modal-body">
+       	#{include 'template/activitytype/form.html' /}
+      </div>
+    	
+      <div class="modal-footer">
+     	<button id="btnSaveType" type="button" class="btn btn-primary">&{'button.save'}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 #{set 'moreScripts'}
 
 <script>
 	$(function(){
+		$("#btnSaveType").on("click", function(){
+			var name = $("#atname");
+			var color = $("#atcolor");
+			
+			if(name.val() == "" || name.val() == undefined){
+				$("#atname").next().html("Informe uma descrição para o tipo");
+			}else{
+				$.ajax({
+				     url: '@{Administrators.saveActivityType()}',
+				     data: {'name':name.val(),'color':color.val()},
+				     type: 'POST'
+					}).done(function(data) {
+						alert("Tipo adicionado com sucesso");
+						var o = new Option(data.name, data.id);
+						$("#activityType").append(o);
+					}).fail(function(){
+						alert("Não foi possível realizar essa operação.");
+					}).always(function(){
+						name.val("");
+						color.val("#000");
+						$("#atname").next().html("");
+						$("#formNewType").modal('hide');
+					});
+			}
+			
+		});
 	});
 	
 </script>
