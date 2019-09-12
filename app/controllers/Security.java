@@ -38,21 +38,21 @@ public class Security extends Secure.Security {
 
 	public static void login() throws Throwable {
 		flash.clear();
-    	Http.Cookie remember = request.cookies.get("rememberme");
-        if (remember != null && remember.value.indexOf("-") > 0) {
-            String sign = remember.value.substring(0, remember.value.indexOf("-"));
-            String email = remember.value.substring(remember.value.indexOf("-") + 1);
-            if (Crypto.sign(email).equals(sign)) {
-                User user = User.find("byEmail", email).first();
-                if(user != null){
-                    session.put("userid", user.uuid);
-                    session.put("permission", user.permission);
-                }
-            }
-        }
-        flash.keep("url");
-        Secure.login();
-    }
+		Http.Cookie remember = request.cookies.get("rememberme");
+		if (remember != null && remember.value.indexOf("-") > 0) {
+			String sign = remember.value.substring(0, remember.value.indexOf("-"));
+			String email = remember.value.substring(remember.value.indexOf("-") + 1);
+			if (Crypto.sign(email).equals(sign)) {
+				User user = User.find("byEmail", email).first();
+				if (user != null) {
+					session.put("userid", user.uuid);
+					session.put("permission", user.permission);
+				}
+			}
+		}
+		flash.keep("url");
+		Secure.login();
+	}
 
 	public static void authenticate(@Required String email, String password, boolean remember) throws Throwable {
 		// Check tokens
@@ -69,23 +69,23 @@ public class Security extends Secure.Security {
 			flash.error("secure.error");
 			params.flash();
 			login();
+		} else {
+			// Mark user as connected
+			session.put("email", email);
+			User user = User.find("byEmail", email).first();
+			if (user != null) {
+				session.put("userid", user.uuid);
+				session.put("permission", user.permission);
+			}
+			// Remember if needed
+			if (remember) {
+				Date expiration = new Date();
+				String duration = Play.configuration.getProperty("secure.rememberme.duration", "30d");
+				expiration.setTime(expiration.getTime() + ((long) Time.parseDuration(duration)) * 1000L);
+				response.setCookie("rememberme",
+						Crypto.sign(email + "-" + expiration.getTime()) + "-" + expiration.getTime(), duration);
+			}
 		}
-		// Mark user as connected
-		session.put("email", email);
-		User user = User.find("byEmail", email).first();
-		if (user != null) {
-			session.put("userid", user.uuid);
-			session.put("permission", user.permission);
-		}
-		// Remember if needed
-		if (remember) {
-			Date expiration = new Date();
-			String duration = Play.configuration.getProperty("secure.rememberme.duration", "30d");
-			expiration.setTime(expiration.getTime() + ((long) Time.parseDuration(duration)) * 1000L);
-			response.setCookie("rememberme",
-					Crypto.sign(email + "-" + expiration.getTime()) + "-" + expiration.getTime(), duration);
-		}
-		
 		Secure.redirectToOriginalURL();
 	}
 
@@ -95,18 +95,17 @@ public class Security extends Secure.Security {
 		response.removeCookie("rememberme");
 		Security.invoke("onDisconnected");
 		flash.success("secure.logout");
-		redirect(Play.ctxPath+"/login");
+		redirect(Play.ctxPath + "/login");
 	}
 
 	static boolean authenticate(String username, String password) {
-		User user = User.find("byEmail", username).first();
+		User user = User.find("select u from User u where u.email like '" + username + "' and status = 1").first();
 		if (user != null) {
-			
 			session.put("userid", user.uuid);
 			session.put("permission", user.permission);
-			
+
 			Event event = Event.all().first();
-            session.put("eventid", event.id);
+			session.put("eventid", event.id);
 			return user.password.equals(Crypto.passwordHash(password));
 		} else {
 			return false;
@@ -119,11 +118,11 @@ public class Security extends Secure.Security {
 		if (user != null) {
 			if ("administrador".equalsIgnoreCase(profile)) {
 				return user.permission == Permission.ADMIN;
-			}  else if ("Atendente".equalsIgnoreCase(profile)) {
+			} else if ("Atendente".equalsIgnoreCase(profile)) {
 				return user.permission == Permission.ATTENDANT || user.permission == Permission.ADMIN;
 			} else if ("Participante".equalsIgnoreCase(profile)) {
 				return user.permission == Permission.ATTENDEE || user.permission == Permission.ADMIN
-						 || user.permission == Permission.ATTENDANT;
+						|| user.permission == Permission.ATTENDANT;
 			} else {
 				return false;
 			}

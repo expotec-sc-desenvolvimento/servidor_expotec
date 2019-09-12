@@ -97,9 +97,11 @@ index.menu.activities= Atividades
 index.menu.blog = Notícias
 index.menu.cpanel = Painel de Controle
 
+user.citation=Citação:
+user.resertpassword=Redefinir Senha
 user.edit = Editar Usuário
 user.list = Lista de Usuários
-user.success = Cadastro efetuado! Agora você pode entrar no sistema.
+user.success = Cadastro efetuado! Um link de ativação foi enviado ao seu email. 
 user.logout = Sair
 user.signup = Cadastro de Usuário
 user.name = Nome:
@@ -116,7 +118,8 @@ user.suap=Matrícula SUAP:
 user.picture=Foto do Perfil:
 user.changepassword= Alterar Senha
 user.newpassword=Nova senha:
-
+user.status=Credenciado
+user.active=Usuário credenciado com sucesso!
 
 ulogado.name = Nome:
 ulogado.email = Email:

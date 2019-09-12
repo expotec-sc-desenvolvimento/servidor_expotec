@@ -67,9 +67,15 @@
     #{field 'user.outsider'}
     <div class="col-md-3 mb-4">
      	<label for="${field.name}">&{'user.outsider'}</label>
-    	<div class="form-group marginTB-sm">
-			#{checkbox id:field.name, name:field.name, checked: field.value /}
-			&{'application.yes'}
+    	<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<span class="custom-checkbox">
+					#{checkbox id:field.name, name:field.name, checked: field.value /}
+					</span>
+				</span>
+				<div class="cklabel">&{'application.yes'}</div>
+			</div>
 			<div class="invalid-feedback">
             	<span class="help-inline ${errors.forKey(field.name)?'error':''}">${errors.forKey(field.name)}</span>
         	</div>
@@ -78,8 +84,32 @@
     #{/field} 
 </div>
 <div class="row">
+ 	#{field 'user.citation'}
+    <div class="col-md-6 mb-4">
+        <label for="${field.name}">&{'user.citation'}</label>
+        <input type="text"  id="${field.name}" name="${field.name}" 
+               value="${field.value}" class="form-control"  
+               />
+        <div class="invalid-feedback">
+            <span class="help-inline ${errors.forKey(field.name)?'error':''}">${errors.forKey(field.name)}</span>
+        </div>
+    </div>
+    #{/field} 
 	#{if permissions && ulogado.permission.toString().equals("ADMIN") }
-	<div class="col-md-12  mb-4">
+	<div class="col-md-3  mb-4">
+		<label  >&{'user.status'}</label>
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="custom-checkbox">
+					#{field 'user.status'}
+					#{checkbox id:field.name, name:field.name, checked: field.value /}
+					#{/field}
+				</span>
+			</span>
+			<div class="cklabel">&{'application.yes'}</div>
+		</div>
+	</div>
+	<div class="col-md-3  mb-4">
         	<label  for="selectPermission" >&{'user.permission'}</label>
 		    #{select 'user.permission', class:"form-control", value:user.permission, id:'selectPermission'}
 				#{list items:permissions, as:'p'}

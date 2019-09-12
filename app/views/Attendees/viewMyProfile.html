@@ -79,7 +79,7 @@
 						</p>
 					</div>
 					#{/field}
-				    #{btSave /}
+				    <button type="submit" class="btn btn-primary btn-sm btn-block">Enviar</button>
 				#{/form} 
 		    </div>
 		</div>
@@ -97,9 +97,9 @@
 	     data: $this.serialize(),
 	     type: 'POST'
 		}).always(function(data) {
-			alert(data.responseText);
 			$("#formInModal").modal('hide');
 			$('#formPassword')[0].reset();
+			alert(data.responseText);
 		});
 	   return false;
 	});

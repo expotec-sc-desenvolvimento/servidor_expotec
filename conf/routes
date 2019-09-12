@@ -15,6 +15,7 @@ GET		/{controller}/viewevent/{id}			{controller}.viewEvent(id: Long)
 GET		/detail/user/{id}						Application.detailUserJSON(id: Long)
 GET		/list/activities/{id}					Application.listActivitiesJSON(id: Long)
 GET		/list/events							Application.listEventsJSON
+GET		/credenciar/{id}						Application.activeUser(id: Long)
 
 #POST    /presenca/{idAtividade}/{idUsuario}		Attendants.registrarPresenca{idAtividade: Long, idUsuario: Long}
 

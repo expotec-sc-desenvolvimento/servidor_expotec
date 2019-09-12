@@ -43,7 +43,7 @@ Acessar o sistema
                         </div>
                         #{/if}
 
-                        #{form @authenticate(), method:'POST', class: 'form-auth-small'} 
+                        #{form @Secure.authenticate(), method:'POST', class: 'form-auth-small'} 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input type="email" placeholder="&{'secure.username'}" class="form-control" name="username" id="username" value="${flash.username}" required autofocus/>
@@ -61,7 +61,7 @@ Acessar o sistema
                         <div class="bottom">
                             <p>
                                 <span class="helper-text">
-                                    <a href="#">&{'secure.forgotten'}</a>
+                                    <a href="#formInModal" data-toggle="modal">&{'secure.forgotten'}</a>
                                 </span>
                                 <br/>
                                 <span class="helper-text">
@@ -84,3 +84,49 @@ Acessar o sistema
         </div>
     </div>
 </div>
+
+
+<!-- Small modal -->
+<div class="modal fade" id="formInModal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+		    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">&{'user.resertpassword'}</h4>
+		    </div>
+			<div class="modal-body">
+		    	#{form @Application.resetPassword(), method:'POST', class:'form-horizontal', id:'formResetPassword', name:'formResetPassword'} 
+					#{field 'email'}
+					<div class="control-group">
+						<p>
+							<label for="${field.name}" class="sr-only">&{'user.email'}</label>
+							<input type="email" id="${field.name}" name="${field.name}"
+								class="form-control" placeholder="&{'user.email'}" required>
+							<div class="help-inline ${errors.forKey(field.name)?'error':''}">
+								${errors.forKey(field.name)}
+							</div>
+						</p>
+					</div>
+					#{/field} 
+				    <button type="submit" class="btn btn-success btn-sm btn-block">Enviar</button>
+				#{/form} 
+		    </div>
+		</div>
+	</div>
+</div>
+<script type = "text/javascript" >
+  $('#formResetPassword').on('submit', function() {
+	   var $this = $(this);
+	   console.log($this);
+	   $.ajax({
+	     url: '@{Application.resetPassword()}',
+	     data: $this.serialize(),
+	     type: 'POST'
+		}).always(function(data){
+			$("#formInModal").modal('hide');
+			$('#formResetPassword')[0].reset();
+			alert(data.responseText);
+		});
+	   return false;
+	});
+</script>

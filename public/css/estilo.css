@@ -409,9 +409,17 @@ li.item-flex {
 	max-width: 225px;
 	word-wrap: break-word;
 }
-
+.cklabel{
+	height: 100%;
+    line-height: 34px;
+    padding-left: 11px;
+}
 .no-bg {
 	background: transparent;
+}
+
+.bs-navbar-collapse li {
+    text-align: center;
 }
 
 @media print {
