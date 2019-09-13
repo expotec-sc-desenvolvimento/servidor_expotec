@@ -23,6 +23,21 @@ img.img-responsive.logo {
     padding: 5px;
 }
 
+.txt-justified{
+	text-align: justify;
+    padding: 25px !important;
+}
+
+.breadcrumb {
+	margin-bottom: 0px;
+}
+.jumbotron p {
+	font-size: inherit;
+}
+.txthtml ul {
+    padding-left: 20px;
+}
+
 
 
 select[multiple], select[size] {
@@ -416,6 +431,8 @@ li.item-flex {
 }
 .no-bg {
 	background: transparent;
+	border: 0;
+    box-shadow: none;
 }
 
 .bs-navbar-collapse li {

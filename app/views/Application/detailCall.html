@@ -1,0 +1,96 @@
+#{extends 'template/main.html' /} 
+
+#{set 'title'} 
+	&{'application.name'} - &{'index.title'} 
+#{/set}
+
+#{set 'moreStyles'}
+	<!-- SIMPLIFY CSS -->
+	<link rel="stylesheet" href="@{'/public/template/css/simplify.css'}">
+#{/set} 
+
+
+<div class="wrapper front-end-wrapper ">
+	#{include 'template/menus/application.html' /}
+
+	<div class="section " >
+		
+		<div class="container  text-center">
+			<div class="jumbotron  no-margin fullheight no-bg">
+				<ul class="breadcrumb no-bg">
+					<li>
+						<span class="primary-font">
+							<i class="icon-home"></i>
+						</span>
+						<a href="@{Application.callForPapers()}">&{'index.menu.submission'}</a>
+					</li>
+					<li>&{'submission.details'}</li>	 
+				</ul>
+				<div class="row text-center mb-4">
+					<h3 class="text-upper ">
+						&{'submission.details.title'} <span class="text-success">${track.name}</span> 
+					</h3>
+				</div>
+				#{include 'template/track/detail.html' /}
+				
+				
+				<div class="m-top-sm">
+					#{if session.get("userid") !=null}
+						#{if track.status.toString().equals("OPENED")}
+							<a href="@{Attendees.newPaperTrack(track.id)}" class="btn btn-info btn-sm marginTB-xs" >
+								&{'callforpaper.submit'}
+							</a>	
+                     	#{/if}
+                    	#{else}
+                    		<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">
+                    			${track.status.name}
+                    		</button>
+                    	#{/else}
+                    	#{if _perm.equals("ADMIN")}
+							#{btSmallEdit url:@Administrators.editTrack(track.id)/}
+                     	#{/if}	
+                     #{/if}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	#{include 'template/footer.html'/}
+</div>
+
+#{set 'moreScripts'}
+<!-- Revolution Slider -->
+<script src="@{'/public/js/jquery.countdown.min.js'}"></script>
+<script type="text/javascript">
+$(function(){
+	//Section Animation
+	if (Modernizr.mq('(min-width: 1349px)')) {
+		$('.animation-element').waypoint(function() {
+				$(this).removeClass('disabled');
+		}, { offset: 700 });
+	}
+	else if (Modernizr.mq('(min-width: 992px)') && Modernizr.mq('(max-width: 1349px)')) {
+		$('.animation-element').waypoint(function() {
+				$(this).removeClass('disabled');
+		}, { offset: 550 });
+	}
+	else	{
+		$('.animation-element').removeClass('disabled');
+	}
+
+	//Scrollto section
+    $('.front-end-wrapper .navbar-collapse .navbar-nav').localScroll({
+      duration:800,
+      offset: -100
+    });
+	
+    var dtAbertura = "${event.start.format('yyyy/MM/dd')} ";
+	dtAbertura += "08:00:00";
+	cont = $("#countdown").countdown({
+          image: "@{'public/img/digits.png'}",
+          format: "dd:hh:mm:ss",
+          endTime: new Date(dtAbertura)
+    });
+});
+</script>
+#{/set}

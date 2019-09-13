@@ -10,12 +10,14 @@ import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.Transient;
 
+
 import org.hibernate.annotations.Parameter;
 import org.junit.After;
 
 import models.Activity;
 import models.Event;
 import models.Permission;
+import models.Track;
 import models.User;
 import notifiers.Mails;
 import play.Play;
@@ -63,6 +65,11 @@ public class Application extends Controller {
 
 		User user = User.findById(id);
 		renderJSON(user);
+	}
+	
+	public static void detailCall(Long id) {
+		Track track = Track.findById(id);
+		render(track);
 	}
 
 	public static void listActivitiesJSON(Long id) {
@@ -178,5 +185,11 @@ public class Application extends Controller {
        
         //redirect(Play.ctxPath + "/login");
     }
+	
+	public static void detailTrackJSON(Long id) {
+		Object track = Track.find("select t.name, t.type.name, t.start, t.end, t.guidelines from Track t where t.id = "+ id).first();
+		renderJSON(track);
+	}
+	
 
 }

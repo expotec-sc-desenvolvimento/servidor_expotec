@@ -97,6 +97,9 @@ index.menu.activities= Atividades
 index.menu.blog = Notícias
 index.menu.cpanel = Painel de Controle
 
+submission.details=Detalhes
+submission.details.title=Chamada -  
+
 user.citation=Citação:
 user.resertpassword=Redefinir Senha
 user.edit = Editar Usuário

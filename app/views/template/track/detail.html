@@ -1,0 +1,40 @@
+<div class="row">
+	#{field 'track.start'}
+	<div class="col-md-6 mb-4">
+		<label class="control-label">&{'track.start'}</label>
+		<p class="data-detail">
+		    ${field.value.format('dd/MM/yyy')}
+		 </p>
+	</div>
+	#{/field}
+	
+	#{field 'track.end'}
+	<div class="col-md-6 mb-4">
+		<label class="control-label">&{'track.end'}</label>
+		<p class="data-detail">
+		    ${field.value.format('dd/MM/yyyy')}
+		 </p>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'track.guidelines'}
+	<div class="col-md-12  mb-4">
+		<label for="${field.name}">&{'track.guidelines'}</label> 
+		<div class="data-detail txt-justified txthtml">
+			#{verbatim}
+					${field.value}
+			#{/verbatim}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+
+<script>
+	$(function(){
+		
+	});
+</script>
+
