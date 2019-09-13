@@ -22,34 +22,33 @@
 						<span class="primary-font">
 							<i class="icon-home"></i>
 						</span>
-						<a href="@{Application.callForPapers()}">&{'index.menu.submission'}</a>
+						<a href="@{Application.sheduleOfActivities()}">&{'index.menu.schedule'}</a>
 					</li>
 					<li>&{'submission.details'}</li>	 
 				</ul>
 				<div class="row text-center mb-4">
 					<h3 class="text-upper ">
-						&{'submission.details.title'} <span class="text-success">${track.name}</span> 
+						&{'activity.detail'} 
 					</h3>
 				</div>
-				#{include 'template/track/detail.html' /}
+				#{include 'template/activity/detail.html' /}
 				
 				
 				<div class="m-top-sm">
-					#{if session.get("userid") !=null}
-						#{if track.status.toString().equals("OPENED")}
-							<a href="@{Attendees.newPaperTrack(track.id)}" class="btn btn-info btn-sm marginTB-xs" >
-								&{'callforpaper.submit'}
-							</a>	
-                     	#{/if}
-                    	#{else}
-                    		<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">
-                    			${track.status.name}
-                    		</button>
-                    	#{/else}
-                    	#{if _perm.equals("ADMIN")}
-							#{btSmallEdit url:@Administrators.editTrack(track.id)/}
-                     	#{/if}	
-                     #{/if}
+					#{if session.get("userid") !=null }
+									#{if activity.hasInscription(session.get('userid').toLong())}
+										<a href="@{Attendees.unsubscribe(activity.uuid)}" class="btn btn-danger btn-sm marginTB-xs">&{'inscription.unsubscribe'}</a>										
+									#{/if}
+									#{elseif activity.status.toString().equals("OPENED")}
+										<a href="@{Attendees.subscribe(activity.uuid)}" class="btn btn-info btn-sm marginTB-xs">&{'inscription.subscribe'}</a>
+                     				#{/elseif}
+                     				#{else}
+                   						<button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">${activity.status.name}</button>
+                    				#{/else}
+                    				#{if _perm.equals("ADMIN")}
+										#{btSmallEdit url:@Administrators.editActivity(activity.uuid) /}
+                     				#{/if}
+                     			#{/if}	
 				</div>
 			</div>
 		</div>

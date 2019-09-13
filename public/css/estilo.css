@@ -21,6 +21,7 @@ img.img-responsive.logo {
 .txt-left{
 	text-align: left;
     padding: 5px;
+    width: 100%;
 }
 
 .txt-justified{
@@ -421,7 +422,7 @@ li.item-flex {
 .mypanel-list ul li .mypanel-detail {
 	margin-left: 100px;
 	text-align: left;
-	max-width: 225px;
+	max-width: 235px;
 	word-wrap: break-word;
 }
 .cklabel{
@@ -519,6 +520,10 @@ span a.paginate_button {
 	.m-top-sm.m-bottom-sm.btn-group {
     	display: inline-grid;
 	}
+	li.item-flex {
+    	flex-grow: 1;
+    	max-width: 100%;
+	}
 }
 
 @media screen and (max-width: 1024px) {
@@ -527,5 +532,44 @@ span a.paginate_button {
 	}
 	.mypanel-list ul li {
 		padding: 10px;
+	}
+	
+	li.item-flex {
+    	flex-grow: 1;
+    	max-width: 100%;
+	}
+	
+	.activity-tag {
+		text-align: center;
+		margin: auto;
+	}
+	.myflex {
+		flex-direction: column;
+	}
+	.mypanel-list ul li {
+		float: left;
+		width: 100%;
+		min-width: 180px;
+		
+	}
+	.mypanel-list ul li .mypanel-avatar {
+		float: left;
+		width: 100%;
+		display: block;
+	}
+	.mypanel-avatar span.stat-icon {
+		float: none;
+		margin: auto;
+	}
+	
+	.m-top-sm.m-bottom-sm.btn-group {
+    	display: inline-grid;
+	}
+	
+	.mypanel-list ul li .mypanel-detail {
+   		margin-left: 0px;
+    	text-align: center;
+    	max-width: 100%;
+    	word-wrap: break-word;
 	}
 }

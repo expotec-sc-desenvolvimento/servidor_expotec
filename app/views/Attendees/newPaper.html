@@ -34,12 +34,9 @@
 	<input type="hidden" name="paper.author.uuid" value="${paper.author.uuid}"/>
     <div class="control-group form-actions">
     	<div class="row">
-        	<div class="col-md-3 mb-4">
+        	<div class="col-md-12 mb-4">
             	#{btSave /}
-	    	</div>
-        
-      		<div class="col-md-3 mb-4">
-      			#{btCancel url:@Attendees.listMyPapers()/}
+	    		#{btCancel url:@Attendees.listMyPapers()/}
         	</div>
     	</div>
     </div>

@@ -210,9 +210,11 @@ inscription.subscribe= Inscrever-se
 inscription.unsubscribe= Desinscrever-se
 inscription.mylist = Minhas Inscrições
 
+schedule.title=Programação
 schedule.title.first=#PROGRAMA
 schedule.title.second=DASATIVIDADES
 
+callforpaper.title=Chamadas
 callforpaper.title.first=#CHAMADA
 callforpaper.title.second=DETRABALHOS
 callforpaper.submit=Submeter

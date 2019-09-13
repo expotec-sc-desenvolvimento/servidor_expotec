@@ -71,6 +71,16 @@ public class Application extends Controller {
 		Track track = Track.findById(id);
 		render(track);
 	}
+	
+	public static void detailActivity(Long uuid) {
+		Activity activity = Activity.findById(uuid);
+		render(activity);
+	}
+	
+	public static void detailActivityJSON(Long uuid) {
+		Object activity = Track.find("select a.title, a.mainGoal, a.description, a.type.name, a.startInscription from Activity a where a.uuid = "+ uuid).first();
+		renderJSON(activity);
+	}
 
 	public static void listActivitiesJSON(Long id) {
 		List<Activity> activities = Activity.find("select a from Activity a where a.event.id = " + id).fetch();

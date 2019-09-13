@@ -17,6 +17,7 @@ GET		/list/activities/{id}					Application.listActivitiesJSON(id: Long)
 GET		/list/events							Application.listEventsJSON
 GET		/credenciar/{id}						Application.activeUser(id: Long)
 GET 	/detail/track/{id}						Application.detailTrackJSON(id: Long)
+GET 	/detail/activity/{uuid}					Application.detailActivityJSON(uuid: Long)
 
 #POST    /presenca/{idAtividade}/{idUsuario}		Attendants.registrarPresenca{idAtividade: Long, idUsuario: Long}
 

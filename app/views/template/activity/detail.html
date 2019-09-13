@@ -1,0 +1,74 @@
+<div class="row">
+     #{field 'activity.title'}
+	<div class="col-md-12  mb-8">
+		<label for="${field.name}">&{'activity.title'}</label> 
+		<p class="data-detail txt-justified">${field.value}</p>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'activity.mainGoal'}
+	<div class="col-md-12 mb-4">
+		<label class="control-label">&{'activity.mainGoal'}</label>
+		<p class="data-detail txt-justified">${field.value}</p>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'activity.description'}
+	<div class="col-md-12  mb-4">
+		<label for="${field.name}">&{'activity.description'}</label> 
+		<div class="data-detail txt-justified txthtml">
+			#{verbatim}
+					${field.value}
+			#{/verbatim}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+ 	#{field 'activity.facilitators'}
+	<div class="col-md-12 ">
+        <label  for="${field.name}" >&{'activity.facilitators'}</label>
+		<p class="data-detail txt-justified">
+			#{list items:activity.facilitators, as:'af'}
+				<small>${af}.</small>
+			#{/list}
+		</p>							
+	</div>
+	#{/field}
+</div>
+
+<div class="row">	
+	#{field 'activity.type.name'}
+	<div class="col-md-3  mb-4">
+        <label  for="${field.name}" >&{'activity.type'}</label>
+        <p class="data-detail">${field.value}</p>
+     </div>
+    #{/field}
+	
+	#{field 'activity.numMinutes'}
+	<div class="col-md-3  mb-4">
+		<label for="${field.name}">&{'activity.numMinutes'}</label> 
+		<p class="data-detail">${field.value}</p>
+	</div>
+	#{/field}
+	
+	#{field 'activity.startInscription'}
+	<div class="col-md-3 mb-4">
+		<label class="control-label">&{'activity.startInscription'}</label>
+		<p class="data-detail">${field.value}</p>
+	</div>
+	#{/field}
+	
+	#{field 'activity.maxAttendees'}
+	<div class="col-md-3 mb-4">
+		<label class="control-label">&{'activity.maxAttendees'}</label>
+		<p class="data-detail">${field.value}</p>
+	</div>
+	#{/field}
+</div>
+
