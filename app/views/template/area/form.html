@@ -1,0 +1,21 @@
+<div class="row">
+     #{field 'area.description'}
+	<div class="col-md-12  mb-8">
+		<label for="${field.name}">&{'area.description'}</label> 
+		<input type="text" id="adescription" name="${field.name}"
+			value="${field.value}" class="form-control"
+			placeholder="&{'area.description'}" required 
+			maxlength="50">
+		<div class="help-inline error ${errors.forKey(field.name)?'alert-danger':''}">
+			${errors.forKey(field.name)}
+		</div>
+	</div>
+	#{/field}
+</div>
+
+<div class="row">
+	#{field 'area.parent.id'}
+		<input type="hidden" id="aparent" name="${field.name}"
+			value="${field.value}" >
+	#{/field}
+</div>

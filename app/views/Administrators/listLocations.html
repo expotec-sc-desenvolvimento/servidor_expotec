@@ -1,0 +1,44 @@
+#{extends 'template/layout.html' /}
+#{set 'title'}
+    &{'activity.list'}
+#{/set}
+
+#{set 'panel-title'}
+    &{'activity.list'}
+#{/set}
+
+<div class="row toptoolbar">
+#{if flash.error}
+	<div class="alert alert-danger alert-dismissible text-left" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+        	</span>
+		</button>
+    	${messages.get(flash.error)}
+	</div>
+#{/if}
+#{btSmallNew url:@Administrators.newLocation() /}
+
+</div>
+
+
+#{tabelaDinamica id:'tbLocations', list:locations, chavesCabecalho:['Nome']}
+	#{list items:locations, as:'l'}
+		<tr>
+			<td>${l?.description}</td>
+			<td class="text-center">
+				
+			</td>
+		</tr>
+	#{/list}
+#{/tabelaDinamica}
+
+
+#{set 'moreScripts'}
+<script>
+		$(function(){
+		
+		})
+</script>
+#{/set}

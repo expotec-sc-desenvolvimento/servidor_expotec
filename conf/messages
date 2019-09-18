@@ -69,8 +69,8 @@ cpanel.menu.papers = Submissões
 cpanel.menu.attendant = Atendimento
 cpanel.menu.badge = Crachá
 cpanel.menu.attendance = Presença
-cpanel.menu.expertise = Áreas
-
+cpanel.menu.expertise = Áreas de Conhecimento
+cpanel.menu.rooms=Salas
 
 index.sponsored = Patrocinadores e Parceiros
 index.organized = Organização 
@@ -237,9 +237,9 @@ badge.mybadge = Cracha Expotec
 
 table.actions = Ações
 
-area.list= Áreas
+area.list= Listas de Áreas
 area.parent= Grande Área
 area.description= Descrição
 area.new = Nova Área
-
+area.edit = Editar Área
 

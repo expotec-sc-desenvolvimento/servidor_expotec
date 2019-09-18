@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import play.data.validation.MaxSize;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 import play.data.validation.Unique;
@@ -16,6 +17,7 @@ public class Area extends Model{
 
 	@Unique
 	@MinSize(1)
+	@MaxSize(50)
 	@NotNull
 	@Required(message="validacao.requerido")
 	public String description;

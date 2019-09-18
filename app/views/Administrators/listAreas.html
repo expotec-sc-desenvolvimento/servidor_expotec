@@ -1,0 +1,136 @@
+#{extends 'template/layout.html' /}
+#{set 'title'}
+    &{'area.list'}
+#{/set}
+
+#{set 'panel-title'}
+    &{'area.list'}
+#{/set}
+
+<div class="toptoolbar mb-4">
+#{if flash.error}
+	<div class="alert alert-danger alert-dismissible text-left" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+        	</span>
+		</button>
+    	${messages.get(flash.error)}
+	</div>
+#{/if}
+
+<a href="#formNewArea" class="btn btn-success no-shadow " data-toggle="modal">
+	<span><i class="fa fa-plus"></i> &{'button.new'}</span>
+</a>
+
+<a href="javascript:void(0);" onclick="removerArea();" class="btn btn-danger no-shadow "">
+	<span><i class="fa fa-trash"></i> &{'button.delete'}</span>
+</a>
+
+</div>
+
+<div id="sa-arvore-areas"></div>
+
+
+
+
+<!-- Modal -->
+<div id="formNewArea" class="modal fade" role="dialog" 
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">&{'area.new'}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div class="modal-body">
+       	#{include 'template/area/form.html' /}
+      </div>
+    	
+      <div class="modal-footer">
+     	<button id="btnSaveType" type="button" class="btn btn-primary">&{'button.save'}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+   
+#{set 'moreScripts'}
+<script>
+		var jsondata = []
+		var parentId = 0;
+		$(function(){	
+			jsondata.push({"id": '0', "parent": '#', "text": "Áreas"});
+			#{list items:areas, as:'a'}
+				#{if a?.parent != null}
+				 	jsondata.push({"id": '${a?.id}', "parent": '${a?.parent?.id}', "text": "${a?.description}"});
+				#{/if}
+				#{else}
+					jsondata.push({"id": '${a?.id}', "parent": '0', "text": "${a?.description}"});
+				#{/else}
+			#{/list}
+			createJSTree(jsondata);
+			
+			 $('#sa-arvore-areas').on("changed.jstree", function (e, data) {
+				 parentId = parseInt(data.selected[0]);
+			 });
+		});
+		
+		function createJSTree(jsondata) {
+            $('#sa-arvore-areas').jstree({
+            	"plugins": ["contextmenu", "search","state", "types"],
+                "core": {                    
+                    'data': jsondata,
+                    "initially_open": ["0"]
+                },
+                "search": {
+                    "case_sensitive": false,
+                    "show_only_matches": true
+                }
+                
+            });
+        }
+		
+		$("#btnSaveType").on("click", function(){
+			var description = $("#adescription");
+			var parent = $("#aparent");
+			
+			if(description.val() == "" || description.val() == undefined){
+				$("#adescription").next().html("Informe uma descrição.");
+			}else{
+				$.ajax({
+				     url: '@{Administrators.saveAreaJSON()}',
+				     data: {'description': description.val(),'parentId':parentId},
+				     type: 'POST'
+					}).done(function(data) {
+						$("#adescription").val("");
+						$("#aparent").val("");
+						$("#formNewType").modal('hide');
+					}).always(function(data){
+						window.location.reload();
+					});
+			}
+		});
+		
+		function removerArea(){
+			if(parentId > 0){
+				$.ajax({
+				     url: '@{Administrators.removeAreaJSON()}',
+				     data: {'id':parentId},
+				     type: 'POST'
+					}).always(function(data){
+						window.location.reload();
+					});
+			}else{
+				alert("Não é possível remover o nó raiz.")
+			}
+		}
+</script>
+#{/set}

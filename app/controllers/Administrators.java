@@ -35,12 +35,54 @@ public class Administrators extends Attendants {
 		_url = session.get("url");
 	}
 
+	
+	public static void listAreas() {
+		session.put("url", Play.ctxPath+"/administrators/listAreas");
+		List<Area> areas = Area.findAll();
+		renderArgs.put("areas", areas);
+		renderTemplate("Administrators/listAreas.html");
+	}
+	
+	public static void saveAreaJSON(String description, Long parentId) {
+		Area parent = null;
+		if (parentId != 0) {
+			parent = Area.findById(parentId);
+		}
+		
+		Area nova = new Area();
+		nova.description = description;
+		nova.parent = parent;
+		nova.save();   
+		renderJSON(true);
+	}
+	
+	public static void removeAreaJSON(Long id) {
+		Area area = Area.findById(id);
+		List<Area> children = Area.find("select a from Area a where a.parent.id = "+area.id).fetch();
+		for(Area a: children) {
+			a.delete();
+		}
+		area.delete();
+		renderJSON(true);
+	}
+	
+	
+	public static void listLocations() {
+		session.put("url", Play.ctxPath+"/administrators/listLocations");
+		List<Location> locations = Location.findAll();
+		renderArgs.put("locations", locations);
+		renderTemplate("Administrators/listLocation.html");
+	}
+	
+	
+	
 	public static void listActivityTypes() {
 		session.put("url", Play.ctxPath+"/administrators/listActivityTypes");
 		List<ActivityType> types = ActivityType.findAll();
 		renderArgs.put("types", types);
 		renderTemplate("Administrators/listActivityTypes.html");
 	}
+	
 	
 	public static void newActivityType() {
 		flash.clear();
