@@ -26,7 +26,7 @@
 	</div>
 #{/if}
 
-#{form @Administrators.saveActType(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
+#{form @Administrators.saveActivityType(),method:'POST', class: 'form-horizontal', enctype:'multipart/form-data'} 
     #{include 'template/activitytype/form.html' /}
     <input type='hidden' name="activitytype.id" value="${activitytype.id}">
     
@@ -36,7 +36,7 @@
             	#{btSave /}
 	    	
 	    	
-      			#{btCancel url:@Administrators.listActivityTypes()/}
+      			#{btCancel /}
         	</div>
     	</div>
     </div>

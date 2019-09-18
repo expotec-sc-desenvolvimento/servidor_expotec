@@ -109,6 +109,10 @@ public class User extends GenericModel {
         return inscriptions;
     }
     
-   
+    @Transient
+	public List<Activity> getMyActivities() {
+		List<Activity> activities = JPA.em().createQuery("select a from Activity a left join a.facilitators fa where fa.uuid = "+this.uuid).getResultList();
+        return activities;
+	}
     
 }

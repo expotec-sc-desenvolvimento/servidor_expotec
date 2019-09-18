@@ -5,7 +5,7 @@
         	<label  for="${field.name}" >&{'track.type'}</label>
 		    #{select field.name, class:"form-control", value:field.value, id:"track.type" }
 				
-				#{list items:tktypes, as:'t'}
+				#{list items:types, as:'t'}
 					#{option t}
 						${t.name}
 					#{/option}
@@ -44,7 +44,7 @@
         	<label  for="${field.name}" >&{'track.prior'}</label>
 		    #{select field.name, class:"form-control", value:field.value, id:"track.prior" }
 				#{option null}
-					
+					NÃ£o possui chamada anterior.
 				#{/option}
 				#{list items:tracks, as:'t'}
 					#{if t.id != track.id}
@@ -60,7 +60,7 @@
 								&{'track.order.third'}
 							#{/elseif}
 							#{else}
-								${track.order}º
+								${track.order}ï¿½
 							#{/else}
 						#{/option}
 					#{/if}
@@ -118,7 +118,7 @@
 	<div class="col-md-2  mb-4">
         	<label  for="${field.name}" >&{'track.calcType'}</label>
 		    #{select field.name, class:"form-control", value:field.value, id:"track.calcType" }
-				#{list items:calcTypes, as:'c'}
+				#{list items:calcs, as:'c'}
 					#{option c} ${c.name} #{/option}
 				#{/list}
 			#{/select}
@@ -129,7 +129,7 @@
 	<div class="col-md-2 mb-4">
 		<label  for="${field.name}" >&{'track.status'}</label>
 		 #{select field.name, class:"form-control", value:field.value, id:"track.status" }
-				#{list items:tkStatus, as:'s'}
+				#{list items:status, as:'s'}
 					#{option s} ${s.name} #{/option}
 				#{/list}
 		#{/select}

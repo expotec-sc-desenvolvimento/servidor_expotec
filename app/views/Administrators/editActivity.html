@@ -34,8 +34,8 @@
     	<div class="row">
         	<div class="col-md-12 mb-4 text-right">
             	#{btSave /}
-	    	
-      			#{btCancel url:@Administrators.listActivities(activity.event.id)/}
+	    		
+      			#{btCancel /}
         	</div>
     	</div>
     </div>
@@ -77,20 +77,23 @@
 				$("#atname").next().html("Informe uma descrição para o tipo");
 			}else{
 				$.ajax({
-				     url: '@{Administrators.saveActivityType()}',
+				     url: '@{Administrators.saveActivityTypeJSON()}',
 				     data: {'name':name.val(),'color':color.val()},
 				     type: 'POST'
 					}).done(function(data) {
+						$("#atname").next().html("");
+						$("#formNewType").modal('hide');
 						alert("Tipo adicionado com sucesso");
 						var o = new Option(data.name, data.id);
 						$("#activityType").append(o);
 					}).fail(function(){
+						$("#atname").next().html("");
+						$("#formNewType").modal('hide');
 						alert("Não foi possível realizar essa operação.");
 					}).always(function(){
 						name.val("");
 						color.val("#000");
-						$("#atname").next().html("");
-						$("#formNewType").modal('hide');
+						
 					});
 			}
 			

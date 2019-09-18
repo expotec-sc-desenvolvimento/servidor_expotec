@@ -42,22 +42,22 @@ public class Application extends Controller {
 	}
 
 	public static void comingSoon() throws Throwable {
-		session.put("url", "/application/commingSoon");
+		session.put("url", Play.ctxPath+"/application/commingSoon");
 		renderTemplate("Application/comingsoon.html");
 	}
 
 	public static void callForPapers() throws Throwable {
-		session.put("url", "/application/callForPapers");
+		session.put("url", Play.ctxPath+"/application/callForPapers");
 		renderTemplate("Application/callforpapers.html");
 	}
 
 	public static void sheduleOfActivities() throws Throwable {
-		session.put("url", "/application/sheduleOfActivities");
+		session.put("url", Play.ctxPath+"/application/sheduleOfActivities");
 		renderTemplate("Application/schedule.html");
 	}
 
 	public static void index() throws Throwable {
-		session.put("url", "/application/index");
+		session.put("url", Play.ctxPath+"/application/index");
 		renderTemplate("Application/index.html");
 	}
 

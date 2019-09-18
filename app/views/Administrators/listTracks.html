@@ -7,8 +7,19 @@
     &{'track.list'}
 #{/set}
 <div class="row toptoolbar">
-	#{btSmallNew url:@Administrators.newTrack() /}
+#{if flash.error}
+	<div class="alert alert-danger alert-dismissible text-left" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">
+            	<i class="fa fa-times-circle"></i>
+        	</span>
+		</button>
+    	${messages.get(flash.error)}
+	</div>
+#{/if}
+#{btSmallNew url:@Administrators.newTrack() /}
 </div>
+
 #{tabelaDinamica id:'tbTracks', list:tracks, chavesCabecalho:['Tipo', 'Nome', 'Etapa', 'DeadLine', 'Status']}
 	#{list items:tracks, as:'t'}
 		<tr>
@@ -33,6 +44,7 @@
 			<td>${t.status.name}</td>
 			<td class="text-center">
 				#{btIconEdit url:@Administrators.editTrack(t.id)/}
+				#{btIconRemove url:@Administrators.removeTrack(t.id) /}
 			</td>
 		</tr>
 	#{/list}

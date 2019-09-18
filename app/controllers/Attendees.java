@@ -45,17 +45,17 @@ public class Attendees extends Controller {
 	}
 
 	public static void cpanel() {
-		session.put("url", "/attendees/cpanel");
+		session.put("url", Play.ctxPath+"/attendees/cpanel");
 		renderTemplate("Attendees/cpanel.html");
 	}
 
 	public static void viewMyProfile() {
-		session.put("url", "/attendees/viewMyProfile");
+		session.put("url", Play.ctxPath+"/attendees/viewMyProfile");
 		renderTemplate("Attendees/viewMyProfile.html");
 	}
 
 	public static void listMyPapers() {
-		session.put("url", "/attendees/listMyPapers");
+		session.put("url", Play.ctxPath+"/attendees/listMyPapers");
 		renderTemplate("Attendees/listMyPapers.html");
 	}
 
@@ -69,7 +69,7 @@ public class Attendees extends Controller {
 			i.user = u;
 			i.save();
 		}
-		redirect(Play.ctxPath+_url);
+		redirect(_url);
 		
 	}
 	
@@ -79,7 +79,7 @@ public class Attendees extends Controller {
 		if(i != null) {
 			i.delete();
 		}
-		redirect(Play.ctxPath+_url);
+		redirect(_url);
 		
 	}
 	
@@ -187,7 +187,7 @@ public class Attendees extends Controller {
 		}
 	}
 	public static void listMyInscriptions() {
-		session.put("url", "/attendees/listMyInscriptions");
+		session.put("url", Play.ctxPath+"/attendees/listMyInscriptions");
 		renderTemplate("Attendees/listMyInscriptions.html");
 	}
 	
